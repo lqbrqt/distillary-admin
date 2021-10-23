@@ -55,42 +55,71 @@ declare global {
 export interface NexusGenInputs {
   AnswerAvgOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerCountOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRigth?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isRight?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerCreateInput: { // input type
-    isRigth: boolean; // Boolean!
-    user: NexusGenInputs['UserCreateNestedOneWithoutAnswersInput']; // UserCreateNestedOneWithoutAnswersInput!
+    inCompleteTest: NexusGenInputs['CompleteTestCreateNestedOneWithoutAnswersInput']; // CompleteTestCreateNestedOneWithoutAnswersInput!
+    isRight: boolean; // Boolean!
+    question: NexusGenInputs['QuestionCreateNestedOneWithoutCompeteAnswersInput']; // QuestionCreateNestedOneWithoutCompeteAnswersInput!
+  }
+  AnswerCreateManyInCompleteTestInput: { // input type
+    id?: number | null; // Int
+    isRight: boolean; // Boolean!
+    questionId: number; // Int!
+  }
+  AnswerCreateManyInCompleteTestInputEnvelope: { // input type
+    data: NexusGenInputs['AnswerCreateManyInCompleteTestInput']; // AnswerCreateManyInCompleteTestInput!
+    skipDuplicates?: boolean | null; // Boolean
   }
   AnswerCreateManyInput: { // input type
     id?: number | null; // Int
-    isRigth: boolean; // Boolean!
-    userId: number; // Int!
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
+    questionId: number; // Int!
   }
-  AnswerCreateManyUserInput: { // input type
+  AnswerCreateManyQuestionInput: { // input type
     id?: number | null; // Int
-    isRigth: boolean; // Boolean!
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
   }
-  AnswerCreateManyUserInputEnvelope: { // input type
-    data: NexusGenInputs['AnswerCreateManyUserInput']; // AnswerCreateManyUserInput!
+  AnswerCreateManyQuestionInputEnvelope: { // input type
+    data: NexusGenInputs['AnswerCreateManyQuestionInput']; // AnswerCreateManyQuestionInput!
     skipDuplicates?: boolean | null; // Boolean
   }
-  AnswerCreateNestedManyWithoutUserInput: { // input type
+  AnswerCreateNestedManyWithoutInCompleteTestInput: { // input type
     connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutUserInput'] | null> | null; // [AnswerCreateOrConnectWithoutUserInput]
-    create?: Array<NexusGenInputs['AnswerCreateWithoutUserInput'] | null> | null; // [AnswerCreateWithoutUserInput]
-    createMany?: NexusGenInputs['AnswerCreateManyUserInputEnvelope'] | null; // AnswerCreateManyUserInputEnvelope
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateOrConnectWithoutInCompleteTestInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateWithoutInCompleteTestInput]
+    createMany?: NexusGenInputs['AnswerCreateManyInCompleteTestInputEnvelope'] | null; // AnswerCreateManyInCompleteTestInputEnvelope
   }
-  AnswerCreateOrConnectWithoutUserInput: { // input type
-    create: NexusGenInputs['AnswerUncheckedCreateWithoutUserInput']; // AnswerUncheckedCreateWithoutUserInput!
+  AnswerCreateNestedManyWithoutQuestionInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutQuestionInput'] | null> | null; // [AnswerCreateOrConnectWithoutQuestionInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutQuestionInput'] | null> | null; // [AnswerCreateWithoutQuestionInput]
+    createMany?: NexusGenInputs['AnswerCreateManyQuestionInputEnvelope'] | null; // AnswerCreateManyQuestionInputEnvelope
+  }
+  AnswerCreateOrConnectWithoutInCompleteTestInput: { // input type
+    create: NexusGenInputs['AnswerUncheckedCreateWithoutInCompleteTestInput']; // AnswerUncheckedCreateWithoutInCompleteTestInput!
     where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
-  AnswerCreateWithoutUserInput: { // input type
-    isRigth: boolean; // Boolean!
+  AnswerCreateOrConnectWithoutQuestionInput: { // input type
+    create: NexusGenInputs['AnswerUncheckedCreateWithoutQuestionInput']; // AnswerUncheckedCreateWithoutQuestionInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+  }
+  AnswerCreateWithoutInCompleteTestInput: { // input type
+    isRight: boolean; // Boolean!
+    question: NexusGenInputs['QuestionCreateNestedOneWithoutCompeteAnswersInput']; // QuestionCreateNestedOneWithoutCompeteAnswersInput!
+  }
+  AnswerCreateWithoutQuestionInput: { // input type
+    inCompleteTest: NexusGenInputs['CompleteTestCreateNestedOneWithoutAnswersInput']; // CompleteTestCreateNestedOneWithoutAnswersInput!
+    isRight: boolean; // Boolean!
   }
   AnswerListRelationFilter: { // input type
     every?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
@@ -99,13 +128,15 @@ export interface NexusGenInputs {
   }
   AnswerMaxOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRigth?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isRight?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerMinOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRigth?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isRight?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerOrderByRelationAggregateInput: { // input type
     _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -117,115 +148,193 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['AnswerMinOrderByAggregateInput'] | null; // AnswerMinOrderByAggregateInput
     _sum?: NexusGenInputs['AnswerSumOrderByAggregateInput'] | null; // AnswerSumOrderByAggregateInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRigth?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isRight?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerOrderByWithRelationInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    isRigth?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    user?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTest?: NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null; // CompleteTestOrderByWithRelationInput
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    isRight?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    question?: NexusGenInputs['QuestionOrderByWithRelationInput'] | null; // QuestionOrderByWithRelationInput
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerScalarWhereInput: { // input type
     AND?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
     NOT?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
     OR?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    isRigth?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    inCompleteTestId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    isRight?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    questionId?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   AnswerScalarWhereWithAggregatesInput: { // input type
     AND?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
     NOT?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
     OR?: Array<NexusGenInputs['AnswerScalarWhereWithAggregatesInput'] | null> | null; // [AnswerScalarWhereWithAggregatesInput]
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
-    isRigth?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
-    userId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    inCompleteTestId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    isRight?: NexusGenInputs['BoolWithAggregatesFilter'] | null; // BoolWithAggregatesFilter
+    questionId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
   }
   AnswerSumOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    inCompleteTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    questionId?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   AnswerUncheckedCreateInput: { // input type
     id?: number | null; // Int
-    isRigth: boolean; // Boolean!
-    userId: number; // Int!
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
+    questionId: number; // Int!
   }
-  AnswerUncheckedCreateNestedManyWithoutUserInput: { // input type
+  AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput: { // input type
     connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutUserInput'] | null> | null; // [AnswerCreateOrConnectWithoutUserInput]
-    create?: Array<NexusGenInputs['AnswerCreateWithoutUserInput'] | null> | null; // [AnswerCreateWithoutUserInput]
-    createMany?: NexusGenInputs['AnswerCreateManyUserInputEnvelope'] | null; // AnswerCreateManyUserInputEnvelope
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateOrConnectWithoutInCompleteTestInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateWithoutInCompleteTestInput]
+    createMany?: NexusGenInputs['AnswerCreateManyInCompleteTestInputEnvelope'] | null; // AnswerCreateManyInCompleteTestInputEnvelope
   }
-  AnswerUncheckedCreateWithoutUserInput: { // input type
+  AnswerUncheckedCreateNestedManyWithoutQuestionInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutQuestionInput'] | null> | null; // [AnswerCreateOrConnectWithoutQuestionInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutQuestionInput'] | null> | null; // [AnswerCreateWithoutQuestionInput]
+    createMany?: NexusGenInputs['AnswerCreateManyQuestionInputEnvelope'] | null; // AnswerCreateManyQuestionInputEnvelope
+  }
+  AnswerUncheckedCreateWithoutInCompleteTestInput: { // input type
     id?: number | null; // Int
-    isRigth: boolean; // Boolean!
+    isRight: boolean; // Boolean!
+    questionId: number; // Int!
+  }
+  AnswerUncheckedCreateWithoutQuestionInput: { // input type
+    id?: number | null; // Int
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
   }
   AnswerUncheckedUpdateInput: { // input type
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
-    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    inCompleteTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    questionId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   AnswerUncheckedUpdateManyInput: { // input type
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
-    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    inCompleteTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    questionId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
   AnswerUncheckedUpdateManyWithoutAnswersInput: { // input type
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    questionId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
   }
-  AnswerUncheckedUpdateManyWithoutUserInput: { // input type
+  AnswerUncheckedUpdateManyWithoutCompeteAnswersInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    inCompleteTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+  }
+  AnswerUncheckedUpdateManyWithoutInCompleteTestInput: { // input type
     connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutUserInput'] | null> | null; // [AnswerCreateOrConnectWithoutUserInput]
-    create?: Array<NexusGenInputs['AnswerCreateWithoutUserInput'] | null> | null; // [AnswerCreateWithoutUserInput]
-    createMany?: NexusGenInputs['AnswerCreateManyUserInputEnvelope'] | null; // AnswerCreateManyUserInputEnvelope
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateOrConnectWithoutInCompleteTestInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateWithoutInCompleteTestInput]
+    createMany?: NexusGenInputs['AnswerCreateManyInCompleteTestInputEnvelope'] | null; // AnswerCreateManyInCompleteTestInputEnvelope
     delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
     deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
     disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
     set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutUserInput]
-    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutUserInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutUserInput]
-    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutUserInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutInCompleteTestInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutInCompleteTestInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput]
   }
-  AnswerUncheckedUpdateWithoutUserInput: { // input type
+  AnswerUncheckedUpdateManyWithoutQuestionInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutQuestionInput'] | null> | null; // [AnswerCreateOrConnectWithoutQuestionInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutQuestionInput'] | null> | null; // [AnswerCreateWithoutQuestionInput]
+    createMany?: NexusGenInputs['AnswerCreateManyQuestionInputEnvelope'] | null; // AnswerCreateManyQuestionInputEnvelope
+    delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutQuestionInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutQuestionInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutQuestionInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutQuestionInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutQuestionInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutQuestionInput]
+  }
+  AnswerUncheckedUpdateWithoutInCompleteTestInput: { // input type
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    questionId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  AnswerUncheckedUpdateWithoutQuestionInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    inCompleteTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
   }
   AnswerUpdateInput: { // input type
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
-    user?: NexusGenInputs['UserUpdateOneRequiredWithoutAnswersInput'] | null; // UserUpdateOneRequiredWithoutAnswersInput
+    inCompleteTest?: NexusGenInputs['CompleteTestUpdateOneRequiredWithoutAnswersInput'] | null; // CompleteTestUpdateOneRequiredWithoutAnswersInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    question?: NexusGenInputs['QuestionUpdateOneRequiredWithoutCompeteAnswersInput'] | null; // QuestionUpdateOneRequiredWithoutCompeteAnswersInput
   }
   AnswerUpdateManyMutationInput: { // input type
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
   }
-  AnswerUpdateManyWithWhereWithoutUserInput: { // input type
+  AnswerUpdateManyWithWhereWithoutInCompleteTestInput: { // input type
     data: NexusGenInputs['AnswerUncheckedUpdateManyWithoutAnswersInput']; // AnswerUncheckedUpdateManyWithoutAnswersInput!
     where: NexusGenInputs['AnswerScalarWhereInput']; // AnswerScalarWhereInput!
   }
-  AnswerUpdateManyWithoutUserInput: { // input type
+  AnswerUpdateManyWithWhereWithoutQuestionInput: { // input type
+    data: NexusGenInputs['AnswerUncheckedUpdateManyWithoutCompeteAnswersInput']; // AnswerUncheckedUpdateManyWithoutCompeteAnswersInput!
+    where: NexusGenInputs['AnswerScalarWhereInput']; // AnswerScalarWhereInput!
+  }
+  AnswerUpdateManyWithoutInCompleteTestInput: { // input type
     connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutUserInput'] | null> | null; // [AnswerCreateOrConnectWithoutUserInput]
-    create?: Array<NexusGenInputs['AnswerCreateWithoutUserInput'] | null> | null; // [AnswerCreateWithoutUserInput]
-    createMany?: NexusGenInputs['AnswerCreateManyUserInputEnvelope'] | null; // AnswerCreateManyUserInputEnvelope
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateOrConnectWithoutInCompleteTestInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutInCompleteTestInput'] | null> | null; // [AnswerCreateWithoutInCompleteTestInput]
+    createMany?: NexusGenInputs['AnswerCreateManyInCompleteTestInputEnvelope'] | null; // AnswerCreateManyInCompleteTestInputEnvelope
     delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
     deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
     disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
     set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
-    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutUserInput]
-    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutUserInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutUserInput]
-    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutUserInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutInCompleteTestInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutInCompleteTestInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput]
   }
-  AnswerUpdateWithWhereUniqueWithoutUserInput: { // input type
-    data: NexusGenInputs['AnswerUncheckedUpdateWithoutUserInput']; // AnswerUncheckedUpdateWithoutUserInput!
+  AnswerUpdateManyWithoutQuestionInput: { // input type
+    connect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['AnswerCreateOrConnectWithoutQuestionInput'] | null> | null; // [AnswerCreateOrConnectWithoutQuestionInput]
+    create?: Array<NexusGenInputs['AnswerCreateWithoutQuestionInput'] | null> | null; // [AnswerCreateWithoutQuestionInput]
+    createMany?: NexusGenInputs['AnswerCreateManyQuestionInputEnvelope'] | null; // AnswerCreateManyQuestionInputEnvelope
+    delete?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['AnswerScalarWhereInput'] | null> | null; // [AnswerScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    set?: Array<NexusGenInputs['AnswerWhereUniqueInput'] | null> | null; // [AnswerWhereUniqueInput]
+    update?: Array<NexusGenInputs['AnswerUpdateWithWhereUniqueWithoutQuestionInput'] | null> | null; // [AnswerUpdateWithWhereUniqueWithoutQuestionInput]
+    updateMany?: Array<NexusGenInputs['AnswerUpdateManyWithWhereWithoutQuestionInput'] | null> | null; // [AnswerUpdateManyWithWhereWithoutQuestionInput]
+    upsert?: Array<NexusGenInputs['AnswerUpsertWithWhereUniqueWithoutQuestionInput'] | null> | null; // [AnswerUpsertWithWhereUniqueWithoutQuestionInput]
+  }
+  AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput: { // input type
+    data: NexusGenInputs['AnswerUncheckedUpdateWithoutInCompleteTestInput']; // AnswerUncheckedUpdateWithoutInCompleteTestInput!
     where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
-  AnswerUpdateWithoutUserInput: { // input type
-    isRigth?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+  AnswerUpdateWithWhereUniqueWithoutQuestionInput: { // input type
+    data: NexusGenInputs['AnswerUncheckedUpdateWithoutQuestionInput']; // AnswerUncheckedUpdateWithoutQuestionInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
-  AnswerUpsertWithWhereUniqueWithoutUserInput: { // input type
-    create: NexusGenInputs['AnswerUncheckedCreateWithoutUserInput']; // AnswerUncheckedCreateWithoutUserInput!
-    update: NexusGenInputs['AnswerUncheckedUpdateWithoutUserInput']; // AnswerUncheckedUpdateWithoutUserInput!
+  AnswerUpdateWithoutInCompleteTestInput: { // input type
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+    question?: NexusGenInputs['QuestionUpdateOneRequiredWithoutCompeteAnswersInput'] | null; // QuestionUpdateOneRequiredWithoutCompeteAnswersInput
+  }
+  AnswerUpdateWithoutQuestionInput: { // input type
+    inCompleteTest?: NexusGenInputs['CompleteTestUpdateOneRequiredWithoutAnswersInput'] | null; // CompleteTestUpdateOneRequiredWithoutAnswersInput
+    isRight?: NexusGenInputs['BoolFieldUpdateOperationsInput'] | null; // BoolFieldUpdateOperationsInput
+  }
+  AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput: { // input type
+    create: NexusGenInputs['AnswerUncheckedCreateWithoutInCompleteTestInput']; // AnswerUncheckedCreateWithoutInCompleteTestInput!
+    update: NexusGenInputs['AnswerUncheckedUpdateWithoutInCompleteTestInput']; // AnswerUncheckedUpdateWithoutInCompleteTestInput!
+    where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+  }
+  AnswerUpsertWithWhereUniqueWithoutQuestionInput: { // input type
+    create: NexusGenInputs['AnswerUncheckedCreateWithoutQuestionInput']; // AnswerUncheckedCreateWithoutQuestionInput!
+    update: NexusGenInputs['AnswerUncheckedUpdateWithoutQuestionInput']; // AnswerUncheckedUpdateWithoutQuestionInput!
     where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
   }
   AnswerWhereInput: { // input type
@@ -233,9 +342,11 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
     OR?: Array<NexusGenInputs['AnswerWhereInput'] | null> | null; // [AnswerWhereInput]
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
-    isRigth?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
-    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
-    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    inCompleteTest?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    inCompleteTestId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    isRight?: NexusGenInputs['BoolFilter'] | null; // BoolFilter
+    question?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
+    questionId?: NexusGenInputs['IntFilter'] | null; // IntFilter
   }
   AnswerWhereUniqueInput: { // input type
     id?: number | null; // Int
@@ -253,6 +364,247 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['NestedBoolFilter'] | null; // NestedBoolFilter
     equals?: boolean | null; // Boolean
     not?: NexusGenInputs['NestedBoolWithAggregatesFilter'] | null; // NestedBoolWithAggregatesFilter
+  }
+  CompleteTestAvgOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestCountOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestCreateInput: { // input type
+    answers?: NexusGenInputs['AnswerCreateNestedManyWithoutInCompleteTestInput'] | null; // AnswerCreateNestedManyWithoutInCompleteTestInput
+    rightAnswers: number; // Int!
+    user: NexusGenInputs['UserCreateNestedOneWithoutCompletedTestsInput']; // UserCreateNestedOneWithoutCompletedTestsInput!
+  }
+  CompleteTestCreateManyInput: { // input type
+    id?: number | null; // Int
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestCreateManyUserInput: { // input type
+    id?: number | null; // Int
+    rightAnswers: number; // Int!
+  }
+  CompleteTestCreateManyUserInputEnvelope: { // input type
+    data: NexusGenInputs['CompleteTestCreateManyUserInput']; // CompleteTestCreateManyUserInput!
+    skipDuplicates?: boolean | null; // Boolean
+  }
+  CompleteTestCreateNestedManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['CompleteTestCreateOrConnectWithoutUserInput'] | null> | null; // [CompleteTestCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['CompleteTestCreateWithoutUserInput'] | null> | null; // [CompleteTestCreateWithoutUserInput]
+    createMany?: NexusGenInputs['CompleteTestCreateManyUserInputEnvelope'] | null; // CompleteTestCreateManyUserInputEnvelope
+  }
+  CompleteTestCreateNestedOneWithoutAnswersInput: { // input type
+    connect?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CompleteTestCreateOrConnectWithoutAnswersInput'] | null; // CompleteTestCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['CompleteTestUncheckedCreateWithoutAnswersInput'] | null; // CompleteTestUncheckedCreateWithoutAnswersInput
+  }
+  CompleteTestCreateOrConnectWithoutAnswersInput: { // input type
+    create: NexusGenInputs['CompleteTestUncheckedCreateWithoutAnswersInput']; // CompleteTestUncheckedCreateWithoutAnswersInput!
+    where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+  }
+  CompleteTestCreateOrConnectWithoutUserInput: { // input type
+    create: NexusGenInputs['CompleteTestUncheckedCreateWithoutUserInput']; // CompleteTestUncheckedCreateWithoutUserInput!
+    where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+  }
+  CompleteTestCreateWithoutAnswersInput: { // input type
+    rightAnswers: number; // Int!
+    user: NexusGenInputs['UserCreateNestedOneWithoutCompletedTestsInput']; // UserCreateNestedOneWithoutCompletedTestsInput!
+  }
+  CompleteTestCreateWithoutUserInput: { // input type
+    answers?: NexusGenInputs['AnswerCreateNestedManyWithoutInCompleteTestInput'] | null; // AnswerCreateNestedManyWithoutInCompleteTestInput
+    rightAnswers: number; // Int!
+  }
+  CompleteTestListRelationFilter: { // input type
+    every?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    none?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    some?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+  }
+  CompleteTestMaxOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestMinOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestOrderByRelationAggregateInput: { // input type
+    _count?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestOrderByWithAggregationInput: { // input type
+    _avg?: NexusGenInputs['CompleteTestAvgOrderByAggregateInput'] | null; // CompleteTestAvgOrderByAggregateInput
+    _count?: NexusGenInputs['CompleteTestCountOrderByAggregateInput'] | null; // CompleteTestCountOrderByAggregateInput
+    _max?: NexusGenInputs['CompleteTestMaxOrderByAggregateInput'] | null; // CompleteTestMaxOrderByAggregateInput
+    _min?: NexusGenInputs['CompleteTestMinOrderByAggregateInput'] | null; // CompleteTestMinOrderByAggregateInput
+    _sum?: NexusGenInputs['CompleteTestSumOrderByAggregateInput'] | null; // CompleteTestSumOrderByAggregateInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestOrderByWithRelationInput: { // input type
+    answers?: NexusGenInputs['AnswerOrderByRelationAggregateInput'] | null; // AnswerOrderByRelationAggregateInput
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    user?: NexusGenInputs['UserOrderByWithRelationInput'] | null; // UserOrderByWithRelationInput
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestRelationFilter: { // input type
+    is?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    isNot?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+  }
+  CompleteTestScalarWhereInput: { // input type
+    AND?: Array<NexusGenInputs['CompleteTestScalarWhereInput'] | null> | null; // [CompleteTestScalarWhereInput]
+    NOT?: Array<NexusGenInputs['CompleteTestScalarWhereInput'] | null> | null; // [CompleteTestScalarWhereInput]
+    OR?: Array<NexusGenInputs['CompleteTestScalarWhereInput'] | null> | null; // [CompleteTestScalarWhereInput]
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    rightAnswers?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  CompleteTestScalarWhereWithAggregatesInput: { // input type
+    AND?: Array<NexusGenInputs['CompleteTestScalarWhereWithAggregatesInput'] | null> | null; // [CompleteTestScalarWhereWithAggregatesInput]
+    NOT?: Array<NexusGenInputs['CompleteTestScalarWhereWithAggregatesInput'] | null> | null; // [CompleteTestScalarWhereWithAggregatesInput]
+    OR?: Array<NexusGenInputs['CompleteTestScalarWhereWithAggregatesInput'] | null> | null; // [CompleteTestScalarWhereWithAggregatesInput]
+    id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    rightAnswers?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+    userId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
+  }
+  CompleteTestSumOrderByAggregateInput: { // input type
+    id?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    rightAnswers?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    userId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+  }
+  CompleteTestUncheckedCreateInput: { // input type
+    answers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput'] | null; // AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput
+    id?: number | null; // Int
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestUncheckedCreateNestedManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['CompleteTestCreateOrConnectWithoutUserInput'] | null> | null; // [CompleteTestCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['CompleteTestCreateWithoutUserInput'] | null> | null; // [CompleteTestCreateWithoutUserInput]
+    createMany?: NexusGenInputs['CompleteTestCreateManyUserInputEnvelope'] | null; // CompleteTestCreateManyUserInputEnvelope
+  }
+  CompleteTestUncheckedCreateWithoutAnswersInput: { // input type
+    id?: number | null; // Int
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestUncheckedCreateWithoutUserInput: { // input type
+    answers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput'] | null; // AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput
+    id?: number | null; // Int
+    rightAnswers: number; // Int!
+  }
+  CompleteTestUncheckedUpdateInput: { // input type
+    answers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutInCompleteTestInput'] | null; // AnswerUncheckedUpdateManyWithoutInCompleteTestInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUncheckedUpdateManyInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUncheckedUpdateManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['CompleteTestCreateOrConnectWithoutUserInput'] | null> | null; // [CompleteTestCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['CompleteTestCreateWithoutUserInput'] | null> | null; // [CompleteTestCreateWithoutUserInput]
+    createMany?: NexusGenInputs['CompleteTestCreateManyUserInputEnvelope'] | null; // CompleteTestCreateManyUserInputEnvelope
+    delete?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['CompleteTestScalarWhereInput'] | null> | null; // [CompleteTestScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    set?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    update?: Array<NexusGenInputs['CompleteTestUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [CompleteTestUpdateWithWhereUniqueWithoutUserInput]
+    updateMany?: Array<NexusGenInputs['CompleteTestUpdateManyWithWhereWithoutUserInput'] | null> | null; // [CompleteTestUpdateManyWithWhereWithoutUserInput]
+    upsert?: Array<NexusGenInputs['CompleteTestUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [CompleteTestUpsertWithWhereUniqueWithoutUserInput]
+  }
+  CompleteTestUncheckedUpdateWithoutAnswersInput: { // input type
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    userId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUncheckedUpdateWithoutUserInput: { // input type
+    answers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutInCompleteTestInput'] | null; // AnswerUncheckedUpdateManyWithoutInCompleteTestInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUpdateInput: { // input type
+    answers?: NexusGenInputs['AnswerUpdateManyWithoutInCompleteTestInput'] | null; // AnswerUpdateManyWithoutInCompleteTestInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    user?: NexusGenInputs['UserUpdateOneRequiredWithoutCompletedTestsInput'] | null; // UserUpdateOneRequiredWithoutCompletedTestsInput
+  }
+  CompleteTestUpdateManyMutationInput: { // input type
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUpdateManyWithWhereWithoutUserInput: { // input type
+    data: NexusGenInputs['CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput']; // CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput!
+    where: NexusGenInputs['CompleteTestScalarWhereInput']; // CompleteTestScalarWhereInput!
+  }
+  CompleteTestUpdateManyWithoutUserInput: { // input type
+    connect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    connectOrCreate?: Array<NexusGenInputs['CompleteTestCreateOrConnectWithoutUserInput'] | null> | null; // [CompleteTestCreateOrConnectWithoutUserInput]
+    create?: Array<NexusGenInputs['CompleteTestCreateWithoutUserInput'] | null> | null; // [CompleteTestCreateWithoutUserInput]
+    createMany?: NexusGenInputs['CompleteTestCreateManyUserInputEnvelope'] | null; // CompleteTestCreateManyUserInputEnvelope
+    delete?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    deleteMany?: Array<NexusGenInputs['CompleteTestScalarWhereInput'] | null> | null; // [CompleteTestScalarWhereInput]
+    disconnect?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    set?: Array<NexusGenInputs['CompleteTestWhereUniqueInput'] | null> | null; // [CompleteTestWhereUniqueInput]
+    update?: Array<NexusGenInputs['CompleteTestUpdateWithWhereUniqueWithoutUserInput'] | null> | null; // [CompleteTestUpdateWithWhereUniqueWithoutUserInput]
+    updateMany?: Array<NexusGenInputs['CompleteTestUpdateManyWithWhereWithoutUserInput'] | null> | null; // [CompleteTestUpdateManyWithWhereWithoutUserInput]
+    upsert?: Array<NexusGenInputs['CompleteTestUpsertWithWhereUniqueWithoutUserInput'] | null> | null; // [CompleteTestUpsertWithWhereUniqueWithoutUserInput]
+  }
+  CompleteTestUpdateOneRequiredWithoutAnswersInput: { // input type
+    connect?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['CompleteTestCreateOrConnectWithoutAnswersInput'] | null; // CompleteTestCreateOrConnectWithoutAnswersInput
+    create?: NexusGenInputs['CompleteTestUncheckedCreateWithoutAnswersInput'] | null; // CompleteTestUncheckedCreateWithoutAnswersInput
+    update?: NexusGenInputs['CompleteTestUncheckedUpdateWithoutAnswersInput'] | null; // CompleteTestUncheckedUpdateWithoutAnswersInput
+    upsert?: NexusGenInputs['CompleteTestUpsertWithoutAnswersInput'] | null; // CompleteTestUpsertWithoutAnswersInput
+  }
+  CompleteTestUpdateWithWhereUniqueWithoutUserInput: { // input type
+    data: NexusGenInputs['CompleteTestUncheckedUpdateWithoutUserInput']; // CompleteTestUncheckedUpdateWithoutUserInput!
+    where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+  }
+  CompleteTestUpdateWithoutAnswersInput: { // input type
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    user?: NexusGenInputs['UserUpdateOneRequiredWithoutCompletedTestsInput'] | null; // UserUpdateOneRequiredWithoutCompletedTestsInput
+  }
+  CompleteTestUpdateWithoutUserInput: { // input type
+    answers?: NexusGenInputs['AnswerUpdateManyWithoutInCompleteTestInput'] | null; // AnswerUpdateManyWithoutInCompleteTestInput
+    rightAnswers?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+  }
+  CompleteTestUpsertWithWhereUniqueWithoutUserInput: { // input type
+    create: NexusGenInputs['CompleteTestUncheckedCreateWithoutUserInput']; // CompleteTestUncheckedCreateWithoutUserInput!
+    update: NexusGenInputs['CompleteTestUncheckedUpdateWithoutUserInput']; // CompleteTestUncheckedUpdateWithoutUserInput!
+    where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+  }
+  CompleteTestUpsertWithoutAnswersInput: { // input type
+    create: NexusGenInputs['CompleteTestUncheckedCreateWithoutAnswersInput']; // CompleteTestUncheckedCreateWithoutAnswersInput!
+    update: NexusGenInputs['CompleteTestUncheckedUpdateWithoutAnswersInput']; // CompleteTestUncheckedUpdateWithoutAnswersInput!
+  }
+  CompleteTestWhereInput: { // input type
+    AND?: Array<NexusGenInputs['CompleteTestWhereInput'] | null> | null; // [CompleteTestWhereInput]
+    NOT?: Array<NexusGenInputs['CompleteTestWhereInput'] | null> | null; // [CompleteTestWhereInput]
+    OR?: Array<NexusGenInputs['CompleteTestWhereInput'] | null> | null; // [CompleteTestWhereInput]
+    answers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
+    id?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    rightAnswers?: NexusGenInputs['IntFilter'] | null; // IntFilter
+    user?: NexusGenInputs['UserWhereInput'] | null; // UserWhereInput
+    userId?: NexusGenInputs['IntFilter'] | null; // IntFilter
+  }
+  CompleteTestWhereUniqueInput: { // input type
+    id?: number | null; // Int
   }
   EnumQuestionTypeFieldUpdateOperationsInput: { // input type
     set?: NexusGenEnums['QuestionType'] | null; // QuestionType
@@ -442,7 +794,6 @@ export interface NexusGenInputs {
   }
   QuestionCountOrderByAggregateInput: { // input type
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
     codeArgs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     expectedResult?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -453,8 +804,8 @@ export interface NexusGenInputs {
   }
   QuestionCreateInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
     expectedResult?: string | null; // String
     options?: Array<string | null> | null; // [String]
     parrentTest: NexusGenInputs['TestCreateNestedOneWithoutQuestionsInput']; // TestCreateNestedOneWithoutQuestionsInput!
@@ -463,7 +814,6 @@ export interface NexusGenInputs {
   }
   QuestionCreateManyInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
     expectedResult?: string | null; // String
     id?: number | null; // Int
@@ -474,7 +824,6 @@ export interface NexusGenInputs {
   }
   QuestionCreateManyParrentTestInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
     expectedResult?: string | null; // String
     id?: number | null; // Int
@@ -498,14 +847,32 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['QuestionCreateWithoutParrentTestInput'] | null> | null; // [QuestionCreateWithoutParrentTestInput]
     createMany?: NexusGenInputs['QuestionCreateManyParrentTestInputEnvelope'] | null; // QuestionCreateManyParrentTestInputEnvelope
   }
+  QuestionCreateNestedOneWithoutCompeteAnswersInput: { // input type
+    connect?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutCompeteAnswersInput'] | null; // QuestionCreateOrConnectWithoutCompeteAnswersInput
+    create?: NexusGenInputs['QuestionUncheckedCreateWithoutCompeteAnswersInput'] | null; // QuestionUncheckedCreateWithoutCompeteAnswersInput
+  }
+  QuestionCreateOrConnectWithoutCompeteAnswersInput: { // input type
+    create: NexusGenInputs['QuestionUncheckedCreateWithoutCompeteAnswersInput']; // QuestionUncheckedCreateWithoutCompeteAnswersInput!
+    where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
+  }
   QuestionCreateOrConnectWithoutParrentTestInput: { // input type
     create: NexusGenInputs['QuestionUncheckedCreateWithoutParrentTestInput']; // QuestionUncheckedCreateWithoutParrentTestInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
+  QuestionCreateWithoutCompeteAnswersInput: { // input type
+    answer?: string | null; // String
+    codeArgs?: Array<string | null> | null; // [String]
+    expectedResult?: string | null; // String
+    options?: Array<string | null> | null; // [String]
+    parrentTest: NexusGenInputs['TestCreateNestedOneWithoutQuestionsInput']; // TestCreateNestedOneWithoutQuestionsInput!
+    text: string; // String!
+    type: NexusGenEnums['QuestionType']; // QuestionType!
+  }
   QuestionCreateWithoutParrentTestInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerCreateNestedManyWithoutQuestionInput'] | null; // AnswerCreateNestedManyWithoutQuestionInput
     expectedResult?: string | null; // String
     options?: Array<string | null> | null; // [String]
     text: string; // String!
@@ -524,7 +891,6 @@ export interface NexusGenInputs {
   }
   QuestionMaxOrderByAggregateInput: { // input type
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
     expectedResult?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -533,7 +899,6 @@ export interface NexusGenInputs {
   }
   QuestionMinOrderByAggregateInput: { // input type
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
     expectedResult?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -550,7 +915,6 @@ export interface NexusGenInputs {
     _min?: NexusGenInputs['QuestionMinOrderByAggregateInput'] | null; // QuestionMinOrderByAggregateInput
     _sum?: NexusGenInputs['QuestionSumOrderByAggregateInput'] | null; // QuestionSumOrderByAggregateInput
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
     codeArgs?: NexusGenEnums['SortOrder'] | null; // SortOrder
     expectedResult?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -561,8 +925,8 @@ export interface NexusGenInputs {
   }
   QuestionOrderByWithRelationInput: { // input type
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
-    code?: NexusGenEnums['SortOrder'] | null; // SortOrder
     codeArgs?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    competeAnswers?: NexusGenInputs['AnswerOrderByRelationAggregateInput'] | null; // AnswerOrderByRelationAggregateInput
     expectedResult?: NexusGenEnums['SortOrder'] | null; // SortOrder
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     options?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -571,12 +935,15 @@ export interface NexusGenInputs {
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
+  QuestionRelationFilter: { // input type
+    is?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
+    isNot?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
+  }
   QuestionScalarWhereInput: { // input type
     AND?: Array<NexusGenInputs['QuestionScalarWhereInput'] | null> | null; // [QuestionScalarWhereInput]
     NOT?: Array<NexusGenInputs['QuestionScalarWhereInput'] | null> | null; // [QuestionScalarWhereInput]
     OR?: Array<NexusGenInputs['QuestionScalarWhereInput'] | null> | null; // [QuestionScalarWhereInput]
     answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     codeArgs?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
     expectedResult?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
@@ -590,7 +957,6 @@ export interface NexusGenInputs {
     NOT?: Array<NexusGenInputs['QuestionScalarWhereWithAggregatesInput'] | null> | null; // [QuestionScalarWhereWithAggregatesInput]
     OR?: Array<NexusGenInputs['QuestionScalarWhereWithAggregatesInput'] | null> | null; // [QuestionScalarWhereWithAggregatesInput]
     answer?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
-    code?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
     codeArgs?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
     expectedResult?: NexusGenInputs['StringNullableWithAggregatesFilter'] | null; // StringNullableWithAggregatesFilter
     id?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
@@ -605,8 +971,8 @@ export interface NexusGenInputs {
   }
   QuestionUncheckedCreateInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutQuestionInput'] | null; // AnswerUncheckedCreateNestedManyWithoutQuestionInput
     expectedResult?: string | null; // String
     id?: number | null; // Int
     options?: Array<string | null> | null; // [String]
@@ -620,10 +986,20 @@ export interface NexusGenInputs {
     create?: Array<NexusGenInputs['QuestionCreateWithoutParrentTestInput'] | null> | null; // [QuestionCreateWithoutParrentTestInput]
     createMany?: NexusGenInputs['QuestionCreateManyParrentTestInputEnvelope'] | null; // QuestionCreateManyParrentTestInputEnvelope
   }
+  QuestionUncheckedCreateWithoutCompeteAnswersInput: { // input type
+    answer?: string | null; // String
+    codeArgs?: Array<string | null> | null; // [String]
+    expectedResult?: string | null; // String
+    id?: number | null; // Int
+    options?: Array<string | null> | null; // [String]
+    parrentTestId: number; // Int!
+    text: string; // String!
+    type: NexusGenEnums['QuestionType']; // QuestionType!
+  }
   QuestionUncheckedCreateWithoutParrentTestInput: { // input type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutQuestionInput'] | null; // AnswerUncheckedCreateNestedManyWithoutQuestionInput
     expectedResult?: string | null; // String
     id?: number | null; // Int
     options?: Array<string | null> | null; // [String]
@@ -632,8 +1008,8 @@ export interface NexusGenInputs {
   }
   QuestionUncheckedUpdateInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutQuestionInput'] | null; // AnswerUncheckedUpdateManyWithoutQuestionInput
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
@@ -643,7 +1019,6 @@ export interface NexusGenInputs {
   }
   QuestionUncheckedUpdateManyInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -667,7 +1042,6 @@ export interface NexusGenInputs {
   }
   QuestionUncheckedUpdateManyWithoutQuestionsInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
@@ -675,10 +1049,20 @@ export interface NexusGenInputs {
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
+  QuestionUncheckedUpdateWithoutCompeteAnswersInput: { // input type
+    answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    codeArgs?: Array<string | null> | null; // [String]
+    expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    options?: Array<string | null> | null; // [String]
+    parrentTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
+    text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
+  }
   QuestionUncheckedUpdateWithoutParrentTestInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutQuestionInput'] | null; // AnswerUncheckedUpdateManyWithoutQuestionInput
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
@@ -687,8 +1071,8 @@ export interface NexusGenInputs {
   }
   QuestionUpdateInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     parrentTest?: NexusGenInputs['TestUpdateOneRequiredWithoutQuestionsInput'] | null; // TestUpdateOneRequiredWithoutQuestionsInput
@@ -697,7 +1081,6 @@ export interface NexusGenInputs {
   }
   QuestionUpdateManyMutationInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
@@ -721,14 +1104,30 @@ export interface NexusGenInputs {
     updateMany?: Array<NexusGenInputs['QuestionUpdateManyWithWhereWithoutParrentTestInput'] | null> | null; // [QuestionUpdateManyWithWhereWithoutParrentTestInput]
     upsert?: Array<NexusGenInputs['QuestionUpsertWithWhereUniqueWithoutParrentTestInput'] | null> | null; // [QuestionUpsertWithWhereUniqueWithoutParrentTestInput]
   }
+  QuestionUpdateOneRequiredWithoutCompeteAnswersInput: { // input type
+    connect?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
+    connectOrCreate?: NexusGenInputs['QuestionCreateOrConnectWithoutCompeteAnswersInput'] | null; // QuestionCreateOrConnectWithoutCompeteAnswersInput
+    create?: NexusGenInputs['QuestionUncheckedCreateWithoutCompeteAnswersInput'] | null; // QuestionUncheckedCreateWithoutCompeteAnswersInput
+    update?: NexusGenInputs['QuestionUncheckedUpdateWithoutCompeteAnswersInput'] | null; // QuestionUncheckedUpdateWithoutCompeteAnswersInput
+    upsert?: NexusGenInputs['QuestionUpsertWithoutCompeteAnswersInput'] | null; // QuestionUpsertWithoutCompeteAnswersInput
+  }
   QuestionUpdateWithWhereUniqueWithoutParrentTestInput: { // input type
     data: NexusGenInputs['QuestionUncheckedUpdateWithoutParrentTestInput']; // QuestionUncheckedUpdateWithoutParrentTestInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
+  QuestionUpdateWithoutCompeteAnswersInput: { // input type
+    answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    codeArgs?: Array<string | null> | null; // [String]
+    expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
+    options?: Array<string | null> | null; // [String]
+    parrentTest?: NexusGenInputs['TestUpdateOneRequiredWithoutQuestionsInput'] | null; // TestUpdateOneRequiredWithoutQuestionsInput
+    text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
+  }
   QuestionUpdateWithoutParrentTestInput: { // input type
     answer?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
-    code?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     codeArgs?: Array<string | null> | null; // [String]
+    competeAnswers?: NexusGenInputs['AnswerUpdateManyWithoutQuestionInput'] | null; // AnswerUpdateManyWithoutQuestionInput
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -747,13 +1146,17 @@ export interface NexusGenInputs {
     update: NexusGenInputs['QuestionUncheckedUpdateWithoutParrentTestInput']; // QuestionUncheckedUpdateWithoutParrentTestInput!
     where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
   }
+  QuestionUpsertWithoutCompeteAnswersInput: { // input type
+    create: NexusGenInputs['QuestionUncheckedCreateWithoutCompeteAnswersInput']; // QuestionUncheckedCreateWithoutCompeteAnswersInput!
+    update: NexusGenInputs['QuestionUncheckedUpdateWithoutCompeteAnswersInput']; // QuestionUncheckedUpdateWithoutCompeteAnswersInput!
+  }
   QuestionWhereInput: { // input type
     AND?: Array<NexusGenInputs['QuestionWhereInput'] | null> | null; // [QuestionWhereInput]
     NOT?: Array<NexusGenInputs['QuestionWhereInput'] | null> | null; // [QuestionWhereInput]
     OR?: Array<NexusGenInputs['QuestionWhereInput'] | null> | null; // [QuestionWhereInput]
     answer?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
-    code?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     codeArgs?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
+    competeAnswers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
     expectedResult?: NexusGenInputs['StringNullableFilter'] | null; // StringNullableFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     options?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
@@ -992,7 +1395,7 @@ export interface NexusGenInputs {
     phoneNumber?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserCreateInput: { // input type
-    answers?: NexusGenInputs['AnswerCreateNestedManyWithoutUserInput'] | null; // AnswerCreateNestedManyWithoutUserInput
+    completedTests?: NexusGenInputs['CompleteTestCreateNestedManyWithoutUserInput'] | null; // CompleteTestCreateNestedManyWithoutUserInput
     nickname: string; // String!
     phoneNumber: string; // String!
   }
@@ -1001,16 +1404,16 @@ export interface NexusGenInputs {
     nickname: string; // String!
     phoneNumber: string; // String!
   }
-  UserCreateNestedOneWithoutAnswersInput: { // input type
+  UserCreateNestedOneWithoutCompletedTestsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutAnswersInput'] | null; // UserCreateOrConnectWithoutAnswersInput
-    create?: NexusGenInputs['UserUncheckedCreateWithoutAnswersInput'] | null; // UserUncheckedCreateWithoutAnswersInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutCompletedTestsInput'] | null; // UserCreateOrConnectWithoutCompletedTestsInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutCompletedTestsInput'] | null; // UserUncheckedCreateWithoutCompletedTestsInput
   }
-  UserCreateOrConnectWithoutAnswersInput: { // input type
-    create: NexusGenInputs['UserUncheckedCreateWithoutAnswersInput']; // UserUncheckedCreateWithoutAnswersInput!
+  UserCreateOrConnectWithoutCompletedTestsInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutCompletedTestsInput']; // UserUncheckedCreateWithoutCompletedTestsInput!
     where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
   }
-  UserCreateWithoutAnswersInput: { // input type
+  UserCreateWithoutCompletedTestsInput: { // input type
     nickname: string; // String!
     phoneNumber: string; // String!
   }
@@ -1035,7 +1438,7 @@ export interface NexusGenInputs {
     phoneNumber?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserOrderByWithRelationInput: { // input type
-    answers?: NexusGenInputs['AnswerOrderByRelationAggregateInput'] | null; // AnswerOrderByRelationAggregateInput
+    completedTests?: NexusGenInputs['CompleteTestOrderByRelationAggregateInput'] | null; // CompleteTestOrderByRelationAggregateInput
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     nickname?: NexusGenEnums['SortOrder'] | null; // SortOrder
     phoneNumber?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -1056,18 +1459,18 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   UserUncheckedCreateInput: { // input type
-    answers?: NexusGenInputs['AnswerUncheckedCreateNestedManyWithoutUserInput'] | null; // AnswerUncheckedCreateNestedManyWithoutUserInput
+    completedTests?: NexusGenInputs['CompleteTestUncheckedCreateNestedManyWithoutUserInput'] | null; // CompleteTestUncheckedCreateNestedManyWithoutUserInput
     id?: number | null; // Int
     nickname: string; // String!
     phoneNumber: string; // String!
   }
-  UserUncheckedCreateWithoutAnswersInput: { // input type
+  UserUncheckedCreateWithoutCompletedTestsInput: { // input type
     id?: number | null; // Int
     nickname: string; // String!
     phoneNumber: string; // String!
   }
   UserUncheckedUpdateInput: { // input type
-    answers?: NexusGenInputs['AnswerUncheckedUpdateManyWithoutUserInput'] | null; // AnswerUncheckedUpdateManyWithoutUserInput
+    completedTests?: NexusGenInputs['CompleteTestUncheckedUpdateManyWithoutUserInput'] | null; // CompleteTestUncheckedUpdateManyWithoutUserInput
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
@@ -1077,13 +1480,13 @@ export interface NexusGenInputs {
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
-  UserUncheckedUpdateWithoutAnswersInput: { // input type
+  UserUncheckedUpdateWithoutCompletedTestsInput: { // input type
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
   UserUpdateInput: { // input type
-    answers?: NexusGenInputs['AnswerUpdateManyWithoutUserInput'] | null; // AnswerUpdateManyWithoutUserInput
+    completedTests?: NexusGenInputs['CompleteTestUpdateManyWithoutUserInput'] | null; // CompleteTestUpdateManyWithoutUserInput
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
@@ -1091,26 +1494,26 @@ export interface NexusGenInputs {
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
-  UserUpdateOneRequiredWithoutAnswersInput: { // input type
+  UserUpdateOneRequiredWithoutCompletedTestsInput: { // input type
     connect?: NexusGenInputs['UserWhereUniqueInput'] | null; // UserWhereUniqueInput
-    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutAnswersInput'] | null; // UserCreateOrConnectWithoutAnswersInput
-    create?: NexusGenInputs['UserUncheckedCreateWithoutAnswersInput'] | null; // UserUncheckedCreateWithoutAnswersInput
-    update?: NexusGenInputs['UserUncheckedUpdateWithoutAnswersInput'] | null; // UserUncheckedUpdateWithoutAnswersInput
-    upsert?: NexusGenInputs['UserUpsertWithoutAnswersInput'] | null; // UserUpsertWithoutAnswersInput
+    connectOrCreate?: NexusGenInputs['UserCreateOrConnectWithoutCompletedTestsInput'] | null; // UserCreateOrConnectWithoutCompletedTestsInput
+    create?: NexusGenInputs['UserUncheckedCreateWithoutCompletedTestsInput'] | null; // UserUncheckedCreateWithoutCompletedTestsInput
+    update?: NexusGenInputs['UserUncheckedUpdateWithoutCompletedTestsInput'] | null; // UserUncheckedUpdateWithoutCompletedTestsInput
+    upsert?: NexusGenInputs['UserUpsertWithoutCompletedTestsInput'] | null; // UserUpsertWithoutCompletedTestsInput
   }
-  UserUpdateWithoutAnswersInput: { // input type
+  UserUpdateWithoutCompletedTestsInput: { // input type
     nickname?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
     phoneNumber?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
   }
-  UserUpsertWithoutAnswersInput: { // input type
-    create: NexusGenInputs['UserUncheckedCreateWithoutAnswersInput']; // UserUncheckedCreateWithoutAnswersInput!
-    update: NexusGenInputs['UserUncheckedUpdateWithoutAnswersInput']; // UserUncheckedUpdateWithoutAnswersInput!
+  UserUpsertWithoutCompletedTestsInput: { // input type
+    create: NexusGenInputs['UserUncheckedCreateWithoutCompletedTestsInput']; // UserUncheckedCreateWithoutCompletedTestsInput!
+    update: NexusGenInputs['UserUncheckedUpdateWithoutCompletedTestsInput']; // UserUncheckedUpdateWithoutCompletedTestsInput!
   }
   UserWhereInput: { // input type
     AND?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     NOT?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
     OR?: Array<NexusGenInputs['UserWhereInput'] | null> | null; // [UserWhereInput]
-    answers?: NexusGenInputs['AnswerListRelationFilter'] | null; // AnswerListRelationFilter
+    completedTests?: NexusGenInputs['CompleteTestListRelationFilter'] | null; // CompleteTestListRelationFilter
     id?: NexusGenInputs['IntFilter'] | null; // IntFilter
     nickname?: NexusGenInputs['StringFilter'] | null; // StringFilter
     phoneNumber?: NexusGenInputs['StringFilter'] | null; // StringFilter
@@ -1123,10 +1526,11 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
-  AnswerScalarFieldEnum: "id" | "isRigth" | "userId"
+  AnswerScalarFieldEnum: "id" | "inCompleteTestId" | "isRight" | "questionId"
+  CompleteTestScalarFieldEnum: "id" | "rightAnswers" | "userId"
   KindEnum: "enum" | "object" | "scalar"
   QueryMode: "default" | "insensitive"
-  QuestionScalarFieldEnum: "answer" | "code" | "codeArgs" | "expectedResult" | "id" | "options" | "parrentTestId" | "text" | "type"
+  QuestionScalarFieldEnum: "answer" | "codeArgs" | "expectedResult" | "id" | "options" | "parrentTestId" | "text" | "type"
   QuestionType: "codeQuestion" | "textQuestion"
   SortOrder: "asc" | "desc"
   TestScalarFieldEnum: "id" | "name"
@@ -1153,6 +1557,13 @@ export interface NexusGenObjects {
     _min?: NexusGenRootTypes['AnswerMinAggregateOutputType'] | null; // AnswerMinAggregateOutputType
     _sum?: NexusGenRootTypes['AnswerSumAggregateOutputType'] | null; // AnswerSumAggregateOutputType
   }
+  AggregateCompleteTest: { // root type
+    _avg?: NexusGenRootTypes['CompleteTestAvgAggregateOutputType'] | null; // CompleteTestAvgAggregateOutputType
+    _count?: NexusGenRootTypes['CompleteTestCountAggregateOutputType'] | null; // CompleteTestCountAggregateOutputType
+    _max?: NexusGenRootTypes['CompleteTestMaxAggregateOutputType'] | null; // CompleteTestMaxAggregateOutputType
+    _min?: NexusGenRootTypes['CompleteTestMinAggregateOutputType'] | null; // CompleteTestMinAggregateOutputType
+    _sum?: NexusGenRootTypes['CompleteTestSumAggregateOutputType'] | null; // CompleteTestSumAggregateOutputType
+  }
   AggregateQuestion: { // root type
     _avg?: NexusGenRootTypes['QuestionAvgAggregateOutputType'] | null; // QuestionAvgAggregateOutputType
     _count?: NexusGenRootTypes['QuestionCountAggregateOutputType'] | null; // QuestionCountAggregateOutputType
@@ -1176,35 +1587,75 @@ export interface NexusGenObjects {
   }
   Answer: { // root type
     id: number; // Int!
-    isRigth: boolean; // Boolean!
-    userId: number; // Int!
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
+    questionId: number; // Int!
   }
   AnswerAvgAggregateOutputType: { // root type
     id?: number | null; // Float
-    userId?: number | null; // Float
+    inCompleteTestId?: number | null; // Float
+    questionId?: number | null; // Float
   }
   AnswerCountAggregateOutputType: { // root type
     _all: number; // Int!
     id: number; // Int!
-    isRigth: number; // Int!
-    userId: number; // Int!
+    inCompleteTestId: number; // Int!
+    isRight: number; // Int!
+    questionId: number; // Int!
   }
   AnswerMaxAggregateOutputType: { // root type
     id?: number | null; // Int
-    isRigth?: boolean | null; // Boolean
-    userId?: number | null; // Int
+    inCompleteTestId?: number | null; // Int
+    isRight?: boolean | null; // Boolean
+    questionId?: number | null; // Int
   }
   AnswerMinAggregateOutputType: { // root type
     id?: number | null; // Int
-    isRigth?: boolean | null; // Boolean
-    userId?: number | null; // Int
+    inCompleteTestId?: number | null; // Int
+    isRight?: boolean | null; // Boolean
+    questionId?: number | null; // Int
   }
   AnswerSumAggregateOutputType: { // root type
     id?: number | null; // Int
-    userId?: number | null; // Int
+    inCompleteTestId?: number | null; // Int
+    questionId?: number | null; // Int
   }
   BatchPayload: { // root type
     count: number; // Int!
+  }
+  CompleteTest: { // root type
+    id: number; // Int!
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestAvgAggregateOutputType: { // root type
+    id?: number | null; // Float
+    rightAnswers?: number | null; // Float
+    userId?: number | null; // Float
+  }
+  CompleteTestCountAggregateOutputType: { // root type
+    _all: number; // Int!
+    id: number; // Int!
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestCountOutputType: { // root type
+    answers: number; // Int!
+  }
+  CompleteTestMaxAggregateOutputType: { // root type
+    id?: number | null; // Int
+    rightAnswers?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  CompleteTestMinAggregateOutputType: { // root type
+    id?: number | null; // Int
+    rightAnswers?: number | null; // Int
+    userId?: number | null; // Int
+  }
+  CompleteTestSumAggregateOutputType: { // root type
+    id?: number | null; // Int
+    rightAnswers?: number | null; // Int
+    userId?: number | null; // Int
   }
   Enum: { // root type
     fields: string[]; // [String!]!
@@ -1244,7 +1695,6 @@ export interface NexusGenObjects {
   Query: {};
   Question: { // root type
     answer?: string | null; // String
-    code?: string | null; // String
     codeArgs: string[]; // [String!]!
     expectedResult?: string | null; // String
     id: number; // Int!
@@ -1260,7 +1710,6 @@ export interface NexusGenObjects {
   QuestionCountAggregateOutputType: { // root type
     _all: number; // Int!
     answer: number; // Int!
-    code: number; // Int!
     codeArgs: number; // Int!
     expectedResult: number; // Int!
     id: number; // Int!
@@ -1269,9 +1718,11 @@ export interface NexusGenObjects {
     text: number; // Int!
     type: number; // Int!
   }
+  QuestionCountOutputType: { // root type
+    competeAnswers: number; // Int!
+  }
   QuestionMaxAggregateOutputType: { // root type
     answer?: string | null; // String
-    code?: string | null; // String
     expectedResult?: string | null; // String
     id?: number | null; // Int
     parrentTestId?: number | null; // Int
@@ -1280,7 +1731,6 @@ export interface NexusGenObjects {
   }
   QuestionMinAggregateOutputType: { // root type
     answer?: string | null; // String
-    code?: string | null; // String
     expectedResult?: string | null; // String
     id?: number | null; // Int
     parrentTestId?: number | null; // Int
@@ -1336,7 +1786,7 @@ export interface NexusGenObjects {
     phoneNumber: number; // Int!
   }
   UserCountOutputType: { // root type
-    answers: number; // Int!
+    completedTests: number; // Int!
   }
   UserMaxAggregateOutputType: { // root type
     id?: number | null; // Int
@@ -1371,6 +1821,13 @@ export interface NexusGenFieldTypes {
     _min: NexusGenRootTypes['AnswerMinAggregateOutputType'] | null; // AnswerMinAggregateOutputType
     _sum: NexusGenRootTypes['AnswerSumAggregateOutputType'] | null; // AnswerSumAggregateOutputType
   }
+  AggregateCompleteTest: { // field return type
+    _avg: NexusGenRootTypes['CompleteTestAvgAggregateOutputType'] | null; // CompleteTestAvgAggregateOutputType
+    _count: NexusGenRootTypes['CompleteTestCountAggregateOutputType'] | null; // CompleteTestCountAggregateOutputType
+    _max: NexusGenRootTypes['CompleteTestMaxAggregateOutputType'] | null; // CompleteTestMaxAggregateOutputType
+    _min: NexusGenRootTypes['CompleteTestMinAggregateOutputType'] | null; // CompleteTestMinAggregateOutputType
+    _sum: NexusGenRootTypes['CompleteTestSumAggregateOutputType'] | null; // CompleteTestSumAggregateOutputType
+  }
   AggregateQuestion: { // field return type
     _avg: NexusGenRootTypes['QuestionAvgAggregateOutputType'] | null; // QuestionAvgAggregateOutputType
     _count: NexusGenRootTypes['QuestionCountAggregateOutputType'] | null; // QuestionCountAggregateOutputType
@@ -1394,36 +1851,80 @@ export interface NexusGenFieldTypes {
   }
   Answer: { // field return type
     id: number; // Int!
-    isRigth: boolean; // Boolean!
-    user: NexusGenRootTypes['User']; // User!
-    userId: number; // Int!
+    inCompleteTest: NexusGenRootTypes['CompleteTest']; // CompleteTest!
+    inCompleteTestId: number; // Int!
+    isRight: boolean; // Boolean!
+    question: NexusGenRootTypes['Question']; // Question!
+    questionId: number; // Int!
   }
   AnswerAvgAggregateOutputType: { // field return type
     id: number | null; // Float
-    userId: number | null; // Float
+    inCompleteTestId: number | null; // Float
+    questionId: number | null; // Float
   }
   AnswerCountAggregateOutputType: { // field return type
     _all: number; // Int!
     id: number; // Int!
-    isRigth: number; // Int!
-    userId: number; // Int!
+    inCompleteTestId: number; // Int!
+    isRight: number; // Int!
+    questionId: number; // Int!
   }
   AnswerMaxAggregateOutputType: { // field return type
     id: number | null; // Int
-    isRigth: boolean | null; // Boolean
-    userId: number | null; // Int
+    inCompleteTestId: number | null; // Int
+    isRight: boolean | null; // Boolean
+    questionId: number | null; // Int
   }
   AnswerMinAggregateOutputType: { // field return type
     id: number | null; // Int
-    isRigth: boolean | null; // Boolean
-    userId: number | null; // Int
+    inCompleteTestId: number | null; // Int
+    isRight: boolean | null; // Boolean
+    questionId: number | null; // Int
   }
   AnswerSumAggregateOutputType: { // field return type
     id: number | null; // Int
-    userId: number | null; // Int
+    inCompleteTestId: number | null; // Int
+    questionId: number | null; // Int
   }
   BatchPayload: { // field return type
     count: number; // Int!
+  }
+  CompleteTest: { // field return type
+    _count: NexusGenRootTypes['CompleteTestCountOutputType'] | null; // CompleteTestCountOutputType
+    answers: NexusGenRootTypes['Answer'][]; // [Answer!]!
+    id: number; // Int!
+    rightAnswers: number; // Int!
+    user: NexusGenRootTypes['User']; // User!
+    userId: number; // Int!
+  }
+  CompleteTestAvgAggregateOutputType: { // field return type
+    id: number | null; // Float
+    rightAnswers: number | null; // Float
+    userId: number | null; // Float
+  }
+  CompleteTestCountAggregateOutputType: { // field return type
+    _all: number; // Int!
+    id: number; // Int!
+    rightAnswers: number; // Int!
+    userId: number; // Int!
+  }
+  CompleteTestCountOutputType: { // field return type
+    answers: number; // Int!
+  }
+  CompleteTestMaxAggregateOutputType: { // field return type
+    id: number | null; // Int
+    rightAnswers: number | null; // Int
+    userId: number | null; // Int
+  }
+  CompleteTestMinAggregateOutputType: { // field return type
+    id: number | null; // Int
+    rightAnswers: number | null; // Int
+    userId: number | null; // Int
+  }
+  CompleteTestSumAggregateOutputType: { // field return type
+    id: number | null; // Int
+    rightAnswers: number | null; // Int
+    userId: number | null; // Int
   }
   Enum: { // field return type
     fields: string[]; // [String!]!
@@ -1461,43 +1962,53 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createOneAnswer: NexusGenRootTypes['Answer']; // Answer!
+    createOneCompleteTest: NexusGenRootTypes['CompleteTest']; // CompleteTest!
     createOneQuestion: NexusGenRootTypes['Question']; // Question!
     createOneTest: NexusGenRootTypes['Test']; // Test!
     createOneUser: NexusGenRootTypes['User']; // User!
     deleteManyAnswer: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    deleteManyCompleteTest: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyQuestion: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyTest: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     deleteOneAnswer: NexusGenRootTypes['Answer'] | null; // Answer
+    deleteOneCompleteTest: NexusGenRootTypes['CompleteTest'] | null; // CompleteTest
     deleteOneQuestion: NexusGenRootTypes['Question'] | null; // Question
     deleteOneTest: NexusGenRootTypes['Test'] | null; // Test
     deleteOneUser: NexusGenRootTypes['User'] | null; // User
     updateField: NexusGenRootTypes['Field']; // Field!
     updateManyAnswer: NexusGenRootTypes['BatchPayload']; // BatchPayload!
+    updateManyCompleteTest: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyQuestion: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyTest: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateManyUser: NexusGenRootTypes['BatchPayload']; // BatchPayload!
     updateModel: NexusGenRootTypes['Model']; // Model!
     updateOneAnswer: NexusGenRootTypes['Answer']; // Answer!
+    updateOneCompleteTest: NexusGenRootTypes['CompleteTest']; // CompleteTest!
     updateOneQuestion: NexusGenRootTypes['Question']; // Question!
     updateOneTest: NexusGenRootTypes['Test']; // Test!
     updateOneUser: NexusGenRootTypes['User']; // User!
     upsertOneAnswer: NexusGenRootTypes['Answer']; // Answer!
+    upsertOneCompleteTest: NexusGenRootTypes['CompleteTest']; // CompleteTest!
     upsertOneQuestion: NexusGenRootTypes['Question']; // Question!
     upsertOneTest: NexusGenRootTypes['Test']; // Test!
     upsertOneUser: NexusGenRootTypes['User']; // User!
   }
   Query: { // field return type
     aggregateAnswer: NexusGenRootTypes['AggregateAnswer'] | null; // AggregateAnswer
+    aggregateCompleteTest: NexusGenRootTypes['AggregateCompleteTest'] | null; // AggregateCompleteTest
     aggregateQuestion: NexusGenRootTypes['AggregateQuestion'] | null; // AggregateQuestion
     aggregateTest: NexusGenRootTypes['AggregateTest'] | null; // AggregateTest
     aggregateUser: NexusGenRootTypes['AggregateUser'] | null; // AggregateUser
     findFirstAnswer: NexusGenRootTypes['Answer'] | null; // Answer
+    findFirstCompleteTest: NexusGenRootTypes['CompleteTest'] | null; // CompleteTest
     findFirstQuestion: NexusGenRootTypes['Question'] | null; // Question
     findFirstTest: NexusGenRootTypes['Test'] | null; // Test
     findFirstUser: NexusGenRootTypes['User'] | null; // User
     findManyAnswer: NexusGenRootTypes['Answer'][]; // [Answer!]!
     findManyAnswerCount: number; // Int!
+    findManyCompleteTest: NexusGenRootTypes['CompleteTest'][]; // [CompleteTest!]!
+    findManyCompleteTestCount: number; // Int!
     findManyQuestion: NexusGenRootTypes['Question'][]; // [Question!]!
     findManyQuestionCount: number; // Int!
     findManyTest: NexusGenRootTypes['Test'][]; // [Test!]!
@@ -1505,15 +2016,17 @@ export interface NexusGenFieldTypes {
     findManyUser: NexusGenRootTypes['User'][]; // [User!]!
     findManyUserCount: number; // Int!
     findUniqueAnswer: NexusGenRootTypes['Answer'] | null; // Answer
+    findUniqueCompleteTest: NexusGenRootTypes['CompleteTest'] | null; // CompleteTest
     findUniqueQuestion: NexusGenRootTypes['Question'] | null; // Question
     findUniqueTest: NexusGenRootTypes['Test'] | null; // Test
     findUniqueUser: NexusGenRootTypes['User'] | null; // User
     getSchema: NexusGenRootTypes['Schema']; // Schema!
   }
   Question: { // field return type
+    _count: NexusGenRootTypes['QuestionCountOutputType'] | null; // QuestionCountOutputType
     answer: string | null; // String
-    code: string | null; // String
     codeArgs: string[]; // [String!]!
+    competeAnswers: NexusGenRootTypes['Answer'][]; // [Answer!]!
     expectedResult: string | null; // String
     id: number; // Int!
     options: string[]; // [String!]!
@@ -1529,7 +2042,6 @@ export interface NexusGenFieldTypes {
   QuestionCountAggregateOutputType: { // field return type
     _all: number; // Int!
     answer: number; // Int!
-    code: number; // Int!
     codeArgs: number; // Int!
     expectedResult: number; // Int!
     id: number; // Int!
@@ -1538,9 +2050,11 @@ export interface NexusGenFieldTypes {
     text: number; // Int!
     type: number; // Int!
   }
+  QuestionCountOutputType: { // field return type
+    competeAnswers: number; // Int!
+  }
   QuestionMaxAggregateOutputType: { // field return type
     answer: string | null; // String
-    code: string | null; // String
     expectedResult: string | null; // String
     id: number | null; // Int
     parrentTestId: number | null; // Int
@@ -1549,7 +2063,6 @@ export interface NexusGenFieldTypes {
   }
   QuestionMinAggregateOutputType: { // field return type
     answer: string | null; // String
-    code: string | null; // String
     expectedResult: string | null; // String
     id: number | null; // Int
     parrentTestId: number | null; // Int
@@ -1594,7 +2107,7 @@ export interface NexusGenFieldTypes {
   }
   User: { // field return type
     _count: NexusGenRootTypes['UserCountOutputType'] | null; // UserCountOutputType
-    answers: NexusGenRootTypes['Answer'][]; // [Answer!]!
+    completedTests: NexusGenRootTypes['CompleteTest'][]; // [CompleteTest!]!
     id: number; // Int!
     nickname: string; // String!
     phoneNumber: string; // String!
@@ -1609,7 +2122,7 @@ export interface NexusGenFieldTypes {
     phoneNumber: number; // Int!
   }
   UserCountOutputType: { // field return type
-    answers: number; // Int!
+    completedTests: number; // Int!
   }
   UserMaxAggregateOutputType: { // field return type
     id: number | null; // Int
@@ -1634,6 +2147,13 @@ export interface NexusGenFieldTypeNames {
     _min: 'AnswerMinAggregateOutputType'
     _sum: 'AnswerSumAggregateOutputType'
   }
+  AggregateCompleteTest: { // field return type name
+    _avg: 'CompleteTestAvgAggregateOutputType'
+    _count: 'CompleteTestCountAggregateOutputType'
+    _max: 'CompleteTestMaxAggregateOutputType'
+    _min: 'CompleteTestMinAggregateOutputType'
+    _sum: 'CompleteTestSumAggregateOutputType'
+  }
   AggregateQuestion: { // field return type name
     _avg: 'QuestionAvgAggregateOutputType'
     _count: 'QuestionCountAggregateOutputType'
@@ -1657,36 +2177,80 @@ export interface NexusGenFieldTypeNames {
   }
   Answer: { // field return type name
     id: 'Int'
-    isRigth: 'Boolean'
-    user: 'User'
-    userId: 'Int'
+    inCompleteTest: 'CompleteTest'
+    inCompleteTestId: 'Int'
+    isRight: 'Boolean'
+    question: 'Question'
+    questionId: 'Int'
   }
   AnswerAvgAggregateOutputType: { // field return type name
     id: 'Float'
-    userId: 'Float'
+    inCompleteTestId: 'Float'
+    questionId: 'Float'
   }
   AnswerCountAggregateOutputType: { // field return type name
     _all: 'Int'
     id: 'Int'
-    isRigth: 'Int'
-    userId: 'Int'
+    inCompleteTestId: 'Int'
+    isRight: 'Int'
+    questionId: 'Int'
   }
   AnswerMaxAggregateOutputType: { // field return type name
     id: 'Int'
-    isRigth: 'Boolean'
-    userId: 'Int'
+    inCompleteTestId: 'Int'
+    isRight: 'Boolean'
+    questionId: 'Int'
   }
   AnswerMinAggregateOutputType: { // field return type name
     id: 'Int'
-    isRigth: 'Boolean'
-    userId: 'Int'
+    inCompleteTestId: 'Int'
+    isRight: 'Boolean'
+    questionId: 'Int'
   }
   AnswerSumAggregateOutputType: { // field return type name
     id: 'Int'
-    userId: 'Int'
+    inCompleteTestId: 'Int'
+    questionId: 'Int'
   }
   BatchPayload: { // field return type name
     count: 'Int'
+  }
+  CompleteTest: { // field return type name
+    _count: 'CompleteTestCountOutputType'
+    answers: 'Answer'
+    id: 'Int'
+    rightAnswers: 'Int'
+    user: 'User'
+    userId: 'Int'
+  }
+  CompleteTestAvgAggregateOutputType: { // field return type name
+    id: 'Float'
+    rightAnswers: 'Float'
+    userId: 'Float'
+  }
+  CompleteTestCountAggregateOutputType: { // field return type name
+    _all: 'Int'
+    id: 'Int'
+    rightAnswers: 'Int'
+    userId: 'Int'
+  }
+  CompleteTestCountOutputType: { // field return type name
+    answers: 'Int'
+  }
+  CompleteTestMaxAggregateOutputType: { // field return type name
+    id: 'Int'
+    rightAnswers: 'Int'
+    userId: 'Int'
+  }
+  CompleteTestMinAggregateOutputType: { // field return type name
+    id: 'Int'
+    rightAnswers: 'Int'
+    userId: 'Int'
+  }
+  CompleteTestSumAggregateOutputType: { // field return type name
+    id: 'Int'
+    rightAnswers: 'Int'
+    userId: 'Int'
   }
   Enum: { // field return type name
     fields: 'String'
@@ -1724,43 +2288,53 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createOneAnswer: 'Answer'
+    createOneCompleteTest: 'CompleteTest'
     createOneQuestion: 'Question'
     createOneTest: 'Test'
     createOneUser: 'User'
     deleteManyAnswer: 'BatchPayload'
+    deleteManyCompleteTest: 'BatchPayload'
     deleteManyQuestion: 'BatchPayload'
     deleteManyTest: 'BatchPayload'
     deleteManyUser: 'BatchPayload'
     deleteOneAnswer: 'Answer'
+    deleteOneCompleteTest: 'CompleteTest'
     deleteOneQuestion: 'Question'
     deleteOneTest: 'Test'
     deleteOneUser: 'User'
     updateField: 'Field'
     updateManyAnswer: 'BatchPayload'
+    updateManyCompleteTest: 'BatchPayload'
     updateManyQuestion: 'BatchPayload'
     updateManyTest: 'BatchPayload'
     updateManyUser: 'BatchPayload'
     updateModel: 'Model'
     updateOneAnswer: 'Answer'
+    updateOneCompleteTest: 'CompleteTest'
     updateOneQuestion: 'Question'
     updateOneTest: 'Test'
     updateOneUser: 'User'
     upsertOneAnswer: 'Answer'
+    upsertOneCompleteTest: 'CompleteTest'
     upsertOneQuestion: 'Question'
     upsertOneTest: 'Test'
     upsertOneUser: 'User'
   }
   Query: { // field return type name
     aggregateAnswer: 'AggregateAnswer'
+    aggregateCompleteTest: 'AggregateCompleteTest'
     aggregateQuestion: 'AggregateQuestion'
     aggregateTest: 'AggregateTest'
     aggregateUser: 'AggregateUser'
     findFirstAnswer: 'Answer'
+    findFirstCompleteTest: 'CompleteTest'
     findFirstQuestion: 'Question'
     findFirstTest: 'Test'
     findFirstUser: 'User'
     findManyAnswer: 'Answer'
     findManyAnswerCount: 'Int'
+    findManyCompleteTest: 'CompleteTest'
+    findManyCompleteTestCount: 'Int'
     findManyQuestion: 'Question'
     findManyQuestionCount: 'Int'
     findManyTest: 'Test'
@@ -1768,15 +2342,17 @@ export interface NexusGenFieldTypeNames {
     findManyUser: 'User'
     findManyUserCount: 'Int'
     findUniqueAnswer: 'Answer'
+    findUniqueCompleteTest: 'CompleteTest'
     findUniqueQuestion: 'Question'
     findUniqueTest: 'Test'
     findUniqueUser: 'User'
     getSchema: 'Schema'
   }
   Question: { // field return type name
+    _count: 'QuestionCountOutputType'
     answer: 'String'
-    code: 'String'
     codeArgs: 'String'
+    competeAnswers: 'Answer'
     expectedResult: 'String'
     id: 'Int'
     options: 'String'
@@ -1792,7 +2368,6 @@ export interface NexusGenFieldTypeNames {
   QuestionCountAggregateOutputType: { // field return type name
     _all: 'Int'
     answer: 'Int'
-    code: 'Int'
     codeArgs: 'Int'
     expectedResult: 'Int'
     id: 'Int'
@@ -1801,9 +2376,11 @@ export interface NexusGenFieldTypeNames {
     text: 'Int'
     type: 'Int'
   }
+  QuestionCountOutputType: { // field return type name
+    competeAnswers: 'Int'
+  }
   QuestionMaxAggregateOutputType: { // field return type name
     answer: 'String'
-    code: 'String'
     expectedResult: 'String'
     id: 'Int'
     parrentTestId: 'Int'
@@ -1812,7 +2389,6 @@ export interface NexusGenFieldTypeNames {
   }
   QuestionMinAggregateOutputType: { // field return type name
     answer: 'String'
-    code: 'String'
     expectedResult: 'String'
     id: 'Int'
     parrentTestId: 'Int'
@@ -1857,7 +2433,7 @@ export interface NexusGenFieldTypeNames {
   }
   User: { // field return type name
     _count: 'UserCountOutputType'
-    answers: 'Answer'
+    completedTests: 'CompleteTest'
     id: 'Int'
     nickname: 'String'
     phoneNumber: 'String'
@@ -1872,7 +2448,7 @@ export interface NexusGenFieldTypeNames {
     phoneNumber: 'Int'
   }
   UserCountOutputType: { // field return type name
-    answers: 'Int'
+    completedTests: 'Int'
   }
   UserMaxAggregateOutputType: { // field return type name
     id: 'Int'
@@ -1890,9 +2466,22 @@ export interface NexusGenFieldTypeNames {
 }
 
 export interface NexusGenArgTypes {
+  CompleteTest: {
+    answers: { // args
+      cursor?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
+      distinct?: NexusGenEnums['AnswerScalarFieldEnum'] | null; // AnswerScalarFieldEnum
+      orderBy?: NexusGenInputs['AnswerOrderByWithRelationInput'] | null; // AnswerOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+  }
   Mutation: {
     createOneAnswer: { // args
       data: NexusGenInputs['AnswerCreateInput']; // AnswerCreateInput!
+    }
+    createOneCompleteTest: { // args
+      data: NexusGenInputs['CompleteTestCreateInput']; // CompleteTestCreateInput!
     }
     createOneQuestion: { // args
       data: NexusGenInputs['QuestionCreateInput']; // QuestionCreateInput!
@@ -1906,6 +2495,9 @@ export interface NexusGenArgTypes {
     deleteManyAnswer: { // args
       where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
     }
+    deleteManyCompleteTest: { // args
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    }
     deleteManyQuestion: { // args
       where?: NexusGenInputs['QuestionWhereInput'] | null; // QuestionWhereInput
     }
@@ -1917,6 +2509,9 @@ export interface NexusGenArgTypes {
     }
     deleteOneAnswer: { // args
       where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+    }
+    deleteOneCompleteTest: { // args
+      where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
     }
     deleteOneQuestion: { // args
       where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
@@ -1935,6 +2530,10 @@ export interface NexusGenArgTypes {
     updateManyAnswer: { // args
       data: NexusGenInputs['AnswerUpdateManyMutationInput']; // AnswerUpdateManyMutationInput!
       where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+    updateManyCompleteTest: { // args
+      data: NexusGenInputs['CompleteTestUpdateManyMutationInput']; // CompleteTestUpdateManyMutationInput!
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
     }
     updateManyQuestion: { // args
       data: NexusGenInputs['QuestionUpdateManyMutationInput']; // QuestionUpdateManyMutationInput!
@@ -1956,6 +2555,10 @@ export interface NexusGenArgTypes {
       data: NexusGenInputs['AnswerUpdateInput']; // AnswerUpdateInput!
       where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
     }
+    updateOneCompleteTest: { // args
+      data: NexusGenInputs['CompleteTestUpdateInput']; // CompleteTestUpdateInput!
+      where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+    }
     updateOneQuestion: { // args
       data: NexusGenInputs['QuestionUpdateInput']; // QuestionUpdateInput!
       where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
@@ -1972,6 +2575,11 @@ export interface NexusGenArgTypes {
       create: NexusGenInputs['AnswerCreateInput']; // AnswerCreateInput!
       update: NexusGenInputs['AnswerUpdateInput']; // AnswerUpdateInput!
       where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
+    }
+    upsertOneCompleteTest: { // args
+      create: NexusGenInputs['CompleteTestCreateInput']; // CompleteTestCreateInput!
+      update: NexusGenInputs['CompleteTestUpdateInput']; // CompleteTestUpdateInput!
+      where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
     }
     upsertOneQuestion: { // args
       create: NexusGenInputs['QuestionCreateInput']; // QuestionCreateInput!
@@ -1996,6 +2604,13 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+    aggregateCompleteTest: { // args
+      cursor?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+      orderBy?: Array<NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null> | null; // [CompleteTestOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
     }
     aggregateQuestion: { // args
       cursor?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
@@ -2025,6 +2640,14 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+    findFirstCompleteTest: { // args
+      cursor?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+      distinct?: Array<NexusGenEnums['CompleteTestScalarFieldEnum'] | null> | null; // [CompleteTestScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null> | null; // [CompleteTestOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
     }
     findFirstQuestion: { // args
       cursor?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
@@ -2065,6 +2688,22 @@ export interface NexusGenArgTypes {
       skip?: number | null; // Int
       take?: number | null; // Int
       where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+    }
+    findManyCompleteTest: { // args
+      cursor?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+      distinct?: Array<NexusGenEnums['CompleteTestScalarFieldEnum'] | null> | null; // [CompleteTestScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null> | null; // [CompleteTestOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
+    }
+    findManyCompleteTestCount: { // args
+      cursor?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+      distinct?: Array<NexusGenEnums['CompleteTestScalarFieldEnum'] | null> | null; // [CompleteTestScalarFieldEnum]
+      orderBy?: Array<NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null> | null; // [CompleteTestOrderByWithRelationInput]
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
     }
     findManyQuestion: { // args
       cursor?: NexusGenInputs['QuestionWhereUniqueInput'] | null; // QuestionWhereUniqueInput
@@ -2117,6 +2756,9 @@ export interface NexusGenArgTypes {
     findUniqueAnswer: { // args
       where: NexusGenInputs['AnswerWhereUniqueInput']; // AnswerWhereUniqueInput!
     }
+    findUniqueCompleteTest: { // args
+      where: NexusGenInputs['CompleteTestWhereUniqueInput']; // CompleteTestWhereUniqueInput!
+    }
     findUniqueQuestion: { // args
       where: NexusGenInputs['QuestionWhereUniqueInput']; // QuestionWhereUniqueInput!
     }
@@ -2125,6 +2767,16 @@ export interface NexusGenArgTypes {
     }
     findUniqueUser: { // args
       where: NexusGenInputs['UserWhereUniqueInput']; // UserWhereUniqueInput!
+    }
+  }
+  Question: {
+    competeAnswers: { // args
+      cursor?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
+      distinct?: NexusGenEnums['AnswerScalarFieldEnum'] | null; // AnswerScalarFieldEnum
+      orderBy?: NexusGenInputs['AnswerOrderByWithRelationInput'] | null; // AnswerOrderByWithRelationInput
+      skip?: number | null; // Int
+      take?: number | null; // Int
+      where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
     }
   }
   Test: {
@@ -2138,13 +2790,13 @@ export interface NexusGenArgTypes {
     }
   }
   User: {
-    answers: { // args
-      cursor?: NexusGenInputs['AnswerWhereUniqueInput'] | null; // AnswerWhereUniqueInput
-      distinct?: NexusGenEnums['AnswerScalarFieldEnum'] | null; // AnswerScalarFieldEnum
-      orderBy?: NexusGenInputs['AnswerOrderByWithRelationInput'] | null; // AnswerOrderByWithRelationInput
+    completedTests: { // args
+      cursor?: NexusGenInputs['CompleteTestWhereUniqueInput'] | null; // CompleteTestWhereUniqueInput
+      distinct?: NexusGenEnums['CompleteTestScalarFieldEnum'] | null; // CompleteTestScalarFieldEnum
+      orderBy?: NexusGenInputs['CompleteTestOrderByWithRelationInput'] | null; // CompleteTestOrderByWithRelationInput
       skip?: number | null; // Int
       take?: number | null; // Int
-      where?: NexusGenInputs['AnswerWhereInput'] | null; // AnswerWhereInput
+      where?: NexusGenInputs['CompleteTestWhereInput'] | null; // CompleteTestWhereInput
     }
   }
 }

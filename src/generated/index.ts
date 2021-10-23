@@ -29,6 +29,15 @@ export type AggregateAnswer = {
   _sum?: Maybe<AnswerSumAggregateOutputType>;
 };
 
+export type AggregateCompleteTest = {
+  __typename?: 'AggregateCompleteTest';
+  _avg?: Maybe<CompleteTestAvgAggregateOutputType>;
+  _count?: Maybe<CompleteTestCountAggregateOutputType>;
+  _max?: Maybe<CompleteTestMaxAggregateOutputType>;
+  _min?: Maybe<CompleteTestMinAggregateOutputType>;
+  _sum?: Maybe<CompleteTestSumAggregateOutputType>;
+};
+
 export type AggregateQuestion = {
   __typename?: 'AggregateQuestion';
   _avg?: Maybe<QuestionAvgAggregateOutputType>;
@@ -59,71 +68,109 @@ export type AggregateUser = {
 export type Answer = {
   __typename?: 'Answer';
   id: Scalars['Int'];
-  isRigth: Scalars['Boolean'];
-  user: User;
-  userId: Scalars['Int'];
+  inCompleteTest: CompleteTest;
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Boolean'];
+  question: Question;
+  questionId: Scalars['Int'];
 };
 
 export type AnswerAvgAggregateOutputType = {
   __typename?: 'AnswerAvgAggregateOutputType';
   id?: Maybe<Scalars['Float']>;
-  userId?: Maybe<Scalars['Float']>;
+  inCompleteTestId?: Maybe<Scalars['Float']>;
+  questionId?: Maybe<Scalars['Float']>;
 };
 
 export type AnswerAvgOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerCountAggregateOutputType = {
   __typename?: 'AnswerCountAggregateOutputType';
   _all: Scalars['Int'];
   id: Scalars['Int'];
-  isRigth: Scalars['Int'];
-  userId: Scalars['Int'];
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Int'];
+  questionId: Scalars['Int'];
 };
 
 export type AnswerCountOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
-  isRigth?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  isRight?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerCreateInput = {
-  isRigth: Scalars['Boolean'];
-  user: UserCreateNestedOneWithoutAnswersInput;
+  inCompleteTest: CompleteTestCreateNestedOneWithoutAnswersInput;
+  isRight: Scalars['Boolean'];
+  question: QuestionCreateNestedOneWithoutCompeteAnswersInput;
+};
+
+export type AnswerCreateManyInCompleteTestInput = {
+  id?: Maybe<Scalars['Int']>;
+  isRight: Scalars['Boolean'];
+  questionId: Scalars['Int'];
+};
+
+export type AnswerCreateManyInCompleteTestInputEnvelope = {
+  data: AnswerCreateManyInCompleteTestInput;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
 export type AnswerCreateManyInput = {
   id?: Maybe<Scalars['Int']>;
-  isRigth: Scalars['Boolean'];
-  userId: Scalars['Int'];
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Boolean'];
+  questionId: Scalars['Int'];
 };
 
-export type AnswerCreateManyUserInput = {
+export type AnswerCreateManyQuestionInput = {
   id?: Maybe<Scalars['Int']>;
-  isRigth: Scalars['Boolean'];
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Boolean'];
 };
 
-export type AnswerCreateManyUserInputEnvelope = {
-  data: AnswerCreateManyUserInput;
+export type AnswerCreateManyQuestionInputEnvelope = {
+  data: AnswerCreateManyQuestionInput;
   skipDuplicates?: Maybe<Scalars['Boolean']>;
 };
 
-export type AnswerCreateNestedManyWithoutUserInput = {
+export type AnswerCreateNestedManyWithoutInCompleteTestInput = {
   connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutUserInput>>>;
-  create?: Maybe<Array<Maybe<AnswerCreateWithoutUserInput>>>;
-  createMany?: Maybe<AnswerCreateManyUserInputEnvelope>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutInCompleteTestInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutInCompleteTestInput>>>;
+  createMany?: Maybe<AnswerCreateManyInCompleteTestInputEnvelope>;
 };
 
-export type AnswerCreateOrConnectWithoutUserInput = {
-  create: AnswerUncheckedCreateWithoutUserInput;
+export type AnswerCreateNestedManyWithoutQuestionInput = {
+  connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutQuestionInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutQuestionInput>>>;
+  createMany?: Maybe<AnswerCreateManyQuestionInputEnvelope>;
+};
+
+export type AnswerCreateOrConnectWithoutInCompleteTestInput = {
+  create: AnswerUncheckedCreateWithoutInCompleteTestInput;
   where: AnswerWhereUniqueInput;
 };
 
-export type AnswerCreateWithoutUserInput = {
-  isRigth: Scalars['Boolean'];
+export type AnswerCreateOrConnectWithoutQuestionInput = {
+  create: AnswerUncheckedCreateWithoutQuestionInput;
+  where: AnswerWhereUniqueInput;
+};
+
+export type AnswerCreateWithoutInCompleteTestInput = {
+  isRight: Scalars['Boolean'];
+  question: QuestionCreateNestedOneWithoutCompeteAnswersInput;
+};
+
+export type AnswerCreateWithoutQuestionInput = {
+  inCompleteTest: CompleteTestCreateNestedOneWithoutAnswersInput;
+  isRight: Scalars['Boolean'];
 };
 
 export type AnswerListRelationFilter = {
@@ -135,27 +182,31 @@ export type AnswerListRelationFilter = {
 export type AnswerMaxAggregateOutputType = {
   __typename?: 'AnswerMaxAggregateOutputType';
   id?: Maybe<Scalars['Int']>;
-  isRigth?: Maybe<Scalars['Boolean']>;
-  userId?: Maybe<Scalars['Int']>;
+  inCompleteTestId?: Maybe<Scalars['Int']>;
+  isRight?: Maybe<Scalars['Boolean']>;
+  questionId?: Maybe<Scalars['Int']>;
 };
 
 export type AnswerMaxOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
-  isRigth?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  isRight?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerMinAggregateOutputType = {
   __typename?: 'AnswerMinAggregateOutputType';
   id?: Maybe<Scalars['Int']>;
-  isRigth?: Maybe<Scalars['Boolean']>;
-  userId?: Maybe<Scalars['Int']>;
+  inCompleteTestId?: Maybe<Scalars['Int']>;
+  isRight?: Maybe<Scalars['Boolean']>;
+  questionId?: Maybe<Scalars['Int']>;
 };
 
 export type AnswerMinOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
-  isRigth?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  isRight?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerOrderByRelationAggregateInput = {
@@ -169,21 +220,25 @@ export type AnswerOrderByWithAggregationInput = {
   _min?: Maybe<AnswerMinOrderByAggregateInput>;
   _sum?: Maybe<AnswerSumOrderByAggregateInput>;
   id?: Maybe<SortOrder>;
-  isRigth?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  isRight?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerOrderByWithRelationInput = {
   id?: Maybe<SortOrder>;
-  isRigth?: Maybe<SortOrder>;
-  user?: Maybe<UserOrderByWithRelationInput>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTest?: Maybe<CompleteTestOrderByWithRelationInput>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  isRight?: Maybe<SortOrder>;
+  question?: Maybe<QuestionOrderByWithRelationInput>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export enum AnswerScalarFieldEnum {
   Id = 'id',
-  IsRigth = 'isRigth',
-  UserId = 'userId'
+  InCompleteTestId = 'inCompleteTestId',
+  IsRight = 'isRight',
+  QuestionId = 'questionId'
 }
 
 export type AnswerScalarWhereInput = {
@@ -191,8 +246,9 @@ export type AnswerScalarWhereInput = {
   NOT?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
   OR?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
   id?: Maybe<IntFilter>;
-  isRigth?: Maybe<BoolFilter>;
-  userId?: Maybe<IntFilter>;
+  inCompleteTestId?: Maybe<IntFilter>;
+  isRight?: Maybe<BoolFilter>;
+  questionId?: Maybe<IntFilter>;
 };
 
 export type AnswerScalarWhereWithAggregatesInput = {
@@ -200,115 +256,200 @@ export type AnswerScalarWhereWithAggregatesInput = {
   NOT?: Maybe<Array<Maybe<AnswerScalarWhereWithAggregatesInput>>>;
   OR?: Maybe<Array<Maybe<AnswerScalarWhereWithAggregatesInput>>>;
   id?: Maybe<IntWithAggregatesFilter>;
-  isRigth?: Maybe<BoolWithAggregatesFilter>;
-  userId?: Maybe<IntWithAggregatesFilter>;
+  inCompleteTestId?: Maybe<IntWithAggregatesFilter>;
+  isRight?: Maybe<BoolWithAggregatesFilter>;
+  questionId?: Maybe<IntWithAggregatesFilter>;
 };
 
 export type AnswerSumAggregateOutputType = {
   __typename?: 'AnswerSumAggregateOutputType';
   id?: Maybe<Scalars['Int']>;
-  userId?: Maybe<Scalars['Int']>;
+  inCompleteTestId?: Maybe<Scalars['Int']>;
+  questionId?: Maybe<Scalars['Int']>;
 };
 
 export type AnswerSumOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
-  userId?: Maybe<SortOrder>;
+  inCompleteTestId?: Maybe<SortOrder>;
+  questionId?: Maybe<SortOrder>;
 };
 
 export type AnswerUncheckedCreateInput = {
   id?: Maybe<Scalars['Int']>;
-  isRigth: Scalars['Boolean'];
-  userId: Scalars['Int'];
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Boolean'];
+  questionId: Scalars['Int'];
 };
 
-export type AnswerUncheckedCreateNestedManyWithoutUserInput = {
+export type AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput = {
   connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutUserInput>>>;
-  create?: Maybe<Array<Maybe<AnswerCreateWithoutUserInput>>>;
-  createMany?: Maybe<AnswerCreateManyUserInputEnvelope>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutInCompleteTestInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutInCompleteTestInput>>>;
+  createMany?: Maybe<AnswerCreateManyInCompleteTestInputEnvelope>;
 };
 
-export type AnswerUncheckedCreateWithoutUserInput = {
+export type AnswerUncheckedCreateNestedManyWithoutQuestionInput = {
+  connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutQuestionInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutQuestionInput>>>;
+  createMany?: Maybe<AnswerCreateManyQuestionInputEnvelope>;
+};
+
+export type AnswerUncheckedCreateWithoutInCompleteTestInput = {
   id?: Maybe<Scalars['Int']>;
-  isRigth: Scalars['Boolean'];
+  isRight: Scalars['Boolean'];
+  questionId: Scalars['Int'];
+};
+
+export type AnswerUncheckedCreateWithoutQuestionInput = {
+  id?: Maybe<Scalars['Int']>;
+  inCompleteTestId: Scalars['Int'];
+  isRight: Scalars['Boolean'];
 };
 
 export type AnswerUncheckedUpdateInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
-  userId?: Maybe<IntFieldUpdateOperationsInput>;
+  inCompleteTestId?: Maybe<IntFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  questionId?: Maybe<IntFieldUpdateOperationsInput>;
 };
 
 export type AnswerUncheckedUpdateManyInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
-  userId?: Maybe<IntFieldUpdateOperationsInput>;
+  inCompleteTestId?: Maybe<IntFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  questionId?: Maybe<IntFieldUpdateOperationsInput>;
 };
 
 export type AnswerUncheckedUpdateManyWithoutAnswersInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  questionId?: Maybe<IntFieldUpdateOperationsInput>;
 };
 
-export type AnswerUncheckedUpdateManyWithoutUserInput = {
+export type AnswerUncheckedUpdateManyWithoutCompeteAnswersInput = {
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  inCompleteTestId?: Maybe<IntFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+};
+
+export type AnswerUncheckedUpdateManyWithoutInCompleteTestInput = {
   connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutUserInput>>>;
-  create?: Maybe<Array<Maybe<AnswerCreateWithoutUserInput>>>;
-  createMany?: Maybe<AnswerCreateManyUserInputEnvelope>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutInCompleteTestInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutInCompleteTestInput>>>;
+  createMany?: Maybe<AnswerCreateManyInCompleteTestInputEnvelope>;
   delete?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
   deleteMany?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
   disconnect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
   set?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutUserInput>>>;
-  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutUserInput>>>;
-  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutUserInput>>>;
+  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput>>>;
+  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutInCompleteTestInput>>>;
+  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput>>>;
 };
 
-export type AnswerUncheckedUpdateWithoutUserInput = {
+export type AnswerUncheckedUpdateManyWithoutQuestionInput = {
+  connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutQuestionInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutQuestionInput>>>;
+  createMany?: Maybe<AnswerCreateManyQuestionInputEnvelope>;
+  delete?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  deleteMany?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
+  disconnect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  set?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutQuestionInput>>>;
+  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutQuestionInput>>>;
+  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutQuestionInput>>>;
+};
+
+export type AnswerUncheckedUpdateWithoutInCompleteTestInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  questionId?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type AnswerUncheckedUpdateWithoutQuestionInput = {
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  inCompleteTestId?: Maybe<IntFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
 };
 
 export type AnswerUpdateInput = {
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
-  user?: Maybe<UserUpdateOneRequiredWithoutAnswersInput>;
+  inCompleteTest?: Maybe<CompleteTestUpdateOneRequiredWithoutAnswersInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  question?: Maybe<QuestionUpdateOneRequiredWithoutCompeteAnswersInput>;
 };
 
 export type AnswerUpdateManyMutationInput = {
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
 };
 
-export type AnswerUpdateManyWithWhereWithoutUserInput = {
+export type AnswerUpdateManyWithWhereWithoutInCompleteTestInput = {
   data: AnswerUncheckedUpdateManyWithoutAnswersInput;
   where: AnswerScalarWhereInput;
 };
 
-export type AnswerUpdateManyWithoutUserInput = {
+export type AnswerUpdateManyWithWhereWithoutQuestionInput = {
+  data: AnswerUncheckedUpdateManyWithoutCompeteAnswersInput;
+  where: AnswerScalarWhereInput;
+};
+
+export type AnswerUpdateManyWithoutInCompleteTestInput = {
   connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutUserInput>>>;
-  create?: Maybe<Array<Maybe<AnswerCreateWithoutUserInput>>>;
-  createMany?: Maybe<AnswerCreateManyUserInputEnvelope>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutInCompleteTestInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutInCompleteTestInput>>>;
+  createMany?: Maybe<AnswerCreateManyInCompleteTestInputEnvelope>;
   delete?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
   deleteMany?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
   disconnect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
   set?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
-  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutUserInput>>>;
-  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutUserInput>>>;
-  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutUserInput>>>;
+  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput>>>;
+  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutInCompleteTestInput>>>;
+  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput>>>;
 };
 
-export type AnswerUpdateWithWhereUniqueWithoutUserInput = {
-  data: AnswerUncheckedUpdateWithoutUserInput;
+export type AnswerUpdateManyWithoutQuestionInput = {
+  connect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<AnswerCreateOrConnectWithoutQuestionInput>>>;
+  create?: Maybe<Array<Maybe<AnswerCreateWithoutQuestionInput>>>;
+  createMany?: Maybe<AnswerCreateManyQuestionInputEnvelope>;
+  delete?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  deleteMany?: Maybe<Array<Maybe<AnswerScalarWhereInput>>>;
+  disconnect?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  set?: Maybe<Array<Maybe<AnswerWhereUniqueInput>>>;
+  update?: Maybe<Array<Maybe<AnswerUpdateWithWhereUniqueWithoutQuestionInput>>>;
+  updateMany?: Maybe<Array<Maybe<AnswerUpdateManyWithWhereWithoutQuestionInput>>>;
+  upsert?: Maybe<Array<Maybe<AnswerUpsertWithWhereUniqueWithoutQuestionInput>>>;
+};
+
+export type AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput = {
+  data: AnswerUncheckedUpdateWithoutInCompleteTestInput;
   where: AnswerWhereUniqueInput;
 };
 
-export type AnswerUpdateWithoutUserInput = {
-  isRigth?: Maybe<BoolFieldUpdateOperationsInput>;
+export type AnswerUpdateWithWhereUniqueWithoutQuestionInput = {
+  data: AnswerUncheckedUpdateWithoutQuestionInput;
+  where: AnswerWhereUniqueInput;
 };
 
-export type AnswerUpsertWithWhereUniqueWithoutUserInput = {
-  create: AnswerUncheckedCreateWithoutUserInput;
-  update: AnswerUncheckedUpdateWithoutUserInput;
+export type AnswerUpdateWithoutInCompleteTestInput = {
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+  question?: Maybe<QuestionUpdateOneRequiredWithoutCompeteAnswersInput>;
+};
+
+export type AnswerUpdateWithoutQuestionInput = {
+  inCompleteTest?: Maybe<CompleteTestUpdateOneRequiredWithoutAnswersInput>;
+  isRight?: Maybe<BoolFieldUpdateOperationsInput>;
+};
+
+export type AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput = {
+  create: AnswerUncheckedCreateWithoutInCompleteTestInput;
+  update: AnswerUncheckedUpdateWithoutInCompleteTestInput;
+  where: AnswerWhereUniqueInput;
+};
+
+export type AnswerUpsertWithWhereUniqueWithoutQuestionInput = {
+  create: AnswerUncheckedCreateWithoutQuestionInput;
+  update: AnswerUncheckedUpdateWithoutQuestionInput;
   where: AnswerWhereUniqueInput;
 };
 
@@ -317,9 +458,11 @@ export type AnswerWhereInput = {
   NOT?: Maybe<Array<Maybe<AnswerWhereInput>>>;
   OR?: Maybe<Array<Maybe<AnswerWhereInput>>>;
   id?: Maybe<IntFilter>;
-  isRigth?: Maybe<BoolFilter>;
-  user?: Maybe<UserWhereInput>;
-  userId?: Maybe<IntFilter>;
+  inCompleteTest?: Maybe<CompleteTestWhereInput>;
+  inCompleteTestId?: Maybe<IntFilter>;
+  isRight?: Maybe<BoolFilter>;
+  question?: Maybe<QuestionWhereInput>;
+  questionId?: Maybe<IntFilter>;
 };
 
 export type AnswerWhereUniqueInput = {
@@ -346,6 +489,358 @@ export type BoolWithAggregatesFilter = {
   _min?: Maybe<NestedBoolFilter>;
   equals?: Maybe<Scalars['Boolean']>;
   not?: Maybe<NestedBoolWithAggregatesFilter>;
+};
+
+export type CompleteTest = {
+  __typename?: 'CompleteTest';
+  _count?: Maybe<CompleteTestCountOutputType>;
+  answers: Array<Answer>;
+  id: Scalars['Int'];
+  rightAnswers: Scalars['Int'];
+  user: User;
+  userId: Scalars['Int'];
+};
+
+
+export type CompleteTestAnswersArgs = {
+  cursor?: Maybe<AnswerWhereUniqueInput>;
+  distinct?: Maybe<AnswerScalarFieldEnum>;
+  orderBy?: Maybe<AnswerOrderByWithRelationInput>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<AnswerWhereInput>;
+};
+
+export type CompleteTestAvgAggregateOutputType = {
+  __typename?: 'CompleteTestAvgAggregateOutputType';
+  id?: Maybe<Scalars['Float']>;
+  rightAnswers?: Maybe<Scalars['Float']>;
+  userId?: Maybe<Scalars['Float']>;
+};
+
+export type CompleteTestAvgOrderByAggregateInput = {
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestCountAggregateOutputType = {
+  __typename?: 'CompleteTestCountAggregateOutputType';
+  _all: Scalars['Int'];
+  id: Scalars['Int'];
+  rightAnswers: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type CompleteTestCountOrderByAggregateInput = {
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestCountOutputType = {
+  __typename?: 'CompleteTestCountOutputType';
+  answers: Scalars['Int'];
+};
+
+export type CompleteTestCreateInput = {
+  answers?: Maybe<AnswerCreateNestedManyWithoutInCompleteTestInput>;
+  rightAnswers: Scalars['Int'];
+  user: UserCreateNestedOneWithoutCompletedTestsInput;
+};
+
+export type CompleteTestCreateManyInput = {
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type CompleteTestCreateManyUserInput = {
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers: Scalars['Int'];
+};
+
+export type CompleteTestCreateManyUserInputEnvelope = {
+  data: CompleteTestCreateManyUserInput;
+  skipDuplicates?: Maybe<Scalars['Boolean']>;
+};
+
+export type CompleteTestCreateNestedManyWithoutUserInput = {
+  connect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<CompleteTestCreateOrConnectWithoutUserInput>>>;
+  create?: Maybe<Array<Maybe<CompleteTestCreateWithoutUserInput>>>;
+  createMany?: Maybe<CompleteTestCreateManyUserInputEnvelope>;
+};
+
+export type CompleteTestCreateNestedOneWithoutAnswersInput = {
+  connect?: Maybe<CompleteTestWhereUniqueInput>;
+  connectOrCreate?: Maybe<CompleteTestCreateOrConnectWithoutAnswersInput>;
+  create?: Maybe<CompleteTestUncheckedCreateWithoutAnswersInput>;
+};
+
+export type CompleteTestCreateOrConnectWithoutAnswersInput = {
+  create: CompleteTestUncheckedCreateWithoutAnswersInput;
+  where: CompleteTestWhereUniqueInput;
+};
+
+export type CompleteTestCreateOrConnectWithoutUserInput = {
+  create: CompleteTestUncheckedCreateWithoutUserInput;
+  where: CompleteTestWhereUniqueInput;
+};
+
+export type CompleteTestCreateWithoutAnswersInput = {
+  rightAnswers: Scalars['Int'];
+  user: UserCreateNestedOneWithoutCompletedTestsInput;
+};
+
+export type CompleteTestCreateWithoutUserInput = {
+  answers?: Maybe<AnswerCreateNestedManyWithoutInCompleteTestInput>;
+  rightAnswers: Scalars['Int'];
+};
+
+export type CompleteTestListRelationFilter = {
+  every?: Maybe<CompleteTestWhereInput>;
+  none?: Maybe<CompleteTestWhereInput>;
+  some?: Maybe<CompleteTestWhereInput>;
+};
+
+export type CompleteTestMaxAggregateOutputType = {
+  __typename?: 'CompleteTestMaxAggregateOutputType';
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type CompleteTestMaxOrderByAggregateInput = {
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestMinAggregateOutputType = {
+  __typename?: 'CompleteTestMinAggregateOutputType';
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type CompleteTestMinOrderByAggregateInput = {
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
+};
+
+export type CompleteTestOrderByWithAggregationInput = {
+  _avg?: Maybe<CompleteTestAvgOrderByAggregateInput>;
+  _count?: Maybe<CompleteTestCountOrderByAggregateInput>;
+  _max?: Maybe<CompleteTestMaxOrderByAggregateInput>;
+  _min?: Maybe<CompleteTestMinOrderByAggregateInput>;
+  _sum?: Maybe<CompleteTestSumOrderByAggregateInput>;
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestOrderByWithRelationInput = {
+  answers?: Maybe<AnswerOrderByRelationAggregateInput>;
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  user?: Maybe<UserOrderByWithRelationInput>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestRelationFilter = {
+  is?: Maybe<CompleteTestWhereInput>;
+  isNot?: Maybe<CompleteTestWhereInput>;
+};
+
+export enum CompleteTestScalarFieldEnum {
+  Id = 'id',
+  RightAnswers = 'rightAnswers',
+  UserId = 'userId'
+}
+
+export type CompleteTestScalarWhereInput = {
+  AND?: Maybe<Array<Maybe<CompleteTestScalarWhereInput>>>;
+  NOT?: Maybe<Array<Maybe<CompleteTestScalarWhereInput>>>;
+  OR?: Maybe<Array<Maybe<CompleteTestScalarWhereInput>>>;
+  id?: Maybe<IntFilter>;
+  rightAnswers?: Maybe<IntFilter>;
+  userId?: Maybe<IntFilter>;
+};
+
+export type CompleteTestScalarWhereWithAggregatesInput = {
+  AND?: Maybe<Array<Maybe<CompleteTestScalarWhereWithAggregatesInput>>>;
+  NOT?: Maybe<Array<Maybe<CompleteTestScalarWhereWithAggregatesInput>>>;
+  OR?: Maybe<Array<Maybe<CompleteTestScalarWhereWithAggregatesInput>>>;
+  id?: Maybe<IntWithAggregatesFilter>;
+  rightAnswers?: Maybe<IntWithAggregatesFilter>;
+  userId?: Maybe<IntWithAggregatesFilter>;
+};
+
+export type CompleteTestSumAggregateOutputType = {
+  __typename?: 'CompleteTestSumAggregateOutputType';
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['Int']>;
+};
+
+export type CompleteTestSumOrderByAggregateInput = {
+  id?: Maybe<SortOrder>;
+  rightAnswers?: Maybe<SortOrder>;
+  userId?: Maybe<SortOrder>;
+};
+
+export type CompleteTestUncheckedCreateInput = {
+  answers?: Maybe<AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput>;
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type CompleteTestUncheckedCreateNestedManyWithoutUserInput = {
+  connect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<CompleteTestCreateOrConnectWithoutUserInput>>>;
+  create?: Maybe<Array<Maybe<CompleteTestCreateWithoutUserInput>>>;
+  createMany?: Maybe<CompleteTestCreateManyUserInputEnvelope>;
+};
+
+export type CompleteTestUncheckedCreateWithoutAnswersInput = {
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers: Scalars['Int'];
+  userId: Scalars['Int'];
+};
+
+export type CompleteTestUncheckedCreateWithoutUserInput = {
+  answers?: Maybe<AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput>;
+  id?: Maybe<Scalars['Int']>;
+  rightAnswers: Scalars['Int'];
+};
+
+export type CompleteTestUncheckedUpdateInput = {
+  answers?: Maybe<AnswerUncheckedUpdateManyWithoutInCompleteTestInput>;
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+  userId?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUncheckedUpdateManyInput = {
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+  userId?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput = {
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUncheckedUpdateManyWithoutUserInput = {
+  connect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<CompleteTestCreateOrConnectWithoutUserInput>>>;
+  create?: Maybe<Array<Maybe<CompleteTestCreateWithoutUserInput>>>;
+  createMany?: Maybe<CompleteTestCreateManyUserInputEnvelope>;
+  delete?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  deleteMany?: Maybe<Array<Maybe<CompleteTestScalarWhereInput>>>;
+  disconnect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  set?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  update?: Maybe<Array<Maybe<CompleteTestUpdateWithWhereUniqueWithoutUserInput>>>;
+  updateMany?: Maybe<Array<Maybe<CompleteTestUpdateManyWithWhereWithoutUserInput>>>;
+  upsert?: Maybe<Array<Maybe<CompleteTestUpsertWithWhereUniqueWithoutUserInput>>>;
+};
+
+export type CompleteTestUncheckedUpdateWithoutAnswersInput = {
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+  userId?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUncheckedUpdateWithoutUserInput = {
+  answers?: Maybe<AnswerUncheckedUpdateManyWithoutInCompleteTestInput>;
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUpdateInput = {
+  answers?: Maybe<AnswerUpdateManyWithoutInCompleteTestInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+  user?: Maybe<UserUpdateOneRequiredWithoutCompletedTestsInput>;
+};
+
+export type CompleteTestUpdateManyMutationInput = {
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUpdateManyWithWhereWithoutUserInput = {
+  data: CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput;
+  where: CompleteTestScalarWhereInput;
+};
+
+export type CompleteTestUpdateManyWithoutUserInput = {
+  connect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  connectOrCreate?: Maybe<Array<Maybe<CompleteTestCreateOrConnectWithoutUserInput>>>;
+  create?: Maybe<Array<Maybe<CompleteTestCreateWithoutUserInput>>>;
+  createMany?: Maybe<CompleteTestCreateManyUserInputEnvelope>;
+  delete?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  deleteMany?: Maybe<Array<Maybe<CompleteTestScalarWhereInput>>>;
+  disconnect?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  set?: Maybe<Array<Maybe<CompleteTestWhereUniqueInput>>>;
+  update?: Maybe<Array<Maybe<CompleteTestUpdateWithWhereUniqueWithoutUserInput>>>;
+  updateMany?: Maybe<Array<Maybe<CompleteTestUpdateManyWithWhereWithoutUserInput>>>;
+  upsert?: Maybe<Array<Maybe<CompleteTestUpsertWithWhereUniqueWithoutUserInput>>>;
+};
+
+export type CompleteTestUpdateOneRequiredWithoutAnswersInput = {
+  connect?: Maybe<CompleteTestWhereUniqueInput>;
+  connectOrCreate?: Maybe<CompleteTestCreateOrConnectWithoutAnswersInput>;
+  create?: Maybe<CompleteTestUncheckedCreateWithoutAnswersInput>;
+  update?: Maybe<CompleteTestUncheckedUpdateWithoutAnswersInput>;
+  upsert?: Maybe<CompleteTestUpsertWithoutAnswersInput>;
+};
+
+export type CompleteTestUpdateWithWhereUniqueWithoutUserInput = {
+  data: CompleteTestUncheckedUpdateWithoutUserInput;
+  where: CompleteTestWhereUniqueInput;
+};
+
+export type CompleteTestUpdateWithoutAnswersInput = {
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+  user?: Maybe<UserUpdateOneRequiredWithoutCompletedTestsInput>;
+};
+
+export type CompleteTestUpdateWithoutUserInput = {
+  answers?: Maybe<AnswerUpdateManyWithoutInCompleteTestInput>;
+  rightAnswers?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type CompleteTestUpsertWithWhereUniqueWithoutUserInput = {
+  create: CompleteTestUncheckedCreateWithoutUserInput;
+  update: CompleteTestUncheckedUpdateWithoutUserInput;
+  where: CompleteTestWhereUniqueInput;
+};
+
+export type CompleteTestUpsertWithoutAnswersInput = {
+  create: CompleteTestUncheckedCreateWithoutAnswersInput;
+  update: CompleteTestUncheckedUpdateWithoutAnswersInput;
+};
+
+export type CompleteTestWhereInput = {
+  AND?: Maybe<Array<Maybe<CompleteTestWhereInput>>>;
+  NOT?: Maybe<Array<Maybe<CompleteTestWhereInput>>>;
+  OR?: Maybe<Array<Maybe<CompleteTestWhereInput>>>;
+  answers?: Maybe<AnswerListRelationFilter>;
+  id?: Maybe<IntFilter>;
+  rightAnswers?: Maybe<IntFilter>;
+  user?: Maybe<UserWhereInput>;
+  userId?: Maybe<IntFilter>;
+};
+
+export type CompleteTestWhereUniqueInput = {
+  id?: Maybe<Scalars['Int']>;
 };
 
 export type Enum = {
@@ -453,28 +948,34 @@ export type Model = {
 export type Mutation = {
   __typename?: 'Mutation';
   createOneAnswer: Answer;
+  createOneCompleteTest: CompleteTest;
   createOneQuestion: Question;
   createOneTest: Test;
   createOneUser: User;
   deleteManyAnswer: BatchPayload;
+  deleteManyCompleteTest: BatchPayload;
   deleteManyQuestion: BatchPayload;
   deleteManyTest: BatchPayload;
   deleteManyUser: BatchPayload;
   deleteOneAnswer?: Maybe<Answer>;
+  deleteOneCompleteTest?: Maybe<CompleteTest>;
   deleteOneQuestion?: Maybe<Question>;
   deleteOneTest?: Maybe<Test>;
   deleteOneUser?: Maybe<User>;
   updateField: Field;
   updateManyAnswer: BatchPayload;
+  updateManyCompleteTest: BatchPayload;
   updateManyQuestion: BatchPayload;
   updateManyTest: BatchPayload;
   updateManyUser: BatchPayload;
   updateModel: Model;
   updateOneAnswer: Answer;
+  updateOneCompleteTest: CompleteTest;
   updateOneQuestion: Question;
   updateOneTest: Test;
   updateOneUser: User;
   upsertOneAnswer: Answer;
+  upsertOneCompleteTest: CompleteTest;
   upsertOneQuestion: Question;
   upsertOneTest: Test;
   upsertOneUser: User;
@@ -483,6 +984,11 @@ export type Mutation = {
 
 export type MutationCreateOneAnswerArgs = {
   data: AnswerCreateInput;
+};
+
+
+export type MutationCreateOneCompleteTestArgs = {
+  data: CompleteTestCreateInput;
 };
 
 
@@ -506,6 +1012,11 @@ export type MutationDeleteManyAnswerArgs = {
 };
 
 
+export type MutationDeleteManyCompleteTestArgs = {
+  where?: Maybe<CompleteTestWhereInput>;
+};
+
+
 export type MutationDeleteManyQuestionArgs = {
   where?: Maybe<QuestionWhereInput>;
 };
@@ -523,6 +1034,11 @@ export type MutationDeleteManyUserArgs = {
 
 export type MutationDeleteOneAnswerArgs = {
   where: AnswerWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneCompleteTestArgs = {
+  where: CompleteTestWhereUniqueInput;
 };
 
 
@@ -551,6 +1067,12 @@ export type MutationUpdateFieldArgs = {
 export type MutationUpdateManyAnswerArgs = {
   data: AnswerUpdateManyMutationInput;
   where?: Maybe<AnswerWhereInput>;
+};
+
+
+export type MutationUpdateManyCompleteTestArgs = {
+  data: CompleteTestUpdateManyMutationInput;
+  where?: Maybe<CompleteTestWhereInput>;
 };
 
 
@@ -584,6 +1106,12 @@ export type MutationUpdateOneAnswerArgs = {
 };
 
 
+export type MutationUpdateOneCompleteTestArgs = {
+  data: CompleteTestUpdateInput;
+  where: CompleteTestWhereUniqueInput;
+};
+
+
 export type MutationUpdateOneQuestionArgs = {
   data: QuestionUpdateInput;
   where: QuestionWhereUniqueInput;
@@ -606,6 +1134,13 @@ export type MutationUpsertOneAnswerArgs = {
   create: AnswerCreateInput;
   update: AnswerUpdateInput;
   where: AnswerWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneCompleteTestArgs = {
+  create: CompleteTestCreateInput;
+  update: CompleteTestUpdateInput;
+  where: CompleteTestWhereUniqueInput;
 };
 
 
@@ -777,15 +1312,19 @@ export type NullableStringFieldUpdateOperationsInput = {
 export type Query = {
   __typename?: 'Query';
   aggregateAnswer?: Maybe<AggregateAnswer>;
+  aggregateCompleteTest?: Maybe<AggregateCompleteTest>;
   aggregateQuestion?: Maybe<AggregateQuestion>;
   aggregateTest?: Maybe<AggregateTest>;
   aggregateUser?: Maybe<AggregateUser>;
   findFirstAnswer?: Maybe<Answer>;
+  findFirstCompleteTest?: Maybe<CompleteTest>;
   findFirstQuestion?: Maybe<Question>;
   findFirstTest?: Maybe<Test>;
   findFirstUser?: Maybe<User>;
   findManyAnswer: Array<Answer>;
   findManyAnswerCount: Scalars['Int'];
+  findManyCompleteTest: Array<CompleteTest>;
+  findManyCompleteTestCount: Scalars['Int'];
   findManyQuestion: Array<Question>;
   findManyQuestionCount: Scalars['Int'];
   findManyTest: Array<Test>;
@@ -793,6 +1332,7 @@ export type Query = {
   findManyUser: Array<User>;
   findManyUserCount: Scalars['Int'];
   findUniqueAnswer?: Maybe<Answer>;
+  findUniqueCompleteTest?: Maybe<CompleteTest>;
   findUniqueQuestion?: Maybe<Question>;
   findUniqueTest?: Maybe<Test>;
   findUniqueUser?: Maybe<User>;
@@ -806,6 +1346,15 @@ export type QueryAggregateAnswerArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<AnswerWhereInput>;
+};
+
+
+export type QueryAggregateCompleteTestArgs = {
+  cursor?: Maybe<CompleteTestWhereUniqueInput>;
+  orderBy?: Maybe<Array<Maybe<CompleteTestOrderByWithRelationInput>>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<CompleteTestWhereInput>;
 };
 
 
@@ -843,6 +1392,16 @@ export type QueryFindFirstAnswerArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<AnswerWhereInput>;
+};
+
+
+export type QueryFindFirstCompleteTestArgs = {
+  cursor?: Maybe<CompleteTestWhereUniqueInput>;
+  distinct?: Maybe<Array<Maybe<CompleteTestScalarFieldEnum>>>;
+  orderBy?: Maybe<Array<Maybe<CompleteTestOrderByWithRelationInput>>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<CompleteTestWhereInput>;
 };
 
 
@@ -893,6 +1452,26 @@ export type QueryFindManyAnswerCountArgs = {
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
   where?: Maybe<AnswerWhereInput>;
+};
+
+
+export type QueryFindManyCompleteTestArgs = {
+  cursor?: Maybe<CompleteTestWhereUniqueInput>;
+  distinct?: Maybe<Array<Maybe<CompleteTestScalarFieldEnum>>>;
+  orderBy?: Maybe<Array<Maybe<CompleteTestOrderByWithRelationInput>>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<CompleteTestWhereInput>;
+};
+
+
+export type QueryFindManyCompleteTestCountArgs = {
+  cursor?: Maybe<CompleteTestWhereUniqueInput>;
+  distinct?: Maybe<Array<Maybe<CompleteTestScalarFieldEnum>>>;
+  orderBy?: Maybe<Array<Maybe<CompleteTestOrderByWithRelationInput>>>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<CompleteTestWhereInput>;
 };
 
 
@@ -961,6 +1540,11 @@ export type QueryFindUniqueAnswerArgs = {
 };
 
 
+export type QueryFindUniqueCompleteTestArgs = {
+  where: CompleteTestWhereUniqueInput;
+};
+
+
 export type QueryFindUniqueQuestionArgs = {
   where: QuestionWhereUniqueInput;
 };
@@ -982,9 +1566,10 @@ export enum QueryMode {
 
 export type Question = {
   __typename?: 'Question';
+  _count?: Maybe<QuestionCountOutputType>;
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs: Array<Scalars['String']>;
+  competeAnswers: Array<Answer>;
   expectedResult?: Maybe<Scalars['String']>;
   id: Scalars['Int'];
   options: Array<Scalars['String']>;
@@ -992,6 +1577,16 @@ export type Question = {
   parrentTestId: Scalars['Int'];
   text: Scalars['String'];
   type: QuestionType;
+};
+
+
+export type QuestionCompeteAnswersArgs = {
+  cursor?: Maybe<AnswerWhereUniqueInput>;
+  distinct?: Maybe<AnswerScalarFieldEnum>;
+  orderBy?: Maybe<AnswerOrderByWithRelationInput>;
+  skip?: Maybe<Scalars['Int']>;
+  take?: Maybe<Scalars['Int']>;
+  where?: Maybe<AnswerWhereInput>;
 };
 
 export type QuestionAvgAggregateOutputType = {
@@ -1009,7 +1604,6 @@ export type QuestionCountAggregateOutputType = {
   __typename?: 'QuestionCountAggregateOutputType';
   _all: Scalars['Int'];
   answer: Scalars['Int'];
-  code: Scalars['Int'];
   codeArgs: Scalars['Int'];
   expectedResult: Scalars['Int'];
   id: Scalars['Int'];
@@ -1021,7 +1615,6 @@ export type QuestionCountAggregateOutputType = {
 
 export type QuestionCountOrderByAggregateInput = {
   answer?: Maybe<SortOrder>;
-  code?: Maybe<SortOrder>;
   codeArgs?: Maybe<SortOrder>;
   expectedResult?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
@@ -1031,10 +1624,15 @@ export type QuestionCountOrderByAggregateInput = {
   type?: Maybe<SortOrder>;
 };
 
+export type QuestionCountOutputType = {
+  __typename?: 'QuestionCountOutputType';
+  competeAnswers: Scalars['Int'];
+};
+
 export type QuestionCreateInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
   expectedResult?: Maybe<Scalars['String']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest: TestCreateNestedOneWithoutQuestionsInput;
@@ -1044,7 +1642,6 @@ export type QuestionCreateInput = {
 
 export type QuestionCreateManyInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -1056,7 +1653,6 @@ export type QuestionCreateManyInput = {
 
 export type QuestionCreateManyParrentTestInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
@@ -1085,15 +1681,36 @@ export type QuestionCreateNestedManyWithoutParrentTestInput = {
   createMany?: Maybe<QuestionCreateManyParrentTestInputEnvelope>;
 };
 
+export type QuestionCreateNestedOneWithoutCompeteAnswersInput = {
+  connect?: Maybe<QuestionWhereUniqueInput>;
+  connectOrCreate?: Maybe<QuestionCreateOrConnectWithoutCompeteAnswersInput>;
+  create?: Maybe<QuestionUncheckedCreateWithoutCompeteAnswersInput>;
+};
+
+export type QuestionCreateOrConnectWithoutCompeteAnswersInput = {
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput;
+  where: QuestionWhereUniqueInput;
+};
+
 export type QuestionCreateOrConnectWithoutParrentTestInput = {
   create: QuestionUncheckedCreateWithoutParrentTestInput;
   where: QuestionWhereUniqueInput;
 };
 
+export type QuestionCreateWithoutCompeteAnswersInput = {
+  answer?: Maybe<Scalars['String']>;
+  codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  expectedResult?: Maybe<Scalars['String']>;
+  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+  parrentTest: TestCreateNestedOneWithoutQuestionsInput;
+  text: Scalars['String'];
+  type: QuestionType;
+};
+
 export type QuestionCreateWithoutParrentTestInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerCreateNestedManyWithoutQuestionInput>;
   expectedResult?: Maybe<Scalars['String']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text: Scalars['String'];
@@ -1117,7 +1734,6 @@ export type QuestionListRelationFilter = {
 export type QuestionMaxAggregateOutputType = {
   __typename?: 'QuestionMaxAggregateOutputType';
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   parrentTestId?: Maybe<Scalars['Int']>;
@@ -1127,7 +1743,6 @@ export type QuestionMaxAggregateOutputType = {
 
 export type QuestionMaxOrderByAggregateInput = {
   answer?: Maybe<SortOrder>;
-  code?: Maybe<SortOrder>;
   expectedResult?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
@@ -1138,7 +1753,6 @@ export type QuestionMaxOrderByAggregateInput = {
 export type QuestionMinAggregateOutputType = {
   __typename?: 'QuestionMinAggregateOutputType';
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   parrentTestId?: Maybe<Scalars['Int']>;
@@ -1148,7 +1762,6 @@ export type QuestionMinAggregateOutputType = {
 
 export type QuestionMinOrderByAggregateInput = {
   answer?: Maybe<SortOrder>;
-  code?: Maybe<SortOrder>;
   expectedResult?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
@@ -1167,7 +1780,6 @@ export type QuestionOrderByWithAggregationInput = {
   _min?: Maybe<QuestionMinOrderByAggregateInput>;
   _sum?: Maybe<QuestionSumOrderByAggregateInput>;
   answer?: Maybe<SortOrder>;
-  code?: Maybe<SortOrder>;
   codeArgs?: Maybe<SortOrder>;
   expectedResult?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
@@ -1179,8 +1791,8 @@ export type QuestionOrderByWithAggregationInput = {
 
 export type QuestionOrderByWithRelationInput = {
   answer?: Maybe<SortOrder>;
-  code?: Maybe<SortOrder>;
   codeArgs?: Maybe<SortOrder>;
+  competeAnswers?: Maybe<AnswerOrderByRelationAggregateInput>;
   expectedResult?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   options?: Maybe<SortOrder>;
@@ -1190,9 +1802,13 @@ export type QuestionOrderByWithRelationInput = {
   type?: Maybe<SortOrder>;
 };
 
+export type QuestionRelationFilter = {
+  is?: Maybe<QuestionWhereInput>;
+  isNot?: Maybe<QuestionWhereInput>;
+};
+
 export enum QuestionScalarFieldEnum {
   Answer = 'answer',
-  Code = 'code',
   CodeArgs = 'codeArgs',
   ExpectedResult = 'expectedResult',
   Id = 'id',
@@ -1207,7 +1823,6 @@ export type QuestionScalarWhereInput = {
   NOT?: Maybe<Array<Maybe<QuestionScalarWhereInput>>>;
   OR?: Maybe<Array<Maybe<QuestionScalarWhereInput>>>;
   answer?: Maybe<StringNullableFilter>;
-  code?: Maybe<StringNullableFilter>;
   codeArgs?: Maybe<StringNullableListFilter>;
   expectedResult?: Maybe<StringNullableFilter>;
   id?: Maybe<IntFilter>;
@@ -1222,7 +1837,6 @@ export type QuestionScalarWhereWithAggregatesInput = {
   NOT?: Maybe<Array<Maybe<QuestionScalarWhereWithAggregatesInput>>>;
   OR?: Maybe<Array<Maybe<QuestionScalarWhereWithAggregatesInput>>>;
   answer?: Maybe<StringNullableWithAggregatesFilter>;
-  code?: Maybe<StringNullableWithAggregatesFilter>;
   codeArgs?: Maybe<StringNullableListFilter>;
   expectedResult?: Maybe<StringNullableWithAggregatesFilter>;
   id?: Maybe<IntWithAggregatesFilter>;
@@ -1250,8 +1864,8 @@ export enum QuestionType {
 
 export type QuestionUncheckedCreateInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUncheckedCreateNestedManyWithoutQuestionInput>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1267,10 +1881,21 @@ export type QuestionUncheckedCreateNestedManyWithoutParrentTestInput = {
   createMany?: Maybe<QuestionCreateManyParrentTestInputEnvelope>;
 };
 
+export type QuestionUncheckedCreateWithoutCompeteAnswersInput = {
+  answer?: Maybe<Scalars['String']>;
+  codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  expectedResult?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+  parrentTestId: Scalars['Int'];
+  text: Scalars['String'];
+  type: QuestionType;
+};
+
 export type QuestionUncheckedCreateWithoutParrentTestInput = {
   answer?: Maybe<Scalars['String']>;
-  code?: Maybe<Scalars['String']>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUncheckedCreateNestedManyWithoutQuestionInput>;
   expectedResult?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1280,8 +1905,8 @@ export type QuestionUncheckedCreateWithoutParrentTestInput = {
 
 export type QuestionUncheckedUpdateInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUncheckedUpdateManyWithoutQuestionInput>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<IntFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1292,7 +1917,6 @@ export type QuestionUncheckedUpdateInput = {
 
 export type QuestionUncheckedUpdateManyInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<IntFieldUpdateOperationsInput>;
@@ -1318,7 +1942,6 @@ export type QuestionUncheckedUpdateManyWithoutParrentTestInput = {
 
 export type QuestionUncheckedUpdateManyWithoutQuestionsInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<IntFieldUpdateOperationsInput>;
@@ -1327,10 +1950,21 @@ export type QuestionUncheckedUpdateManyWithoutQuestionsInput = {
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
+export type QuestionUncheckedUpdateWithoutCompeteAnswersInput = {
+  answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  id?: Maybe<IntFieldUpdateOperationsInput>;
+  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+  parrentTestId?: Maybe<IntFieldUpdateOperationsInput>;
+  text?: Maybe<StringFieldUpdateOperationsInput>;
+  type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
+};
+
 export type QuestionUncheckedUpdateWithoutParrentTestInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUncheckedUpdateManyWithoutQuestionInput>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<IntFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1340,8 +1974,8 @@ export type QuestionUncheckedUpdateWithoutParrentTestInput = {
 
 export type QuestionUpdateInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUpdateManyWithoutQuestionInput>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest?: Maybe<TestUpdateOneRequiredWithoutQuestionsInput>;
@@ -1351,7 +1985,6 @@ export type QuestionUpdateInput = {
 
 export type QuestionUpdateManyMutationInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
@@ -1378,15 +2011,33 @@ export type QuestionUpdateManyWithoutParrentTestInput = {
   upsert?: Maybe<Array<Maybe<QuestionUpsertWithWhereUniqueWithoutParrentTestInput>>>;
 };
 
+export type QuestionUpdateOneRequiredWithoutCompeteAnswersInput = {
+  connect?: Maybe<QuestionWhereUniqueInput>;
+  connectOrCreate?: Maybe<QuestionCreateOrConnectWithoutCompeteAnswersInput>;
+  create?: Maybe<QuestionUncheckedCreateWithoutCompeteAnswersInput>;
+  update?: Maybe<QuestionUncheckedUpdateWithoutCompeteAnswersInput>;
+  upsert?: Maybe<QuestionUpsertWithoutCompeteAnswersInput>;
+};
+
 export type QuestionUpdateWithWhereUniqueWithoutParrentTestInput = {
   data: QuestionUncheckedUpdateWithoutParrentTestInput;
   where: QuestionWhereUniqueInput;
 };
 
+export type QuestionUpdateWithoutCompeteAnswersInput = {
+  answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  options?: Maybe<Array<Maybe<Scalars['String']>>>;
+  parrentTest?: Maybe<TestUpdateOneRequiredWithoutQuestionsInput>;
+  text?: Maybe<StringFieldUpdateOperationsInput>;
+  type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
+};
+
 export type QuestionUpdateWithoutParrentTestInput = {
   answer?: Maybe<NullableStringFieldUpdateOperationsInput>;
-  code?: Maybe<NullableStringFieldUpdateOperationsInput>;
   codeArgs?: Maybe<Array<Maybe<Scalars['String']>>>;
+  competeAnswers?: Maybe<AnswerUpdateManyWithoutQuestionInput>;
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
@@ -1409,13 +2060,18 @@ export type QuestionUpsertWithWhereUniqueWithoutParrentTestInput = {
   where: QuestionWhereUniqueInput;
 };
 
+export type QuestionUpsertWithoutCompeteAnswersInput = {
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput;
+  update: QuestionUncheckedUpdateWithoutCompeteAnswersInput;
+};
+
 export type QuestionWhereInput = {
   AND?: Maybe<Array<Maybe<QuestionWhereInput>>>;
   NOT?: Maybe<Array<Maybe<QuestionWhereInput>>>;
   OR?: Maybe<Array<Maybe<QuestionWhereInput>>>;
   answer?: Maybe<StringNullableFilter>;
-  code?: Maybe<StringNullableFilter>;
   codeArgs?: Maybe<StringNullableListFilter>;
+  competeAnswers?: Maybe<AnswerListRelationFilter>;
   expectedResult?: Maybe<StringNullableFilter>;
   id?: Maybe<IntFilter>;
   options?: Maybe<StringNullableListFilter>;
@@ -1752,20 +2408,20 @@ export type UpdateModelInput = {
 export type User = {
   __typename?: 'User';
   _count?: Maybe<UserCountOutputType>;
-  answers: Array<Answer>;
+  completedTests: Array<CompleteTest>;
   id: Scalars['Int'];
   nickname: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
 
-export type UserAnswersArgs = {
-  cursor?: Maybe<AnswerWhereUniqueInput>;
-  distinct?: Maybe<AnswerScalarFieldEnum>;
-  orderBy?: Maybe<AnswerOrderByWithRelationInput>;
+export type UserCompletedTestsArgs = {
+  cursor?: Maybe<CompleteTestWhereUniqueInput>;
+  distinct?: Maybe<CompleteTestScalarFieldEnum>;
+  orderBy?: Maybe<CompleteTestOrderByWithRelationInput>;
   skip?: Maybe<Scalars['Int']>;
   take?: Maybe<Scalars['Int']>;
-  where?: Maybe<AnswerWhereInput>;
+  where?: Maybe<CompleteTestWhereInput>;
 };
 
 export type UserAvgAggregateOutputType = {
@@ -1793,11 +2449,11 @@ export type UserCountOrderByAggregateInput = {
 
 export type UserCountOutputType = {
   __typename?: 'UserCountOutputType';
-  answers: Scalars['Int'];
+  completedTests: Scalars['Int'];
 };
 
 export type UserCreateInput = {
-  answers?: Maybe<AnswerCreateNestedManyWithoutUserInput>;
+  completedTests?: Maybe<CompleteTestCreateNestedManyWithoutUserInput>;
   nickname: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
@@ -1808,18 +2464,18 @@ export type UserCreateManyInput = {
   phoneNumber: Scalars['String'];
 };
 
-export type UserCreateNestedOneWithoutAnswersInput = {
+export type UserCreateNestedOneWithoutCompletedTestsInput = {
   connect?: Maybe<UserWhereUniqueInput>;
-  connectOrCreate?: Maybe<UserCreateOrConnectWithoutAnswersInput>;
-  create?: Maybe<UserUncheckedCreateWithoutAnswersInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCompletedTestsInput>;
+  create?: Maybe<UserUncheckedCreateWithoutCompletedTestsInput>;
 };
 
-export type UserCreateOrConnectWithoutAnswersInput = {
-  create: UserUncheckedCreateWithoutAnswersInput;
+export type UserCreateOrConnectWithoutCompletedTestsInput = {
+  create: UserUncheckedCreateWithoutCompletedTestsInput;
   where: UserWhereUniqueInput;
 };
 
-export type UserCreateWithoutAnswersInput = {
+export type UserCreateWithoutCompletedTestsInput = {
   nickname: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
@@ -1862,7 +2518,7 @@ export type UserOrderByWithAggregationInput = {
 };
 
 export type UserOrderByWithRelationInput = {
-  answers?: Maybe<AnswerOrderByRelationAggregateInput>;
+  completedTests?: Maybe<CompleteTestOrderByRelationAggregateInput>;
   id?: Maybe<SortOrder>;
   nickname?: Maybe<SortOrder>;
   phoneNumber?: Maybe<SortOrder>;
@@ -1898,20 +2554,20 @@ export type UserSumOrderByAggregateInput = {
 };
 
 export type UserUncheckedCreateInput = {
-  answers?: Maybe<AnswerUncheckedCreateNestedManyWithoutUserInput>;
+  completedTests?: Maybe<CompleteTestUncheckedCreateNestedManyWithoutUserInput>;
   id?: Maybe<Scalars['Int']>;
   nickname: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
-export type UserUncheckedCreateWithoutAnswersInput = {
+export type UserUncheckedCreateWithoutCompletedTestsInput = {
   id?: Maybe<Scalars['Int']>;
   nickname: Scalars['String'];
   phoneNumber: Scalars['String'];
 };
 
 export type UserUncheckedUpdateInput = {
-  answers?: Maybe<AnswerUncheckedUpdateManyWithoutUserInput>;
+  completedTests?: Maybe<CompleteTestUncheckedUpdateManyWithoutUserInput>;
   id?: Maybe<IntFieldUpdateOperationsInput>;
   nickname?: Maybe<StringFieldUpdateOperationsInput>;
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
@@ -1923,14 +2579,14 @@ export type UserUncheckedUpdateManyInput = {
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
 };
 
-export type UserUncheckedUpdateWithoutAnswersInput = {
+export type UserUncheckedUpdateWithoutCompletedTestsInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
   nickname?: Maybe<StringFieldUpdateOperationsInput>;
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
 };
 
 export type UserUpdateInput = {
-  answers?: Maybe<AnswerUpdateManyWithoutUserInput>;
+  completedTests?: Maybe<CompleteTestUpdateManyWithoutUserInput>;
   nickname?: Maybe<StringFieldUpdateOperationsInput>;
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
 };
@@ -1940,29 +2596,29 @@ export type UserUpdateManyMutationInput = {
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
 };
 
-export type UserUpdateOneRequiredWithoutAnswersInput = {
+export type UserUpdateOneRequiredWithoutCompletedTestsInput = {
   connect?: Maybe<UserWhereUniqueInput>;
-  connectOrCreate?: Maybe<UserCreateOrConnectWithoutAnswersInput>;
-  create?: Maybe<UserUncheckedCreateWithoutAnswersInput>;
-  update?: Maybe<UserUncheckedUpdateWithoutAnswersInput>;
-  upsert?: Maybe<UserUpsertWithoutAnswersInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutCompletedTestsInput>;
+  create?: Maybe<UserUncheckedCreateWithoutCompletedTestsInput>;
+  update?: Maybe<UserUncheckedUpdateWithoutCompletedTestsInput>;
+  upsert?: Maybe<UserUpsertWithoutCompletedTestsInput>;
 };
 
-export type UserUpdateWithoutAnswersInput = {
+export type UserUpdateWithoutCompletedTestsInput = {
   nickname?: Maybe<StringFieldUpdateOperationsInput>;
   phoneNumber?: Maybe<StringFieldUpdateOperationsInput>;
 };
 
-export type UserUpsertWithoutAnswersInput = {
-  create: UserUncheckedCreateWithoutAnswersInput;
-  update: UserUncheckedUpdateWithoutAnswersInput;
+export type UserUpsertWithoutCompletedTestsInput = {
+  create: UserUncheckedCreateWithoutCompletedTestsInput;
+  update: UserUncheckedUpdateWithoutCompletedTestsInput;
 };
 
 export type UserWhereInput = {
   AND?: Maybe<Array<Maybe<UserWhereInput>>>;
   NOT?: Maybe<Array<Maybe<UserWhereInput>>>;
   OR?: Maybe<Array<Maybe<UserWhereInput>>>;
-  answers?: Maybe<AnswerListRelationFilter>;
+  completedTests?: Maybe<CompleteTestListRelationFilter>;
   id?: Maybe<IntFilter>;
   nickname?: Maybe<StringFilter>;
   phoneNumber?: Maybe<StringFilter>;

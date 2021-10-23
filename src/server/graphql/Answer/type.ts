@@ -8,13 +8,20 @@ export const Answer = objectType({
   name: 'Answer',
   definition(t) {
     t.int('id')
-    t.field('user', {
-      type: 'User',
+    t.field('question', {
+      type: 'Question',
       resolve(root: any) {
-        return root.user
+        return root.question
       },
     })
-    t.int('userId')
-    t.boolean('isRigth')
+    t.int('questionId')
+    t.boolean('isRight')
+    t.field('inCompleteTest', {
+      type: 'CompleteTest',
+      resolve(root: any) {
+        return root.inCompleteTest
+      },
+    })
+    t.int('inCompleteTestId')
   },
 })

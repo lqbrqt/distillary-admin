@@ -1,3 +1,4 @@
+export * from './CompleteTest'
 export * from './Test'
 export * from './Answer'
 export * from './User'

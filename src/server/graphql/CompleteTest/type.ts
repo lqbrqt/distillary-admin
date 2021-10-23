@@ -1,27 +1,14 @@
 import { objectType } from 'nexus'
 
-export const Question = objectType({
+export const CompleteTest = objectType({
   nonNullDefaults: {
     output: true,
     input: false,
   },
-  name: 'Question',
+  name: 'CompleteTest',
   definition(t) {
     t.int('id')
-    t.field('type', { type: 'QuestionType' })
-    t.string('text')
-    t.nullable.string('answer')
-    t.list.string('options')
-    t.list.string('codeArgs')
-    t.nullable.string('expectedResult')
-    t.field('parrentTest', {
-      type: 'Test',
-      resolve(root: any) {
-        return root.parrentTest
-      },
-    })
-    t.int('parrentTestId')
-    t.list.field('competeAnswers', {
+    t.list.field('answers', {
       type: 'Answer',
       args: {
         where: 'AnswerWhereInput',
@@ -32,11 +19,19 @@ export const Question = objectType({
         distinct: 'AnswerScalarFieldEnum',
       },
       resolve(root: any) {
-        return root.competeAnswers
+        return root.answers
       },
     })
+    t.int('rightAnswers')
+    t.field('user', {
+      type: 'User',
+      resolve(root: any) {
+        return root.user
+      },
+    })
+    t.int('userId')
     t.nullable.field('_count', {
-      type: 'QuestionCountOutputType',
+      type: 'CompleteTestCountOutputType',
       resolve(root: any) {
         return root._count
       },

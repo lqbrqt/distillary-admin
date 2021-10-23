@@ -46,6 +46,13 @@ export const MainListItems: React.FC = () => {
         </ListItemIcon>
         <ListItemText primary="Answer" />
       </ListItem>
+
+      <ListItem button onClick={() => router.push('/admin/models/CompleteTest')}>
+        <ListItemIcon>
+          <CommentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Completed tests" />
+      </ListItem>
       
     </div>
   );

@@ -10,18 +10,18 @@ export const User = objectType({
     t.int('id')
     t.string('nickname')
     t.string('phoneNumber')
-    t.list.field('answers', {
-      type: 'Answer',
+    t.list.field('completedTests', {
+      type: 'CompleteTest',
       args: {
-        where: 'AnswerWhereInput',
-        orderBy: 'AnswerOrderByWithRelationInput',
-        cursor: 'AnswerWhereUniqueInput',
+        where: 'CompleteTestWhereInput',
+        orderBy: 'CompleteTestOrderByWithRelationInput',
+        cursor: 'CompleteTestWhereUniqueInput',
         take: 'Int',
         skip: 'Int',
-        distinct: 'AnswerScalarFieldEnum',
+        distinct: 'CompleteTestScalarFieldEnum',
       },
       resolve(root: any) {
-        return root.answers
+        return root.completedTests
       },
     })
     t.nullable.field('_count', {

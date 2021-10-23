@@ -10,6 +10,14 @@ type AggregateAnswer {
   _sum: AnswerSumAggregateOutputType
 }
 
+type AggregateCompleteTest {
+  _avg: CompleteTestAvgAggregateOutputType
+  _count: CompleteTestCountAggregateOutputType
+  _max: CompleteTestMaxAggregateOutputType
+  _min: CompleteTestMinAggregateOutputType
+  _sum: CompleteTestSumAggregateOutputType
+}
+
 type AggregateQuestion {
   _avg: QuestionAvgAggregateOutputType
   _count: QuestionCountAggregateOutputType
@@ -36,69 +44,107 @@ type AggregateUser {
 
 type Answer {
   id: Int!
-  isRigth: Boolean!
-  user: User!
-  userId: Int!
+  inCompleteTest: CompleteTest!
+  inCompleteTestId: Int!
+  isRight: Boolean!
+  question: Question!
+  questionId: Int!
 }
 
 type AnswerAvgAggregateOutputType {
   id: Float
-  userId: Float
+  inCompleteTestId: Float
+  questionId: Float
 }
 
 input AnswerAvgOrderByAggregateInput {
   id: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  questionId: SortOrder
 }
 
 type AnswerCountAggregateOutputType {
   _all: Int!
   id: Int!
-  isRigth: Int!
-  userId: Int!
+  inCompleteTestId: Int!
+  isRight: Int!
+  questionId: Int!
 }
 
 input AnswerCountOrderByAggregateInput {
   id: SortOrder
-  isRigth: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  isRight: SortOrder
+  questionId: SortOrder
 }
 
 input AnswerCreateInput {
-  isRigth: Boolean!
-  user: UserCreateNestedOneWithoutAnswersInput!
+  inCompleteTest: CompleteTestCreateNestedOneWithoutAnswersInput!
+  isRight: Boolean!
+  question: QuestionCreateNestedOneWithoutCompeteAnswersInput!
+}
+
+input AnswerCreateManyInCompleteTestInput {
+  id: Int
+  isRight: Boolean!
+  questionId: Int!
+}
+
+input AnswerCreateManyInCompleteTestInputEnvelope {
+  data: AnswerCreateManyInCompleteTestInput!
+  skipDuplicates: Boolean
 }
 
 input AnswerCreateManyInput {
   id: Int
-  isRigth: Boolean!
-  userId: Int!
+  inCompleteTestId: Int!
+  isRight: Boolean!
+  questionId: Int!
 }
 
-input AnswerCreateManyUserInput {
+input AnswerCreateManyQuestionInput {
   id: Int
-  isRigth: Boolean!
+  inCompleteTestId: Int!
+  isRight: Boolean!
 }
 
-input AnswerCreateManyUserInputEnvelope {
-  data: AnswerCreateManyUserInput!
+input AnswerCreateManyQuestionInputEnvelope {
+  data: AnswerCreateManyQuestionInput!
   skipDuplicates: Boolean
 }
 
-input AnswerCreateNestedManyWithoutUserInput {
+input AnswerCreateNestedManyWithoutInCompleteTestInput {
   connect: [AnswerWhereUniqueInput]
-  connectOrCreate: [AnswerCreateOrConnectWithoutUserInput]
-  create: [AnswerCreateWithoutUserInput]
-  createMany: AnswerCreateManyUserInputEnvelope
+  connectOrCreate: [AnswerCreateOrConnectWithoutInCompleteTestInput]
+  create: [AnswerCreateWithoutInCompleteTestInput]
+  createMany: AnswerCreateManyInCompleteTestInputEnvelope
 }
 
-input AnswerCreateOrConnectWithoutUserInput {
-  create: AnswerUncheckedCreateWithoutUserInput!
+input AnswerCreateNestedManyWithoutQuestionInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutQuestionInput]
+  create: [AnswerCreateWithoutQuestionInput]
+  createMany: AnswerCreateManyQuestionInputEnvelope
+}
+
+input AnswerCreateOrConnectWithoutInCompleteTestInput {
+  create: AnswerUncheckedCreateWithoutInCompleteTestInput!
   where: AnswerWhereUniqueInput!
 }
 
-input AnswerCreateWithoutUserInput {
-  isRigth: Boolean!
+input AnswerCreateOrConnectWithoutQuestionInput {
+  create: AnswerUncheckedCreateWithoutQuestionInput!
+  where: AnswerWhereUniqueInput!
+}
+
+input AnswerCreateWithoutInCompleteTestInput {
+  isRight: Boolean!
+  question: QuestionCreateNestedOneWithoutCompeteAnswersInput!
+}
+
+input AnswerCreateWithoutQuestionInput {
+  inCompleteTest: CompleteTestCreateNestedOneWithoutAnswersInput!
+  isRight: Boolean!
 }
 
 input AnswerListRelationFilter {
@@ -109,26 +155,30 @@ input AnswerListRelationFilter {
 
 type AnswerMaxAggregateOutputType {
   id: Int
-  isRigth: Boolean
-  userId: Int
+  inCompleteTestId: Int
+  isRight: Boolean
+  questionId: Int
 }
 
 input AnswerMaxOrderByAggregateInput {
   id: SortOrder
-  isRigth: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  isRight: SortOrder
+  questionId: SortOrder
 }
 
 type AnswerMinAggregateOutputType {
   id: Int
-  isRigth: Boolean
-  userId: Int
+  inCompleteTestId: Int
+  isRight: Boolean
+  questionId: Int
 }
 
 input AnswerMinOrderByAggregateInput {
   id: SortOrder
-  isRigth: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  isRight: SortOrder
+  questionId: SortOrder
 }
 
 input AnswerOrderByRelationAggregateInput {
@@ -142,21 +192,25 @@ input AnswerOrderByWithAggregationInput {
   _min: AnswerMinOrderByAggregateInput
   _sum: AnswerSumOrderByAggregateInput
   id: SortOrder
-  isRigth: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  isRight: SortOrder
+  questionId: SortOrder
 }
 
 input AnswerOrderByWithRelationInput {
   id: SortOrder
-  isRigth: SortOrder
-  user: UserOrderByWithRelationInput
-  userId: SortOrder
+  inCompleteTest: CompleteTestOrderByWithRelationInput
+  inCompleteTestId: SortOrder
+  isRight: SortOrder
+  question: QuestionOrderByWithRelationInput
+  questionId: SortOrder
 }
 
 enum AnswerScalarFieldEnum {
   id
-  isRigth
-  userId
+  inCompleteTestId
+  isRight
+  questionId
 }
 
 input AnswerScalarWhereInput {
@@ -164,8 +218,9 @@ input AnswerScalarWhereInput {
   NOT: [AnswerScalarWhereInput]
   OR: [AnswerScalarWhereInput]
   id: IntFilter
-  isRigth: BoolFilter
-  userId: IntFilter
+  inCompleteTestId: IntFilter
+  isRight: BoolFilter
+  questionId: IntFilter
 }
 
 input AnswerScalarWhereWithAggregatesInput {
@@ -173,114 +228,199 @@ input AnswerScalarWhereWithAggregatesInput {
   NOT: [AnswerScalarWhereWithAggregatesInput]
   OR: [AnswerScalarWhereWithAggregatesInput]
   id: IntWithAggregatesFilter
-  isRigth: BoolWithAggregatesFilter
-  userId: IntWithAggregatesFilter
+  inCompleteTestId: IntWithAggregatesFilter
+  isRight: BoolWithAggregatesFilter
+  questionId: IntWithAggregatesFilter
 }
 
 type AnswerSumAggregateOutputType {
   id: Int
-  userId: Int
+  inCompleteTestId: Int
+  questionId: Int
 }
 
 input AnswerSumOrderByAggregateInput {
   id: SortOrder
-  userId: SortOrder
+  inCompleteTestId: SortOrder
+  questionId: SortOrder
 }
 
 input AnswerUncheckedCreateInput {
   id: Int
-  isRigth: Boolean!
-  userId: Int!
+  inCompleteTestId: Int!
+  isRight: Boolean!
+  questionId: Int!
 }
 
-input AnswerUncheckedCreateNestedManyWithoutUserInput {
+input AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput {
   connect: [AnswerWhereUniqueInput]
-  connectOrCreate: [AnswerCreateOrConnectWithoutUserInput]
-  create: [AnswerCreateWithoutUserInput]
-  createMany: AnswerCreateManyUserInputEnvelope
+  connectOrCreate: [AnswerCreateOrConnectWithoutInCompleteTestInput]
+  create: [AnswerCreateWithoutInCompleteTestInput]
+  createMany: AnswerCreateManyInCompleteTestInputEnvelope
 }
 
-input AnswerUncheckedCreateWithoutUserInput {
+input AnswerUncheckedCreateNestedManyWithoutQuestionInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutQuestionInput]
+  create: [AnswerCreateWithoutQuestionInput]
+  createMany: AnswerCreateManyQuestionInputEnvelope
+}
+
+input AnswerUncheckedCreateWithoutInCompleteTestInput {
   id: Int
-  isRigth: Boolean!
+  isRight: Boolean!
+  questionId: Int!
+}
+
+input AnswerUncheckedCreateWithoutQuestionInput {
+  id: Int
+  inCompleteTestId: Int!
+  isRight: Boolean!
 }
 
 input AnswerUncheckedUpdateInput {
   id: IntFieldUpdateOperationsInput
-  isRigth: BoolFieldUpdateOperationsInput
-  userId: IntFieldUpdateOperationsInput
+  inCompleteTestId: IntFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
+  questionId: IntFieldUpdateOperationsInput
 }
 
 input AnswerUncheckedUpdateManyInput {
   id: IntFieldUpdateOperationsInput
-  isRigth: BoolFieldUpdateOperationsInput
-  userId: IntFieldUpdateOperationsInput
+  inCompleteTestId: IntFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
+  questionId: IntFieldUpdateOperationsInput
 }
 
 input AnswerUncheckedUpdateManyWithoutAnswersInput {
   id: IntFieldUpdateOperationsInput
-  isRigth: BoolFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
+  questionId: IntFieldUpdateOperationsInput
 }
 
-input AnswerUncheckedUpdateManyWithoutUserInput {
+input AnswerUncheckedUpdateManyWithoutCompeteAnswersInput {
+  id: IntFieldUpdateOperationsInput
+  inCompleteTestId: IntFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
+}
+
+input AnswerUncheckedUpdateManyWithoutInCompleteTestInput {
   connect: [AnswerWhereUniqueInput]
-  connectOrCreate: [AnswerCreateOrConnectWithoutUserInput]
-  create: [AnswerCreateWithoutUserInput]
-  createMany: AnswerCreateManyUserInputEnvelope
+  connectOrCreate: [AnswerCreateOrConnectWithoutInCompleteTestInput]
+  create: [AnswerCreateWithoutInCompleteTestInput]
+  createMany: AnswerCreateManyInCompleteTestInputEnvelope
   delete: [AnswerWhereUniqueInput]
   deleteMany: [AnswerScalarWhereInput]
   disconnect: [AnswerWhereUniqueInput]
   set: [AnswerWhereUniqueInput]
-  update: [AnswerUpdateWithWhereUniqueWithoutUserInput]
-  updateMany: [AnswerUpdateManyWithWhereWithoutUserInput]
-  upsert: [AnswerUpsertWithWhereUniqueWithoutUserInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutInCompleteTestInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput]
 }
 
-input AnswerUncheckedUpdateWithoutUserInput {
+input AnswerUncheckedUpdateManyWithoutQuestionInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutQuestionInput]
+  create: [AnswerCreateWithoutQuestionInput]
+  createMany: AnswerCreateManyQuestionInputEnvelope
+  delete: [AnswerWhereUniqueInput]
+  deleteMany: [AnswerScalarWhereInput]
+  disconnect: [AnswerWhereUniqueInput]
+  set: [AnswerWhereUniqueInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutQuestionInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutQuestionInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutQuestionInput]
+}
+
+input AnswerUncheckedUpdateWithoutInCompleteTestInput {
   id: IntFieldUpdateOperationsInput
-  isRigth: BoolFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
+  questionId: IntFieldUpdateOperationsInput
+}
+
+input AnswerUncheckedUpdateWithoutQuestionInput {
+  id: IntFieldUpdateOperationsInput
+  inCompleteTestId: IntFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
 }
 
 input AnswerUpdateInput {
-  isRigth: BoolFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutAnswersInput
+  inCompleteTest: CompleteTestUpdateOneRequiredWithoutAnswersInput
+  isRight: BoolFieldUpdateOperationsInput
+  question: QuestionUpdateOneRequiredWithoutCompeteAnswersInput
 }
 
 input AnswerUpdateManyMutationInput {
-  isRigth: BoolFieldUpdateOperationsInput
+  isRight: BoolFieldUpdateOperationsInput
 }
 
-input AnswerUpdateManyWithWhereWithoutUserInput {
+input AnswerUpdateManyWithWhereWithoutInCompleteTestInput {
   data: AnswerUncheckedUpdateManyWithoutAnswersInput!
   where: AnswerScalarWhereInput!
 }
 
-input AnswerUpdateManyWithoutUserInput {
+input AnswerUpdateManyWithWhereWithoutQuestionInput {
+  data: AnswerUncheckedUpdateManyWithoutCompeteAnswersInput!
+  where: AnswerScalarWhereInput!
+}
+
+input AnswerUpdateManyWithoutInCompleteTestInput {
   connect: [AnswerWhereUniqueInput]
-  connectOrCreate: [AnswerCreateOrConnectWithoutUserInput]
-  create: [AnswerCreateWithoutUserInput]
-  createMany: AnswerCreateManyUserInputEnvelope
+  connectOrCreate: [AnswerCreateOrConnectWithoutInCompleteTestInput]
+  create: [AnswerCreateWithoutInCompleteTestInput]
+  createMany: AnswerCreateManyInCompleteTestInputEnvelope
   delete: [AnswerWhereUniqueInput]
   deleteMany: [AnswerScalarWhereInput]
   disconnect: [AnswerWhereUniqueInput]
   set: [AnswerWhereUniqueInput]
-  update: [AnswerUpdateWithWhereUniqueWithoutUserInput]
-  updateMany: [AnswerUpdateManyWithWhereWithoutUserInput]
-  upsert: [AnswerUpsertWithWhereUniqueWithoutUserInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutInCompleteTestInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput]
 }
 
-input AnswerUpdateWithWhereUniqueWithoutUserInput {
-  data: AnswerUncheckedUpdateWithoutUserInput!
+input AnswerUpdateManyWithoutQuestionInput {
+  connect: [AnswerWhereUniqueInput]
+  connectOrCreate: [AnswerCreateOrConnectWithoutQuestionInput]
+  create: [AnswerCreateWithoutQuestionInput]
+  createMany: AnswerCreateManyQuestionInputEnvelope
+  delete: [AnswerWhereUniqueInput]
+  deleteMany: [AnswerScalarWhereInput]
+  disconnect: [AnswerWhereUniqueInput]
+  set: [AnswerWhereUniqueInput]
+  update: [AnswerUpdateWithWhereUniqueWithoutQuestionInput]
+  updateMany: [AnswerUpdateManyWithWhereWithoutQuestionInput]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutQuestionInput]
+}
+
+input AnswerUpdateWithWhereUniqueWithoutInCompleteTestInput {
+  data: AnswerUncheckedUpdateWithoutInCompleteTestInput!
   where: AnswerWhereUniqueInput!
 }
 
-input AnswerUpdateWithoutUserInput {
-  isRigth: BoolFieldUpdateOperationsInput
+input AnswerUpdateWithWhereUniqueWithoutQuestionInput {
+  data: AnswerUncheckedUpdateWithoutQuestionInput!
+  where: AnswerWhereUniqueInput!
 }
 
-input AnswerUpsertWithWhereUniqueWithoutUserInput {
-  create: AnswerUncheckedCreateWithoutUserInput!
-  update: AnswerUncheckedUpdateWithoutUserInput!
+input AnswerUpdateWithoutInCompleteTestInput {
+  isRight: BoolFieldUpdateOperationsInput
+  question: QuestionUpdateOneRequiredWithoutCompeteAnswersInput
+}
+
+input AnswerUpdateWithoutQuestionInput {
+  inCompleteTest: CompleteTestUpdateOneRequiredWithoutAnswersInput
+  isRight: BoolFieldUpdateOperationsInput
+}
+
+input AnswerUpsertWithWhereUniqueWithoutInCompleteTestInput {
+  create: AnswerUncheckedCreateWithoutInCompleteTestInput!
+  update: AnswerUncheckedUpdateWithoutInCompleteTestInput!
+  where: AnswerWhereUniqueInput!
+}
+
+input AnswerUpsertWithWhereUniqueWithoutQuestionInput {
+  create: AnswerUncheckedCreateWithoutQuestionInput!
+  update: AnswerUncheckedUpdateWithoutQuestionInput!
   where: AnswerWhereUniqueInput!
 }
 
@@ -289,9 +429,11 @@ input AnswerWhereInput {
   NOT: [AnswerWhereInput]
   OR: [AnswerWhereInput]
   id: IntFilter
-  isRigth: BoolFilter
-  user: UserWhereInput
-  userId: IntFilter
+  inCompleteTest: CompleteTestWhereInput
+  inCompleteTestId: IntFilter
+  isRight: BoolFilter
+  question: QuestionWhereInput
+  questionId: IntFilter
 }
 
 input AnswerWhereUniqueInput {
@@ -320,6 +462,341 @@ input BoolWithAggregatesFilter {
   _min: NestedBoolFilter
   equals: Boolean
   not: NestedBoolWithAggregatesFilter
+}
+
+type CompleteTest {
+  _count: CompleteTestCountOutputType
+  answers(cursor: AnswerWhereUniqueInput, distinct: AnswerScalarFieldEnum, orderBy: AnswerOrderByWithRelationInput, skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
+  id: Int!
+  rightAnswers: Int!
+  user: User!
+  userId: Int!
+}
+
+type CompleteTestAvgAggregateOutputType {
+  id: Float
+  rightAnswers: Float
+  userId: Float
+}
+
+input CompleteTestAvgOrderByAggregateInput {
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+type CompleteTestCountAggregateOutputType {
+  _all: Int!
+  id: Int!
+  rightAnswers: Int!
+  userId: Int!
+}
+
+input CompleteTestCountOrderByAggregateInput {
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+type CompleteTestCountOutputType {
+  answers: Int!
+}
+
+input CompleteTestCreateInput {
+  answers: AnswerCreateNestedManyWithoutInCompleteTestInput
+  rightAnswers: Int!
+  user: UserCreateNestedOneWithoutCompletedTestsInput!
+}
+
+input CompleteTestCreateManyInput {
+  id: Int
+  rightAnswers: Int!
+  userId: Int!
+}
+
+input CompleteTestCreateManyUserInput {
+  id: Int
+  rightAnswers: Int!
+}
+
+input CompleteTestCreateManyUserInputEnvelope {
+  data: CompleteTestCreateManyUserInput!
+  skipDuplicates: Boolean
+}
+
+input CompleteTestCreateNestedManyWithoutUserInput {
+  connect: [CompleteTestWhereUniqueInput]
+  connectOrCreate: [CompleteTestCreateOrConnectWithoutUserInput]
+  create: [CompleteTestCreateWithoutUserInput]
+  createMany: CompleteTestCreateManyUserInputEnvelope
+}
+
+input CompleteTestCreateNestedOneWithoutAnswersInput {
+  connect: CompleteTestWhereUniqueInput
+  connectOrCreate: CompleteTestCreateOrConnectWithoutAnswersInput
+  create: CompleteTestUncheckedCreateWithoutAnswersInput
+}
+
+input CompleteTestCreateOrConnectWithoutAnswersInput {
+  create: CompleteTestUncheckedCreateWithoutAnswersInput!
+  where: CompleteTestWhereUniqueInput!
+}
+
+input CompleteTestCreateOrConnectWithoutUserInput {
+  create: CompleteTestUncheckedCreateWithoutUserInput!
+  where: CompleteTestWhereUniqueInput!
+}
+
+input CompleteTestCreateWithoutAnswersInput {
+  rightAnswers: Int!
+  user: UserCreateNestedOneWithoutCompletedTestsInput!
+}
+
+input CompleteTestCreateWithoutUserInput {
+  answers: AnswerCreateNestedManyWithoutInCompleteTestInput
+  rightAnswers: Int!
+}
+
+input CompleteTestListRelationFilter {
+  every: CompleteTestWhereInput
+  none: CompleteTestWhereInput
+  some: CompleteTestWhereInput
+}
+
+type CompleteTestMaxAggregateOutputType {
+  id: Int
+  rightAnswers: Int
+  userId: Int
+}
+
+input CompleteTestMaxOrderByAggregateInput {
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+type CompleteTestMinAggregateOutputType {
+  id: Int
+  rightAnswers: Int
+  userId: Int
+}
+
+input CompleteTestMinOrderByAggregateInput {
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+input CompleteTestOrderByRelationAggregateInput {
+  _count: SortOrder
+}
+
+input CompleteTestOrderByWithAggregationInput {
+  _avg: CompleteTestAvgOrderByAggregateInput
+  _count: CompleteTestCountOrderByAggregateInput
+  _max: CompleteTestMaxOrderByAggregateInput
+  _min: CompleteTestMinOrderByAggregateInput
+  _sum: CompleteTestSumOrderByAggregateInput
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+input CompleteTestOrderByWithRelationInput {
+  answers: AnswerOrderByRelationAggregateInput
+  id: SortOrder
+  rightAnswers: SortOrder
+  user: UserOrderByWithRelationInput
+  userId: SortOrder
+}
+
+input CompleteTestRelationFilter {
+  is: CompleteTestWhereInput
+  isNot: CompleteTestWhereInput
+}
+
+enum CompleteTestScalarFieldEnum {
+  id
+  rightAnswers
+  userId
+}
+
+input CompleteTestScalarWhereInput {
+  AND: [CompleteTestScalarWhereInput]
+  NOT: [CompleteTestScalarWhereInput]
+  OR: [CompleteTestScalarWhereInput]
+  id: IntFilter
+  rightAnswers: IntFilter
+  userId: IntFilter
+}
+
+input CompleteTestScalarWhereWithAggregatesInput {
+  AND: [CompleteTestScalarWhereWithAggregatesInput]
+  NOT: [CompleteTestScalarWhereWithAggregatesInput]
+  OR: [CompleteTestScalarWhereWithAggregatesInput]
+  id: IntWithAggregatesFilter
+  rightAnswers: IntWithAggregatesFilter
+  userId: IntWithAggregatesFilter
+}
+
+type CompleteTestSumAggregateOutputType {
+  id: Int
+  rightAnswers: Int
+  userId: Int
+}
+
+input CompleteTestSumOrderByAggregateInput {
+  id: SortOrder
+  rightAnswers: SortOrder
+  userId: SortOrder
+}
+
+input CompleteTestUncheckedCreateInput {
+  answers: AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput
+  id: Int
+  rightAnswers: Int!
+  userId: Int!
+}
+
+input CompleteTestUncheckedCreateNestedManyWithoutUserInput {
+  connect: [CompleteTestWhereUniqueInput]
+  connectOrCreate: [CompleteTestCreateOrConnectWithoutUserInput]
+  create: [CompleteTestCreateWithoutUserInput]
+  createMany: CompleteTestCreateManyUserInputEnvelope
+}
+
+input CompleteTestUncheckedCreateWithoutAnswersInput {
+  id: Int
+  rightAnswers: Int!
+  userId: Int!
+}
+
+input CompleteTestUncheckedCreateWithoutUserInput {
+  answers: AnswerUncheckedCreateNestedManyWithoutInCompleteTestInput
+  id: Int
+  rightAnswers: Int!
+}
+
+input CompleteTestUncheckedUpdateInput {
+  answers: AnswerUncheckedUpdateManyWithoutInCompleteTestInput
+  id: IntFieldUpdateOperationsInput
+  rightAnswers: IntFieldUpdateOperationsInput
+  userId: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUncheckedUpdateManyInput {
+  id: IntFieldUpdateOperationsInput
+  rightAnswers: IntFieldUpdateOperationsInput
+  userId: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput {
+  id: IntFieldUpdateOperationsInput
+  rightAnswers: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUncheckedUpdateManyWithoutUserInput {
+  connect: [CompleteTestWhereUniqueInput]
+  connectOrCreate: [CompleteTestCreateOrConnectWithoutUserInput]
+  create: [CompleteTestCreateWithoutUserInput]
+  createMany: CompleteTestCreateManyUserInputEnvelope
+  delete: [CompleteTestWhereUniqueInput]
+  deleteMany: [CompleteTestScalarWhereInput]
+  disconnect: [CompleteTestWhereUniqueInput]
+  set: [CompleteTestWhereUniqueInput]
+  update: [CompleteTestUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [CompleteTestUpdateManyWithWhereWithoutUserInput]
+  upsert: [CompleteTestUpsertWithWhereUniqueWithoutUserInput]
+}
+
+input CompleteTestUncheckedUpdateWithoutAnswersInput {
+  id: IntFieldUpdateOperationsInput
+  rightAnswers: IntFieldUpdateOperationsInput
+  userId: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUncheckedUpdateWithoutUserInput {
+  answers: AnswerUncheckedUpdateManyWithoutInCompleteTestInput
+  id: IntFieldUpdateOperationsInput
+  rightAnswers: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUpdateInput {
+  answers: AnswerUpdateManyWithoutInCompleteTestInput
+  rightAnswers: IntFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCompletedTestsInput
+}
+
+input CompleteTestUpdateManyMutationInput {
+  rightAnswers: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUpdateManyWithWhereWithoutUserInput {
+  data: CompleteTestUncheckedUpdateManyWithoutCompletedTestsInput!
+  where: CompleteTestScalarWhereInput!
+}
+
+input CompleteTestUpdateManyWithoutUserInput {
+  connect: [CompleteTestWhereUniqueInput]
+  connectOrCreate: [CompleteTestCreateOrConnectWithoutUserInput]
+  create: [CompleteTestCreateWithoutUserInput]
+  createMany: CompleteTestCreateManyUserInputEnvelope
+  delete: [CompleteTestWhereUniqueInput]
+  deleteMany: [CompleteTestScalarWhereInput]
+  disconnect: [CompleteTestWhereUniqueInput]
+  set: [CompleteTestWhereUniqueInput]
+  update: [CompleteTestUpdateWithWhereUniqueWithoutUserInput]
+  updateMany: [CompleteTestUpdateManyWithWhereWithoutUserInput]
+  upsert: [CompleteTestUpsertWithWhereUniqueWithoutUserInput]
+}
+
+input CompleteTestUpdateOneRequiredWithoutAnswersInput {
+  connect: CompleteTestWhereUniqueInput
+  connectOrCreate: CompleteTestCreateOrConnectWithoutAnswersInput
+  create: CompleteTestUncheckedCreateWithoutAnswersInput
+  update: CompleteTestUncheckedUpdateWithoutAnswersInput
+  upsert: CompleteTestUpsertWithoutAnswersInput
+}
+
+input CompleteTestUpdateWithWhereUniqueWithoutUserInput {
+  data: CompleteTestUncheckedUpdateWithoutUserInput!
+  where: CompleteTestWhereUniqueInput!
+}
+
+input CompleteTestUpdateWithoutAnswersInput {
+  rightAnswers: IntFieldUpdateOperationsInput
+  user: UserUpdateOneRequiredWithoutCompletedTestsInput
+}
+
+input CompleteTestUpdateWithoutUserInput {
+  answers: AnswerUpdateManyWithoutInCompleteTestInput
+  rightAnswers: IntFieldUpdateOperationsInput
+}
+
+input CompleteTestUpsertWithWhereUniqueWithoutUserInput {
+  create: CompleteTestUncheckedCreateWithoutUserInput!
+  update: CompleteTestUncheckedUpdateWithoutUserInput!
+  where: CompleteTestWhereUniqueInput!
+}
+
+input CompleteTestUpsertWithoutAnswersInput {
+  create: CompleteTestUncheckedCreateWithoutAnswersInput!
+  update: CompleteTestUncheckedUpdateWithoutAnswersInput!
+}
+
+input CompleteTestWhereInput {
+  AND: [CompleteTestWhereInput]
+  NOT: [CompleteTestWhereInput]
+  OR: [CompleteTestWhereInput]
+  answers: AnswerListRelationFilter
+  id: IntFilter
+  rightAnswers: IntFilter
+  user: UserWhereInput
+  userId: IntFilter
+}
+
+input CompleteTestWhereUniqueInput {
+  id: Int
 }
 
 """Date custom scalar type"""
@@ -432,28 +909,34 @@ type Model {
 
 type Mutation {
   createOneAnswer(data: AnswerCreateInput!): Answer!
+  createOneCompleteTest(data: CompleteTestCreateInput!): CompleteTest!
   createOneQuestion(data: QuestionCreateInput!): Question!
   createOneTest(data: TestCreateInput!): Test!
   createOneUser(data: UserCreateInput!): User!
   deleteManyAnswer(where: AnswerWhereInput): BatchPayload!
+  deleteManyCompleteTest(where: CompleteTestWhereInput): BatchPayload!
   deleteManyQuestion(where: QuestionWhereInput): BatchPayload!
   deleteManyTest(where: TestWhereInput): BatchPayload!
   deleteManyUser(where: UserWhereInput): BatchPayload!
   deleteOneAnswer(where: AnswerWhereUniqueInput!): Answer
+  deleteOneCompleteTest(where: CompleteTestWhereUniqueInput!): CompleteTest
   deleteOneQuestion(where: QuestionWhereUniqueInput!): Question
   deleteOneTest(where: TestWhereUniqueInput!): Test
   deleteOneUser(where: UserWhereUniqueInput!): User
   updateField(data: UpdateFieldInput!, id: String!, modelId: String!): Field!
   updateManyAnswer(data: AnswerUpdateManyMutationInput!, where: AnswerWhereInput): BatchPayload!
+  updateManyCompleteTest(data: CompleteTestUpdateManyMutationInput!, where: CompleteTestWhereInput): BatchPayload!
   updateManyQuestion(data: QuestionUpdateManyMutationInput!, where: QuestionWhereInput): BatchPayload!
   updateManyTest(data: TestUpdateManyMutationInput!, where: TestWhereInput): BatchPayload!
   updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateModel(data: UpdateModelInput!, id: String!): Model!
   updateOneAnswer(data: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer!
+  updateOneCompleteTest(data: CompleteTestUpdateInput!, where: CompleteTestWhereUniqueInput!): CompleteTest!
   updateOneQuestion(data: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question!
   updateOneTest(data: TestUpdateInput!, where: TestWhereUniqueInput!): Test!
   updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User!
   upsertOneAnswer(create: AnswerCreateInput!, update: AnswerUpdateInput!, where: AnswerWhereUniqueInput!): Answer!
+  upsertOneCompleteTest(create: CompleteTestCreateInput!, update: CompleteTestUpdateInput!, where: CompleteTestWhereUniqueInput!): CompleteTest!
   upsertOneQuestion(create: QuestionCreateInput!, update: QuestionUpdateInput!, where: QuestionWhereUniqueInput!): Question!
   upsertOneTest(create: TestCreateInput!, update: TestUpdateInput!, where: TestWhereUniqueInput!): Test!
   upsertOneUser(create: UserCreateInput!, update: UserUpdateInput!, where: UserWhereUniqueInput!): User!
@@ -606,15 +1089,19 @@ input NullableStringFieldUpdateOperationsInput {
 
 type Query {
   aggregateAnswer(cursor: AnswerWhereUniqueInput, orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): AggregateAnswer
+  aggregateCompleteTest(cursor: CompleteTestWhereUniqueInput, orderBy: [CompleteTestOrderByWithRelationInput], skip: Int, take: Int, where: CompleteTestWhereInput): AggregateCompleteTest
   aggregateQuestion(cursor: QuestionWhereUniqueInput, orderBy: [QuestionOrderByWithRelationInput], skip: Int, take: Int, where: QuestionWhereInput): AggregateQuestion
   aggregateTest(cursor: TestWhereUniqueInput, orderBy: [TestOrderByWithRelationInput], skip: Int, take: Int, where: TestWhereInput): AggregateTest
   aggregateUser(cursor: UserWhereUniqueInput, orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): AggregateUser
   findFirstAnswer(cursor: AnswerWhereUniqueInput, distinct: [AnswerScalarFieldEnum], orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): Answer
+  findFirstCompleteTest(cursor: CompleteTestWhereUniqueInput, distinct: [CompleteTestScalarFieldEnum], orderBy: [CompleteTestOrderByWithRelationInput], skip: Int, take: Int, where: CompleteTestWhereInput): CompleteTest
   findFirstQuestion(cursor: QuestionWhereUniqueInput, distinct: [QuestionScalarFieldEnum], orderBy: [QuestionOrderByWithRelationInput], skip: Int, take: Int, where: QuestionWhereInput): Question
   findFirstTest(cursor: TestWhereUniqueInput, distinct: [TestScalarFieldEnum], orderBy: [TestOrderByWithRelationInput], skip: Int, take: Int, where: TestWhereInput): Test
   findFirstUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): User
   findManyAnswer(cursor: AnswerWhereUniqueInput, distinct: [AnswerScalarFieldEnum], orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
   findManyAnswerCount(cursor: AnswerWhereUniqueInput, distinct: [AnswerScalarFieldEnum], orderBy: [AnswerOrderByWithRelationInput], skip: Int, take: Int, where: AnswerWhereInput): Int!
+  findManyCompleteTest(cursor: CompleteTestWhereUniqueInput, distinct: [CompleteTestScalarFieldEnum], orderBy: [CompleteTestOrderByWithRelationInput], skip: Int, take: Int, where: CompleteTestWhereInput): [CompleteTest!]!
+  findManyCompleteTestCount(cursor: CompleteTestWhereUniqueInput, distinct: [CompleteTestScalarFieldEnum], orderBy: [CompleteTestOrderByWithRelationInput], skip: Int, take: Int, where: CompleteTestWhereInput): Int!
   findManyQuestion(cursor: QuestionWhereUniqueInput, distinct: [QuestionScalarFieldEnum], orderBy: [QuestionOrderByWithRelationInput], skip: Int, take: Int, where: QuestionWhereInput): [Question!]!
   findManyQuestionCount(cursor: QuestionWhereUniqueInput, distinct: [QuestionScalarFieldEnum], orderBy: [QuestionOrderByWithRelationInput], skip: Int, take: Int, where: QuestionWhereInput): Int!
   findManyTest(cursor: TestWhereUniqueInput, distinct: [TestScalarFieldEnum], orderBy: [TestOrderByWithRelationInput], skip: Int, take: Int, where: TestWhereInput): [Test!]!
@@ -622,6 +1109,7 @@ type Query {
   findManyUser(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): [User!]!
   findManyUserCount(cursor: UserWhereUniqueInput, distinct: [UserScalarFieldEnum], orderBy: [UserOrderByWithRelationInput], skip: Int, take: Int, where: UserWhereInput): Int!
   findUniqueAnswer(where: AnswerWhereUniqueInput!): Answer
+  findUniqueCompleteTest(where: CompleteTestWhereUniqueInput!): CompleteTest
   findUniqueQuestion(where: QuestionWhereUniqueInput!): Question
   findUniqueTest(where: TestWhereUniqueInput!): Test
   findUniqueUser(where: UserWhereUniqueInput!): User
@@ -634,9 +1122,10 @@ enum QueryMode {
 }
 
 type Question {
+  _count: QuestionCountOutputType
   answer: String
-  code: String
   codeArgs: [String!]!
+  competeAnswers(cursor: AnswerWhereUniqueInput, distinct: AnswerScalarFieldEnum, orderBy: AnswerOrderByWithRelationInput, skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
   expectedResult: String
   id: Int!
   options: [String!]!
@@ -659,7 +1148,6 @@ input QuestionAvgOrderByAggregateInput {
 type QuestionCountAggregateOutputType {
   _all: Int!
   answer: Int!
-  code: Int!
   codeArgs: Int!
   expectedResult: Int!
   id: Int!
@@ -671,7 +1159,6 @@ type QuestionCountAggregateOutputType {
 
 input QuestionCountOrderByAggregateInput {
   answer: SortOrder
-  code: SortOrder
   codeArgs: SortOrder
   expectedResult: SortOrder
   id: SortOrder
@@ -681,10 +1168,14 @@ input QuestionCountOrderByAggregateInput {
   type: SortOrder
 }
 
+type QuestionCountOutputType {
+  competeAnswers: Int!
+}
+
 input QuestionCreateInput {
   answer: String
-  code: String
   codeArgs: [String]
+  competeAnswers: AnswerCreateNestedManyWithoutQuestionInput
   expectedResult: String
   options: [String]
   parrentTest: TestCreateNestedOneWithoutQuestionsInput!
@@ -694,7 +1185,6 @@ input QuestionCreateInput {
 
 input QuestionCreateManyInput {
   answer: String
-  code: String
   codeArgs: [String]
   expectedResult: String
   id: Int
@@ -706,7 +1196,6 @@ input QuestionCreateManyInput {
 
 input QuestionCreateManyParrentTestInput {
   answer: String
-  code: String
   codeArgs: [String]
   expectedResult: String
   id: Int
@@ -735,15 +1224,36 @@ input QuestionCreateNestedManyWithoutParrentTestInput {
   createMany: QuestionCreateManyParrentTestInputEnvelope
 }
 
+input QuestionCreateNestedOneWithoutCompeteAnswersInput {
+  connect: QuestionWhereUniqueInput
+  connectOrCreate: QuestionCreateOrConnectWithoutCompeteAnswersInput
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput
+}
+
+input QuestionCreateOrConnectWithoutCompeteAnswersInput {
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput!
+  where: QuestionWhereUniqueInput!
+}
+
 input QuestionCreateOrConnectWithoutParrentTestInput {
   create: QuestionUncheckedCreateWithoutParrentTestInput!
   where: QuestionWhereUniqueInput!
 }
 
+input QuestionCreateWithoutCompeteAnswersInput {
+  answer: String
+  codeArgs: [String]
+  expectedResult: String
+  options: [String]
+  parrentTest: TestCreateNestedOneWithoutQuestionsInput!
+  text: String!
+  type: QuestionType!
+}
+
 input QuestionCreateWithoutParrentTestInput {
   answer: String
-  code: String
   codeArgs: [String]
+  competeAnswers: AnswerCreateNestedManyWithoutQuestionInput
   expectedResult: String
   options: [String]
   text: String!
@@ -766,7 +1276,6 @@ input QuestionListRelationFilter {
 
 type QuestionMaxAggregateOutputType {
   answer: String
-  code: String
   expectedResult: String
   id: Int
   parrentTestId: Int
@@ -776,7 +1285,6 @@ type QuestionMaxAggregateOutputType {
 
 input QuestionMaxOrderByAggregateInput {
   answer: SortOrder
-  code: SortOrder
   expectedResult: SortOrder
   id: SortOrder
   parrentTestId: SortOrder
@@ -786,7 +1294,6 @@ input QuestionMaxOrderByAggregateInput {
 
 type QuestionMinAggregateOutputType {
   answer: String
-  code: String
   expectedResult: String
   id: Int
   parrentTestId: Int
@@ -796,7 +1303,6 @@ type QuestionMinAggregateOutputType {
 
 input QuestionMinOrderByAggregateInput {
   answer: SortOrder
-  code: SortOrder
   expectedResult: SortOrder
   id: SortOrder
   parrentTestId: SortOrder
@@ -815,7 +1321,6 @@ input QuestionOrderByWithAggregationInput {
   _min: QuestionMinOrderByAggregateInput
   _sum: QuestionSumOrderByAggregateInput
   answer: SortOrder
-  code: SortOrder
   codeArgs: SortOrder
   expectedResult: SortOrder
   id: SortOrder
@@ -827,8 +1332,8 @@ input QuestionOrderByWithAggregationInput {
 
 input QuestionOrderByWithRelationInput {
   answer: SortOrder
-  code: SortOrder
   codeArgs: SortOrder
+  competeAnswers: AnswerOrderByRelationAggregateInput
   expectedResult: SortOrder
   id: SortOrder
   options: SortOrder
@@ -838,9 +1343,13 @@ input QuestionOrderByWithRelationInput {
   type: SortOrder
 }
 
+input QuestionRelationFilter {
+  is: QuestionWhereInput
+  isNot: QuestionWhereInput
+}
+
 enum QuestionScalarFieldEnum {
   answer
-  code
   codeArgs
   expectedResult
   id
@@ -855,7 +1364,6 @@ input QuestionScalarWhereInput {
   NOT: [QuestionScalarWhereInput]
   OR: [QuestionScalarWhereInput]
   answer: StringNullableFilter
-  code: StringNullableFilter
   codeArgs: StringNullableListFilter
   expectedResult: StringNullableFilter
   id: IntFilter
@@ -870,7 +1378,6 @@ input QuestionScalarWhereWithAggregatesInput {
   NOT: [QuestionScalarWhereWithAggregatesInput]
   OR: [QuestionScalarWhereWithAggregatesInput]
   answer: StringNullableWithAggregatesFilter
-  code: StringNullableWithAggregatesFilter
   codeArgs: StringNullableListFilter
   expectedResult: StringNullableWithAggregatesFilter
   id: IntWithAggregatesFilter
@@ -897,8 +1404,8 @@ enum QuestionType {
 
 input QuestionUncheckedCreateInput {
   answer: String
-  code: String
   codeArgs: [String]
+  competeAnswers: AnswerUncheckedCreateNestedManyWithoutQuestionInput
   expectedResult: String
   id: Int
   options: [String]
@@ -914,10 +1421,21 @@ input QuestionUncheckedCreateNestedManyWithoutParrentTestInput {
   createMany: QuestionCreateManyParrentTestInputEnvelope
 }
 
+input QuestionUncheckedCreateWithoutCompeteAnswersInput {
+  answer: String
+  codeArgs: [String]
+  expectedResult: String
+  id: Int
+  options: [String]
+  parrentTestId: Int!
+  text: String!
+  type: QuestionType!
+}
+
 input QuestionUncheckedCreateWithoutParrentTestInput {
   answer: String
-  code: String
   codeArgs: [String]
+  competeAnswers: AnswerUncheckedCreateNestedManyWithoutQuestionInput
   expectedResult: String
   id: Int
   options: [String]
@@ -927,8 +1445,8 @@ input QuestionUncheckedCreateWithoutParrentTestInput {
 
 input QuestionUncheckedUpdateInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
+  competeAnswers: AnswerUncheckedUpdateManyWithoutQuestionInput
   expectedResult: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   options: [String]
@@ -939,7 +1457,6 @@ input QuestionUncheckedUpdateInput {
 
 input QuestionUncheckedUpdateManyInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
   expectedResult: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -965,7 +1482,6 @@ input QuestionUncheckedUpdateManyWithoutParrentTestInput {
 
 input QuestionUncheckedUpdateManyWithoutQuestionsInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
   expectedResult: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
@@ -974,10 +1490,21 @@ input QuestionUncheckedUpdateManyWithoutQuestionsInput {
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
+input QuestionUncheckedUpdateWithoutCompeteAnswersInput {
+  answer: NullableStringFieldUpdateOperationsInput
+  codeArgs: [String]
+  expectedResult: NullableStringFieldUpdateOperationsInput
+  id: IntFieldUpdateOperationsInput
+  options: [String]
+  parrentTestId: IntFieldUpdateOperationsInput
+  text: StringFieldUpdateOperationsInput
+  type: EnumQuestionTypeFieldUpdateOperationsInput
+}
+
 input QuestionUncheckedUpdateWithoutParrentTestInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
+  competeAnswers: AnswerUncheckedUpdateManyWithoutQuestionInput
   expectedResult: NullableStringFieldUpdateOperationsInput
   id: IntFieldUpdateOperationsInput
   options: [String]
@@ -987,8 +1514,8 @@ input QuestionUncheckedUpdateWithoutParrentTestInput {
 
 input QuestionUpdateInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
+  competeAnswers: AnswerUpdateManyWithoutQuestionInput
   expectedResult: NullableStringFieldUpdateOperationsInput
   options: [String]
   parrentTest: TestUpdateOneRequiredWithoutQuestionsInput
@@ -998,7 +1525,6 @@ input QuestionUpdateInput {
 
 input QuestionUpdateManyMutationInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
   expectedResult: NullableStringFieldUpdateOperationsInput
   options: [String]
@@ -1025,15 +1551,33 @@ input QuestionUpdateManyWithoutParrentTestInput {
   upsert: [QuestionUpsertWithWhereUniqueWithoutParrentTestInput]
 }
 
+input QuestionUpdateOneRequiredWithoutCompeteAnswersInput {
+  connect: QuestionWhereUniqueInput
+  connectOrCreate: QuestionCreateOrConnectWithoutCompeteAnswersInput
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput
+  update: QuestionUncheckedUpdateWithoutCompeteAnswersInput
+  upsert: QuestionUpsertWithoutCompeteAnswersInput
+}
+
 input QuestionUpdateWithWhereUniqueWithoutParrentTestInput {
   data: QuestionUncheckedUpdateWithoutParrentTestInput!
   where: QuestionWhereUniqueInput!
 }
 
+input QuestionUpdateWithoutCompeteAnswersInput {
+  answer: NullableStringFieldUpdateOperationsInput
+  codeArgs: [String]
+  expectedResult: NullableStringFieldUpdateOperationsInput
+  options: [String]
+  parrentTest: TestUpdateOneRequiredWithoutQuestionsInput
+  text: StringFieldUpdateOperationsInput
+  type: EnumQuestionTypeFieldUpdateOperationsInput
+}
+
 input QuestionUpdateWithoutParrentTestInput {
   answer: NullableStringFieldUpdateOperationsInput
-  code: NullableStringFieldUpdateOperationsInput
   codeArgs: [String]
+  competeAnswers: AnswerUpdateManyWithoutQuestionInput
   expectedResult: NullableStringFieldUpdateOperationsInput
   options: [String]
   text: StringFieldUpdateOperationsInput
@@ -1056,13 +1600,18 @@ input QuestionUpsertWithWhereUniqueWithoutParrentTestInput {
   where: QuestionWhereUniqueInput!
 }
 
+input QuestionUpsertWithoutCompeteAnswersInput {
+  create: QuestionUncheckedCreateWithoutCompeteAnswersInput!
+  update: QuestionUncheckedUpdateWithoutCompeteAnswersInput!
+}
+
 input QuestionWhereInput {
   AND: [QuestionWhereInput]
   NOT: [QuestionWhereInput]
   OR: [QuestionWhereInput]
   answer: StringNullableFilter
-  code: StringNullableFilter
   codeArgs: StringNullableListFilter
+  competeAnswers: AnswerListRelationFilter
   expectedResult: StringNullableFilter
   id: IntFilter
   options: StringNullableListFilter
@@ -1380,7 +1929,7 @@ input UpdateModelInput {
 
 type User {
   _count: UserCountOutputType
-  answers(cursor: AnswerWhereUniqueInput, distinct: AnswerScalarFieldEnum, orderBy: AnswerOrderByWithRelationInput, skip: Int, take: Int, where: AnswerWhereInput): [Answer!]!
+  completedTests(cursor: CompleteTestWhereUniqueInput, distinct: CompleteTestScalarFieldEnum, orderBy: CompleteTestOrderByWithRelationInput, skip: Int, take: Int, where: CompleteTestWhereInput): [CompleteTest!]!
   id: Int!
   nickname: String!
   phoneNumber: String!
@@ -1408,11 +1957,11 @@ input UserCountOrderByAggregateInput {
 }
 
 type UserCountOutputType {
-  answers: Int!
+  completedTests: Int!
 }
 
 input UserCreateInput {
-  answers: AnswerCreateNestedManyWithoutUserInput
+  completedTests: CompleteTestCreateNestedManyWithoutUserInput
   nickname: String!
   phoneNumber: String!
 }
@@ -1423,18 +1972,18 @@ input UserCreateManyInput {
   phoneNumber: String!
 }
 
-input UserCreateNestedOneWithoutAnswersInput {
+input UserCreateNestedOneWithoutCompletedTestsInput {
   connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutAnswersInput
-  create: UserUncheckedCreateWithoutAnswersInput
+  connectOrCreate: UserCreateOrConnectWithoutCompletedTestsInput
+  create: UserUncheckedCreateWithoutCompletedTestsInput
 }
 
-input UserCreateOrConnectWithoutAnswersInput {
-  create: UserUncheckedCreateWithoutAnswersInput!
+input UserCreateOrConnectWithoutCompletedTestsInput {
+  create: UserUncheckedCreateWithoutCompletedTestsInput!
   where: UserWhereUniqueInput!
 }
 
-input UserCreateWithoutAnswersInput {
+input UserCreateWithoutCompletedTestsInput {
   nickname: String!
   phoneNumber: String!
 }
@@ -1475,7 +2024,7 @@ input UserOrderByWithAggregationInput {
 }
 
 input UserOrderByWithRelationInput {
-  answers: AnswerOrderByRelationAggregateInput
+  completedTests: CompleteTestOrderByRelationAggregateInput
   id: SortOrder
   nickname: SortOrder
   phoneNumber: SortOrder
@@ -1510,20 +2059,20 @@ input UserSumOrderByAggregateInput {
 }
 
 input UserUncheckedCreateInput {
-  answers: AnswerUncheckedCreateNestedManyWithoutUserInput
+  completedTests: CompleteTestUncheckedCreateNestedManyWithoutUserInput
   id: Int
   nickname: String!
   phoneNumber: String!
 }
 
-input UserUncheckedCreateWithoutAnswersInput {
+input UserUncheckedCreateWithoutCompletedTestsInput {
   id: Int
   nickname: String!
   phoneNumber: String!
 }
 
 input UserUncheckedUpdateInput {
-  answers: AnswerUncheckedUpdateManyWithoutUserInput
+  completedTests: CompleteTestUncheckedUpdateManyWithoutUserInput
   id: IntFieldUpdateOperationsInput
   nickname: StringFieldUpdateOperationsInput
   phoneNumber: StringFieldUpdateOperationsInput
@@ -1535,14 +2084,14 @@ input UserUncheckedUpdateManyInput {
   phoneNumber: StringFieldUpdateOperationsInput
 }
 
-input UserUncheckedUpdateWithoutAnswersInput {
+input UserUncheckedUpdateWithoutCompletedTestsInput {
   id: IntFieldUpdateOperationsInput
   nickname: StringFieldUpdateOperationsInput
   phoneNumber: StringFieldUpdateOperationsInput
 }
 
 input UserUpdateInput {
-  answers: AnswerUpdateManyWithoutUserInput
+  completedTests: CompleteTestUpdateManyWithoutUserInput
   nickname: StringFieldUpdateOperationsInput
   phoneNumber: StringFieldUpdateOperationsInput
 }
@@ -1552,29 +2101,29 @@ input UserUpdateManyMutationInput {
   phoneNumber: StringFieldUpdateOperationsInput
 }
 
-input UserUpdateOneRequiredWithoutAnswersInput {
+input UserUpdateOneRequiredWithoutCompletedTestsInput {
   connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutAnswersInput
-  create: UserUncheckedCreateWithoutAnswersInput
-  update: UserUncheckedUpdateWithoutAnswersInput
-  upsert: UserUpsertWithoutAnswersInput
+  connectOrCreate: UserCreateOrConnectWithoutCompletedTestsInput
+  create: UserUncheckedCreateWithoutCompletedTestsInput
+  update: UserUncheckedUpdateWithoutCompletedTestsInput
+  upsert: UserUpsertWithoutCompletedTestsInput
 }
 
-input UserUpdateWithoutAnswersInput {
+input UserUpdateWithoutCompletedTestsInput {
   nickname: StringFieldUpdateOperationsInput
   phoneNumber: StringFieldUpdateOperationsInput
 }
 
-input UserUpsertWithoutAnswersInput {
-  create: UserUncheckedCreateWithoutAnswersInput!
-  update: UserUncheckedUpdateWithoutAnswersInput!
+input UserUpsertWithoutCompletedTestsInput {
+  create: UserUncheckedCreateWithoutCompletedTestsInput!
+  update: UserUncheckedUpdateWithoutCompletedTestsInput!
 }
 
 input UserWhereInput {
   AND: [UserWhereInput]
   NOT: [UserWhereInput]
   OR: [UserWhereInput]
-  answers: AnswerListRelationFilter
+  completedTests: CompleteTestListRelationFilter
   id: IntFilter
   nickname: StringFilter
   phoneNumber: StringFilter
