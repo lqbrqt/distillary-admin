@@ -641,6 +641,31 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
     notIn?: Array<number | null> | null; // [Int]
   }
+  IntNullableFilter: { // input type
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  IntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
   IntWithAggregatesFilter: { // input type
     _avg?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     _count?: NexusGenInputs['NestedIntFilter'] | null; // NestedIntFilter
@@ -692,6 +717,16 @@ export interface NexusGenInputs {
     not?: NexusGenInputs['NestedFloatFilter'] | null; // NestedFloatFilter
     notIn?: Array<number | null> | null; // [Float]
   }
+  NestedFloatNullableFilter: { // input type
+    equals?: number | null; // Float
+    gt?: number | null; // Float
+    gte?: number | null; // Float
+    in?: Array<number | null> | null; // [Float]
+    lt?: number | null; // Float
+    lte?: number | null; // Float
+    not?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    notIn?: Array<number | null> | null; // [Float]
+  }
   NestedIntFilter: { // input type
     equals?: number | null; // Int
     gt?: number | null; // Int
@@ -710,6 +745,21 @@ export interface NexusGenInputs {
     lt?: number | null; // Int
     lte?: number | null; // Int
     not?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    notIn?: Array<number | null> | null; // [Int]
+  }
+  NestedIntNullableWithAggregatesFilter: { // input type
+    _avg?: NexusGenInputs['NestedFloatNullableFilter'] | null; // NestedFloatNullableFilter
+    _count?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _max?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _min?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    _sum?: NexusGenInputs['NestedIntNullableFilter'] | null; // NestedIntNullableFilter
+    equals?: number | null; // Int
+    gt?: number | null; // Int
+    gte?: number | null; // Int
+    in?: Array<number | null> | null; // [Int]
+    lt?: number | null; // Int
+    lte?: number | null; // Int
+    not?: NexusGenInputs['NestedIntNullableWithAggregatesFilter'] | null; // NestedIntNullableWithAggregatesFilter
     notIn?: Array<number | null> | null; // [Int]
   }
   NestedIntWithAggregatesFilter: { // input type
@@ -785,12 +835,20 @@ export interface NexusGenInputs {
     notIn?: Array<string | null> | null; // [String]
     startsWith?: string | null; // String
   }
+  NullableIntFieldUpdateOperationsInput: { // input type
+    decrement?: number | null; // Int
+    divide?: number | null; // Int
+    increment?: number | null; // Int
+    multiply?: number | null; // Int
+    set?: number | null; // Int
+  }
   NullableStringFieldUpdateOperationsInput: { // input type
     set?: string | null; // String
   }
   QuestionAvgOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionCountOrderByAggregateInput: { // input type
     answer?: NexusGenEnums['SortOrder'] | null; // SortOrder
@@ -800,6 +858,7 @@ export interface NexusGenInputs {
     options?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionCreateInput: { // input type
@@ -810,6 +869,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTest: NexusGenInputs['TestCreateNestedOneWithoutQuestionsInput']; // TestCreateNestedOneWithoutQuestionsInput!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionCreateManyInput: { // input type
@@ -820,6 +880,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId: number; // Int!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionCreateManyParrentTestInput: { // input type
@@ -829,6 +890,7 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     options?: Array<string | null> | null; // [String]
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionCreateManyParrentTestInputEnvelope: { // input type
@@ -867,6 +929,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTest: NexusGenInputs['TestCreateNestedOneWithoutQuestionsInput']; // TestCreateNestedOneWithoutQuestionsInput!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionCreateWithoutParrentTestInput: { // input type
@@ -876,6 +939,7 @@ export interface NexusGenInputs {
     expectedResult?: string | null; // String
     options?: Array<string | null> | null; // [String]
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionCreatecodeArgsInput: { // input type
@@ -895,6 +959,7 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionMinOrderByAggregateInput: { // input type
@@ -903,6 +968,7 @@ export interface NexusGenInputs {
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionOrderByRelationAggregateInput: { // input type
@@ -921,6 +987,7 @@ export interface NexusGenInputs {
     options?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionOrderByWithRelationInput: { // input type
@@ -933,6 +1000,7 @@ export interface NexusGenInputs {
     parrentTest?: NexusGenInputs['TestOrderByWithRelationInput'] | null; // TestOrderByWithRelationInput
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
     text?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
     type?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionRelationFilter: { // input type
@@ -950,6 +1018,7 @@ export interface NexusGenInputs {
     options?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
     parrentTestId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    timeToComplete?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     type?: NexusGenInputs['EnumQuestionTypeFilter'] | null; // EnumQuestionTypeFilter
   }
   QuestionScalarWhereWithAggregatesInput: { // input type
@@ -963,11 +1032,13 @@ export interface NexusGenInputs {
     options?: NexusGenInputs['StringNullableListFilter'] | null; // StringNullableListFilter
     parrentTestId?: NexusGenInputs['IntWithAggregatesFilter'] | null; // IntWithAggregatesFilter
     text?: NexusGenInputs['StringWithAggregatesFilter'] | null; // StringWithAggregatesFilter
+    timeToComplete?: NexusGenInputs['IntNullableWithAggregatesFilter'] | null; // IntNullableWithAggregatesFilter
     type?: NexusGenInputs['EnumQuestionTypeWithAggregatesFilter'] | null; // EnumQuestionTypeWithAggregatesFilter
   }
   QuestionSumOrderByAggregateInput: { // input type
     id?: NexusGenEnums['SortOrder'] | null; // SortOrder
     parrentTestId?: NexusGenEnums['SortOrder'] | null; // SortOrder
+    timeToComplete?: NexusGenEnums['SortOrder'] | null; // SortOrder
   }
   QuestionUncheckedCreateInput: { // input type
     answer?: string | null; // String
@@ -978,6 +1049,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId: number; // Int!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionUncheckedCreateNestedManyWithoutParrentTestInput: { // input type
@@ -994,6 +1066,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId: number; // Int!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionUncheckedCreateWithoutParrentTestInput: { // input type
@@ -1004,6 +1077,7 @@ export interface NexusGenInputs {
     id?: number | null; // Int
     options?: Array<string | null> | null; // [String]
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionUncheckedUpdateInput: { // input type
@@ -1015,6 +1089,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUncheckedUpdateManyInput: { // input type
@@ -1025,6 +1100,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUncheckedUpdateManyWithoutParrentTestInput: { // input type
@@ -1047,6 +1123,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUncheckedUpdateWithoutCompeteAnswersInput: { // input type
@@ -1057,6 +1134,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTestId?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUncheckedUpdateWithoutParrentTestInput: { // input type
@@ -1067,6 +1145,7 @@ export interface NexusGenInputs {
     id?: NexusGenInputs['IntFieldUpdateOperationsInput'] | null; // IntFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUpdateInput: { // input type
@@ -1077,6 +1156,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTest?: NexusGenInputs['TestUpdateOneRequiredWithoutQuestionsInput'] | null; // TestUpdateOneRequiredWithoutQuestionsInput
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUpdateManyMutationInput: { // input type
@@ -1085,6 +1165,7 @@ export interface NexusGenInputs {
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUpdateManyWithWhereWithoutParrentTestInput: { // input type
@@ -1122,6 +1203,7 @@ export interface NexusGenInputs {
     options?: Array<string | null> | null; // [String]
     parrentTest?: NexusGenInputs['TestUpdateOneRequiredWithoutQuestionsInput'] | null; // TestUpdateOneRequiredWithoutQuestionsInput
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUpdateWithoutParrentTestInput: { // input type
@@ -1131,6 +1213,7 @@ export interface NexusGenInputs {
     expectedResult?: NexusGenInputs['NullableStringFieldUpdateOperationsInput'] | null; // NullableStringFieldUpdateOperationsInput
     options?: Array<string | null> | null; // [String]
     text?: NexusGenInputs['StringFieldUpdateOperationsInput'] | null; // StringFieldUpdateOperationsInput
+    timeToComplete?: NexusGenInputs['NullableIntFieldUpdateOperationsInput'] | null; // NullableIntFieldUpdateOperationsInput
     type?: NexusGenInputs['EnumQuestionTypeFieldUpdateOperationsInput'] | null; // EnumQuestionTypeFieldUpdateOperationsInput
   }
   QuestionUpdatecodeArgsInput: { // input type
@@ -1163,6 +1246,7 @@ export interface NexusGenInputs {
     parrentTest?: NexusGenInputs['TestWhereInput'] | null; // TestWhereInput
     parrentTestId?: NexusGenInputs['IntFilter'] | null; // IntFilter
     text?: NexusGenInputs['StringFilter'] | null; // StringFilter
+    timeToComplete?: NexusGenInputs['IntNullableFilter'] | null; // IntNullableFilter
     type?: NexusGenInputs['EnumQuestionTypeFilter'] | null; // EnumQuestionTypeFilter
   }
   QuestionWhereUniqueInput: { // input type
@@ -1530,7 +1614,7 @@ export interface NexusGenEnums {
   CompleteTestScalarFieldEnum: "id" | "rightAnswers" | "userId"
   KindEnum: "enum" | "object" | "scalar"
   QueryMode: "default" | "insensitive"
-  QuestionScalarFieldEnum: "answer" | "codeArgs" | "expectedResult" | "id" | "options" | "parrentTestId" | "text" | "type"
+  QuestionScalarFieldEnum: "answer" | "codeArgs" | "expectedResult" | "id" | "options" | "parrentTestId" | "text" | "timeToComplete" | "type"
   QuestionType: "codeQuestion" | "textQuestion"
   SortOrder: "asc" | "desc"
   TestScalarFieldEnum: "id" | "name"
@@ -1701,11 +1785,13 @@ export interface NexusGenObjects {
     options: string[]; // [String!]!
     parrentTestId: number; // Int!
     text: string; // String!
+    timeToComplete?: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionAvgAggregateOutputType: { // root type
     id?: number | null; // Float
     parrentTestId?: number | null; // Float
+    timeToComplete?: number | null; // Float
   }
   QuestionCountAggregateOutputType: { // root type
     _all: number; // Int!
@@ -1716,6 +1802,7 @@ export interface NexusGenObjects {
     options: number; // Int!
     parrentTestId: number; // Int!
     text: number; // Int!
+    timeToComplete: number; // Int!
     type: number; // Int!
   }
   QuestionCountOutputType: { // root type
@@ -1727,6 +1814,7 @@ export interface NexusGenObjects {
     id?: number | null; // Int
     parrentTestId?: number | null; // Int
     text?: string | null; // String
+    timeToComplete?: number | null; // Int
     type?: NexusGenEnums['QuestionType'] | null; // QuestionType
   }
   QuestionMinAggregateOutputType: { // root type
@@ -1735,11 +1823,13 @@ export interface NexusGenObjects {
     id?: number | null; // Int
     parrentTestId?: number | null; // Int
     text?: string | null; // String
+    timeToComplete?: number | null; // Int
     type?: NexusGenEnums['QuestionType'] | null; // QuestionType
   }
   QuestionSumAggregateOutputType: { // root type
     id?: number | null; // Int
     parrentTestId?: number | null; // Int
+    timeToComplete?: number | null; // Int
   }
   Schema: { // root type
     enums: NexusGenRootTypes['Enum'][]; // [Enum!]!
@@ -2033,11 +2123,13 @@ export interface NexusGenFieldTypes {
     parrentTest: NexusGenRootTypes['Test']; // Test!
     parrentTestId: number; // Int!
     text: string; // String!
+    timeToComplete: number | null; // Int
     type: NexusGenEnums['QuestionType']; // QuestionType!
   }
   QuestionAvgAggregateOutputType: { // field return type
     id: number | null; // Float
     parrentTestId: number | null; // Float
+    timeToComplete: number | null; // Float
   }
   QuestionCountAggregateOutputType: { // field return type
     _all: number; // Int!
@@ -2048,6 +2140,7 @@ export interface NexusGenFieldTypes {
     options: number; // Int!
     parrentTestId: number; // Int!
     text: number; // Int!
+    timeToComplete: number; // Int!
     type: number; // Int!
   }
   QuestionCountOutputType: { // field return type
@@ -2059,6 +2152,7 @@ export interface NexusGenFieldTypes {
     id: number | null; // Int
     parrentTestId: number | null; // Int
     text: string | null; // String
+    timeToComplete: number | null; // Int
     type: NexusGenEnums['QuestionType'] | null; // QuestionType
   }
   QuestionMinAggregateOutputType: { // field return type
@@ -2067,11 +2161,13 @@ export interface NexusGenFieldTypes {
     id: number | null; // Int
     parrentTestId: number | null; // Int
     text: string | null; // String
+    timeToComplete: number | null; // Int
     type: NexusGenEnums['QuestionType'] | null; // QuestionType
   }
   QuestionSumAggregateOutputType: { // field return type
     id: number | null; // Int
     parrentTestId: number | null; // Int
+    timeToComplete: number | null; // Int
   }
   Schema: { // field return type
     enums: NexusGenRootTypes['Enum'][]; // [Enum!]!
@@ -2359,11 +2455,13 @@ export interface NexusGenFieldTypeNames {
     parrentTest: 'Test'
     parrentTestId: 'Int'
     text: 'String'
+    timeToComplete: 'Int'
     type: 'QuestionType'
   }
   QuestionAvgAggregateOutputType: { // field return type name
     id: 'Float'
     parrentTestId: 'Float'
+    timeToComplete: 'Float'
   }
   QuestionCountAggregateOutputType: { // field return type name
     _all: 'Int'
@@ -2374,6 +2472,7 @@ export interface NexusGenFieldTypeNames {
     options: 'Int'
     parrentTestId: 'Int'
     text: 'Int'
+    timeToComplete: 'Int'
     type: 'Int'
   }
   QuestionCountOutputType: { // field return type name
@@ -2385,6 +2484,7 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     parrentTestId: 'Int'
     text: 'String'
+    timeToComplete: 'Int'
     type: 'QuestionType'
   }
   QuestionMinAggregateOutputType: { // field return type name
@@ -2393,11 +2493,13 @@ export interface NexusGenFieldTypeNames {
     id: 'Int'
     parrentTestId: 'Int'
     text: 'String'
+    timeToComplete: 'Int'
     type: 'QuestionType'
   }
   QuestionSumAggregateOutputType: { // field return type name
     id: 'Int'
     parrentTestId: 'Int'
+    timeToComplete: 'Int'
   }
   Schema: { // field return type name
     enums: 'Enum'

@@ -206,6 +206,26 @@
           "filter": true,
           "sort": true,
           "order": -1
+        },
+        {
+          "id": "Question.timeToComplete",
+          "name": "timeToComplete",
+          "type": "Int",
+          "isId": false,
+          "unique": false,
+          "list": false,
+          "required": false,
+          "kind": "scalar",
+          "relationField": false,
+          "title": "Time To Complete",
+          "create": true,
+          "update": true,
+          "editor": false,
+          "upload": false,
+          "read": true,
+          "filter": true,
+          "sort": true,
+          "order": -1
         }
       ]
     },

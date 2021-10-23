@@ -871,6 +871,33 @@ input IntFilter {
   notIn: [Int]
 }
 
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int]
+}
+
+input IntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
+  notIn: [Int]
+}
+
 input IntWithAggregatesFilter {
   _avg: NestedFloatFilter
   _count: NestedIntFilter
@@ -983,6 +1010,17 @@ input NestedFloatFilter {
   notIn: [Float]
 }
 
+input NestedFloatNullableFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float]
+  lt: Float
+  lte: Float
+  not: NestedFloatNullableFilter
+  notIn: [Float]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -1002,6 +1040,22 @@ input NestedIntNullableFilter {
   lt: Int
   lte: Int
   not: NestedIntNullableFilter
+  notIn: [Int]
+}
+
+input NestedIntNullableWithAggregatesFilter {
+  _avg: NestedFloatNullableFilter
+  _count: NestedIntNullableFilter
+  _max: NestedIntNullableFilter
+  _min: NestedIntNullableFilter
+  _sum: NestedIntNullableFilter
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableWithAggregatesFilter
   notIn: [Int]
 }
 
@@ -1083,6 +1137,14 @@ input NestedStringWithAggregatesFilter {
   startsWith: String
 }
 
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
+}
+
 input NullableStringFieldUpdateOperationsInput {
   set: String
 }
@@ -1132,17 +1194,20 @@ type Question {
   parrentTest: Test!
   parrentTestId: Int!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
 type QuestionAvgAggregateOutputType {
   id: Float
   parrentTestId: Float
+  timeToComplete: Float
 }
 
 input QuestionAvgOrderByAggregateInput {
   id: SortOrder
   parrentTestId: SortOrder
+  timeToComplete: SortOrder
 }
 
 type QuestionCountAggregateOutputType {
@@ -1154,6 +1219,7 @@ type QuestionCountAggregateOutputType {
   options: Int!
   parrentTestId: Int!
   text: Int!
+  timeToComplete: Int!
   type: Int!
 }
 
@@ -1165,6 +1231,7 @@ input QuestionCountOrderByAggregateInput {
   options: SortOrder
   parrentTestId: SortOrder
   text: SortOrder
+  timeToComplete: SortOrder
   type: SortOrder
 }
 
@@ -1180,6 +1247,7 @@ input QuestionCreateInput {
   options: [String]
   parrentTest: TestCreateNestedOneWithoutQuestionsInput!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1191,6 +1259,7 @@ input QuestionCreateManyInput {
   options: [String]
   parrentTestId: Int!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1201,6 +1270,7 @@ input QuestionCreateManyParrentTestInput {
   id: Int
   options: [String]
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1247,6 +1317,7 @@ input QuestionCreateWithoutCompeteAnswersInput {
   options: [String]
   parrentTest: TestCreateNestedOneWithoutQuestionsInput!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1257,6 +1328,7 @@ input QuestionCreateWithoutParrentTestInput {
   expectedResult: String
   options: [String]
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1280,6 +1352,7 @@ type QuestionMaxAggregateOutputType {
   id: Int
   parrentTestId: Int
   text: String
+  timeToComplete: Int
   type: QuestionType
 }
 
@@ -1289,6 +1362,7 @@ input QuestionMaxOrderByAggregateInput {
   id: SortOrder
   parrentTestId: SortOrder
   text: SortOrder
+  timeToComplete: SortOrder
   type: SortOrder
 }
 
@@ -1298,6 +1372,7 @@ type QuestionMinAggregateOutputType {
   id: Int
   parrentTestId: Int
   text: String
+  timeToComplete: Int
   type: QuestionType
 }
 
@@ -1307,6 +1382,7 @@ input QuestionMinOrderByAggregateInput {
   id: SortOrder
   parrentTestId: SortOrder
   text: SortOrder
+  timeToComplete: SortOrder
   type: SortOrder
 }
 
@@ -1327,6 +1403,7 @@ input QuestionOrderByWithAggregationInput {
   options: SortOrder
   parrentTestId: SortOrder
   text: SortOrder
+  timeToComplete: SortOrder
   type: SortOrder
 }
 
@@ -1340,6 +1417,7 @@ input QuestionOrderByWithRelationInput {
   parrentTest: TestOrderByWithRelationInput
   parrentTestId: SortOrder
   text: SortOrder
+  timeToComplete: SortOrder
   type: SortOrder
 }
 
@@ -1356,6 +1434,7 @@ enum QuestionScalarFieldEnum {
   options
   parrentTestId
   text
+  timeToComplete
   type
 }
 
@@ -1370,6 +1449,7 @@ input QuestionScalarWhereInput {
   options: StringNullableListFilter
   parrentTestId: IntFilter
   text: StringFilter
+  timeToComplete: IntNullableFilter
   type: EnumQuestionTypeFilter
 }
 
@@ -1384,17 +1464,20 @@ input QuestionScalarWhereWithAggregatesInput {
   options: StringNullableListFilter
   parrentTestId: IntWithAggregatesFilter
   text: StringWithAggregatesFilter
+  timeToComplete: IntNullableWithAggregatesFilter
   type: EnumQuestionTypeWithAggregatesFilter
 }
 
 type QuestionSumAggregateOutputType {
   id: Int
   parrentTestId: Int
+  timeToComplete: Int
 }
 
 input QuestionSumOrderByAggregateInput {
   id: SortOrder
   parrentTestId: SortOrder
+  timeToComplete: SortOrder
 }
 
 enum QuestionType {
@@ -1411,6 +1494,7 @@ input QuestionUncheckedCreateInput {
   options: [String]
   parrentTestId: Int!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1429,6 +1513,7 @@ input QuestionUncheckedCreateWithoutCompeteAnswersInput {
   options: [String]
   parrentTestId: Int!
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1440,6 +1525,7 @@ input QuestionUncheckedCreateWithoutParrentTestInput {
   id: Int
   options: [String]
   text: String!
+  timeToComplete: Int
   type: QuestionType!
 }
 
@@ -1452,6 +1538,7 @@ input QuestionUncheckedUpdateInput {
   options: [String]
   parrentTestId: IntFieldUpdateOperationsInput
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1463,6 +1550,7 @@ input QuestionUncheckedUpdateManyInput {
   options: [String]
   parrentTestId: IntFieldUpdateOperationsInput
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1487,6 +1575,7 @@ input QuestionUncheckedUpdateManyWithoutQuestionsInput {
   id: IntFieldUpdateOperationsInput
   options: [String]
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1498,6 +1587,7 @@ input QuestionUncheckedUpdateWithoutCompeteAnswersInput {
   options: [String]
   parrentTestId: IntFieldUpdateOperationsInput
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1509,6 +1599,7 @@ input QuestionUncheckedUpdateWithoutParrentTestInput {
   id: IntFieldUpdateOperationsInput
   options: [String]
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1520,6 +1611,7 @@ input QuestionUpdateInput {
   options: [String]
   parrentTest: TestUpdateOneRequiredWithoutQuestionsInput
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1529,6 +1621,7 @@ input QuestionUpdateManyMutationInput {
   expectedResult: NullableStringFieldUpdateOperationsInput
   options: [String]
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1571,6 +1664,7 @@ input QuestionUpdateWithoutCompeteAnswersInput {
   options: [String]
   parrentTest: TestUpdateOneRequiredWithoutQuestionsInput
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1581,6 +1675,7 @@ input QuestionUpdateWithoutParrentTestInput {
   expectedResult: NullableStringFieldUpdateOperationsInput
   options: [String]
   text: StringFieldUpdateOperationsInput
+  timeToComplete: NullableIntFieldUpdateOperationsInput
   type: EnumQuestionTypeFieldUpdateOperationsInput
 }
 
@@ -1618,6 +1713,7 @@ input QuestionWhereInput {
   parrentTest: TestWhereInput
   parrentTestId: IntFilter
   text: StringFilter
+  timeToComplete: IntNullableFilter
   type: EnumQuestionTypeFilter
 }
 

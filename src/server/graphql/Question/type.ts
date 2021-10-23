@@ -35,6 +35,7 @@ export const Question = objectType({
         return root.competeAnswers
       },
     })
+    t.nullable.int('timeToComplete')
     t.nullable.field('_count', {
       type: 'QuestionCountOutputType',
       resolve(root: any) {

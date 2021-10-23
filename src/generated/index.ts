@@ -911,6 +911,33 @@ export type IntFilter = {
   notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
+export type IntNullableFilter = {
+  equals?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  not?: Maybe<NestedIntNullableFilter>;
+  notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
+};
+
+export type IntNullableWithAggregatesFilter = {
+  _avg?: Maybe<NestedFloatNullableFilter>;
+  _count?: Maybe<NestedIntNullableFilter>;
+  _max?: Maybe<NestedIntNullableFilter>;
+  _min?: Maybe<NestedIntNullableFilter>;
+  _sum?: Maybe<NestedIntNullableFilter>;
+  equals?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  not?: Maybe<NestedIntNullableWithAggregatesFilter>;
+  notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
+};
+
 export type IntWithAggregatesFilter = {
   _avg?: Maybe<NestedFloatFilter>;
   _count?: Maybe<NestedIntFilter>;
@@ -1205,6 +1232,17 @@ export type NestedFloatFilter = {
   notIn?: Maybe<Array<Maybe<Scalars['Float']>>>;
 };
 
+export type NestedFloatNullableFilter = {
+  equals?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  gte?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  lt?: Maybe<Scalars['Float']>;
+  lte?: Maybe<Scalars['Float']>;
+  not?: Maybe<NestedFloatNullableFilter>;
+  notIn?: Maybe<Array<Maybe<Scalars['Float']>>>;
+};
+
 export type NestedIntFilter = {
   equals?: Maybe<Scalars['Int']>;
   gt?: Maybe<Scalars['Int']>;
@@ -1224,6 +1262,22 @@ export type NestedIntNullableFilter = {
   lt?: Maybe<Scalars['Int']>;
   lte?: Maybe<Scalars['Int']>;
   not?: Maybe<NestedIntNullableFilter>;
+  notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
+};
+
+export type NestedIntNullableWithAggregatesFilter = {
+  _avg?: Maybe<NestedFloatNullableFilter>;
+  _count?: Maybe<NestedIntNullableFilter>;
+  _max?: Maybe<NestedIntNullableFilter>;
+  _min?: Maybe<NestedIntNullableFilter>;
+  _sum?: Maybe<NestedIntNullableFilter>;
+  equals?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  gte?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  lt?: Maybe<Scalars['Int']>;
+  lte?: Maybe<Scalars['Int']>;
+  not?: Maybe<NestedIntNullableWithAggregatesFilter>;
   notIn?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
@@ -1303,6 +1357,14 @@ export type NestedStringWithAggregatesFilter = {
   not?: Maybe<NestedStringWithAggregatesFilter>;
   notIn?: Maybe<Array<Maybe<Scalars['String']>>>;
   startsWith?: Maybe<Scalars['String']>;
+};
+
+export type NullableIntFieldUpdateOperationsInput = {
+  decrement?: Maybe<Scalars['Int']>;
+  divide?: Maybe<Scalars['Int']>;
+  increment?: Maybe<Scalars['Int']>;
+  multiply?: Maybe<Scalars['Int']>;
+  set?: Maybe<Scalars['Int']>;
 };
 
 export type NullableStringFieldUpdateOperationsInput = {
@@ -1576,6 +1638,7 @@ export type Question = {
   parrentTest: Test;
   parrentTestId: Scalars['Int'];
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1593,11 +1656,13 @@ export type QuestionAvgAggregateOutputType = {
   __typename?: 'QuestionAvgAggregateOutputType';
   id?: Maybe<Scalars['Float']>;
   parrentTestId?: Maybe<Scalars['Float']>;
+  timeToComplete?: Maybe<Scalars['Float']>;
 };
 
 export type QuestionAvgOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
 };
 
 export type QuestionCountAggregateOutputType = {
@@ -1610,6 +1675,7 @@ export type QuestionCountAggregateOutputType = {
   options: Scalars['Int'];
   parrentTestId: Scalars['Int'];
   text: Scalars['Int'];
+  timeToComplete: Scalars['Int'];
   type: Scalars['Int'];
 };
 
@@ -1621,6 +1687,7 @@ export type QuestionCountOrderByAggregateInput = {
   options?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
 };
 
@@ -1637,6 +1704,7 @@ export type QuestionCreateInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest: TestCreateNestedOneWithoutQuestionsInput;
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1648,6 +1716,7 @@ export type QuestionCreateManyInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId: Scalars['Int'];
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1658,6 +1727,7 @@ export type QuestionCreateManyParrentTestInput = {
   id?: Maybe<Scalars['Int']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1704,6 +1774,7 @@ export type QuestionCreateWithoutCompeteAnswersInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest: TestCreateNestedOneWithoutQuestionsInput;
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1714,6 +1785,7 @@ export type QuestionCreateWithoutParrentTestInput = {
   expectedResult?: Maybe<Scalars['String']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1738,6 +1810,7 @@ export type QuestionMaxAggregateOutputType = {
   id?: Maybe<Scalars['Int']>;
   parrentTestId?: Maybe<Scalars['Int']>;
   text?: Maybe<Scalars['String']>;
+  timeToComplete?: Maybe<Scalars['Int']>;
   type?: Maybe<QuestionType>;
 };
 
@@ -1747,6 +1820,7 @@ export type QuestionMaxOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
 };
 
@@ -1757,6 +1831,7 @@ export type QuestionMinAggregateOutputType = {
   id?: Maybe<Scalars['Int']>;
   parrentTestId?: Maybe<Scalars['Int']>;
   text?: Maybe<Scalars['String']>;
+  timeToComplete?: Maybe<Scalars['Int']>;
   type?: Maybe<QuestionType>;
 };
 
@@ -1766,6 +1841,7 @@ export type QuestionMinOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
 };
 
@@ -1786,6 +1862,7 @@ export type QuestionOrderByWithAggregationInput = {
   options?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
 };
 
@@ -1799,6 +1876,7 @@ export type QuestionOrderByWithRelationInput = {
   parrentTest?: Maybe<TestOrderByWithRelationInput>;
   parrentTestId?: Maybe<SortOrder>;
   text?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
   type?: Maybe<SortOrder>;
 };
 
@@ -1815,6 +1893,7 @@ export enum QuestionScalarFieldEnum {
   Options = 'options',
   ParrentTestId = 'parrentTestId',
   Text = 'text',
+  TimeToComplete = 'timeToComplete',
   Type = 'type'
 }
 
@@ -1829,6 +1908,7 @@ export type QuestionScalarWhereInput = {
   options?: Maybe<StringNullableListFilter>;
   parrentTestId?: Maybe<IntFilter>;
   text?: Maybe<StringFilter>;
+  timeToComplete?: Maybe<IntNullableFilter>;
   type?: Maybe<EnumQuestionTypeFilter>;
 };
 
@@ -1843,6 +1923,7 @@ export type QuestionScalarWhereWithAggregatesInput = {
   options?: Maybe<StringNullableListFilter>;
   parrentTestId?: Maybe<IntWithAggregatesFilter>;
   text?: Maybe<StringWithAggregatesFilter>;
+  timeToComplete?: Maybe<IntNullableWithAggregatesFilter>;
   type?: Maybe<EnumQuestionTypeWithAggregatesFilter>;
 };
 
@@ -1850,11 +1931,13 @@ export type QuestionSumAggregateOutputType = {
   __typename?: 'QuestionSumAggregateOutputType';
   id?: Maybe<Scalars['Int']>;
   parrentTestId?: Maybe<Scalars['Int']>;
+  timeToComplete?: Maybe<Scalars['Int']>;
 };
 
 export type QuestionSumOrderByAggregateInput = {
   id?: Maybe<SortOrder>;
   parrentTestId?: Maybe<SortOrder>;
+  timeToComplete?: Maybe<SortOrder>;
 };
 
 export enum QuestionType {
@@ -1871,6 +1954,7 @@ export type QuestionUncheckedCreateInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId: Scalars['Int'];
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1889,6 +1973,7 @@ export type QuestionUncheckedCreateWithoutCompeteAnswersInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId: Scalars['Int'];
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1900,6 +1985,7 @@ export type QuestionUncheckedCreateWithoutParrentTestInput = {
   id?: Maybe<Scalars['Int']>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text: Scalars['String'];
+  timeToComplete?: Maybe<Scalars['Int']>;
   type: QuestionType;
 };
 
@@ -1912,6 +1998,7 @@ export type QuestionUncheckedUpdateInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId?: Maybe<IntFieldUpdateOperationsInput>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1923,6 +2010,7 @@ export type QuestionUncheckedUpdateManyInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId?: Maybe<IntFieldUpdateOperationsInput>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1947,6 +2035,7 @@ export type QuestionUncheckedUpdateManyWithoutQuestionsInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1958,6 +2047,7 @@ export type QuestionUncheckedUpdateWithoutCompeteAnswersInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTestId?: Maybe<IntFieldUpdateOperationsInput>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1969,6 +2059,7 @@ export type QuestionUncheckedUpdateWithoutParrentTestInput = {
   id?: Maybe<IntFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1980,6 +2071,7 @@ export type QuestionUpdateInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest?: Maybe<TestUpdateOneRequiredWithoutQuestionsInput>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -1989,6 +2081,7 @@ export type QuestionUpdateManyMutationInput = {
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -2031,6 +2124,7 @@ export type QuestionUpdateWithoutCompeteAnswersInput = {
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   parrentTest?: Maybe<TestUpdateOneRequiredWithoutQuestionsInput>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -2041,6 +2135,7 @@ export type QuestionUpdateWithoutParrentTestInput = {
   expectedResult?: Maybe<NullableStringFieldUpdateOperationsInput>;
   options?: Maybe<Array<Maybe<Scalars['String']>>>;
   text?: Maybe<StringFieldUpdateOperationsInput>;
+  timeToComplete?: Maybe<NullableIntFieldUpdateOperationsInput>;
   type?: Maybe<EnumQuestionTypeFieldUpdateOperationsInput>;
 };
 
@@ -2078,6 +2173,7 @@ export type QuestionWhereInput = {
   parrentTest?: Maybe<TestWhereInput>;
   parrentTestId?: Maybe<IntFilter>;
   text?: Maybe<StringFilter>;
+  timeToComplete?: Maybe<IntNullableFilter>;
   type?: Maybe<EnumQuestionTypeFilter>;
 };
 
